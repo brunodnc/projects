@@ -1,0 +1,63 @@
+Comandos no terminal do Linux
+
+ls lista os arquivos do diretório atual
+ls -a variação do comando ls que mostra os arquivos ANÔNIMOS, escondidos
+cd significa change directory, mudar diretório, trocar de pasta
+mkdir significa make directory, cria um diretório
+cd . aponta para o diretório atual e cd .. retorna para o diretório onde ele está dentro
+pwd é o comando que mostra o caminho completo onde o terminal está operando, significa print working directory
+cp para fazer copias, primeiro coloca-se o nome do arquivo que está sendo copiado, e depois segue o nome da cópia, por exemplo cd arquivo.txt arquivocopia.txt
+cat é o comando para mostrar o conteúdo do arquivo, cat nomedoarquivo.extensãodoarquivo
+rm significa remover, ele apaga um arquivo.
+mv significa mover, primeiro coloca-se o nome do arquivo, e em seguida o diretório de destino, por exemplo nomedoarquivo.extensão do arquivo /diretóriodestino
+rmdir significa remover diretório, ou seja, ele apaga uma pasta, detalhe, ele só funciona se essa pasta estiver vazia
+rm -rf é uma variação do comando de remover que apaga um diretório junto com os arquivos dentro dele
+less exibe parte dos conteúdos de um dado arquivo com bases no taminho da capacidade de exibição do terminal, aperte espaço para passar para a próxima parte do arquivo
+head é o comando que mostra as 10 primeiras linhas de um dado arquivo, com um modificador, por exemplo, head -3, vai fazer mostrar apenas as 3 primeiras linhas
+tail é o comando que mostra as 10 últimas linhas de um dado arquivo, modificável com um valor tal como o comando head, por exemplo, tail -3 exibirá as últimas 3 linhas
+dentro desse modo de exibição do less é possível fazer uma busca digitando enquanto está em operação, a tecla Q sai da busca
+grep é um comando que busca com base em um valor dado dentro de um arquivo, por exemplo grep 123 listatelefonica.txt exibirá todos as linhas que começarem com a sequência 123, colocando -i como modificador antes dos valores de busca grep -i valor arquivo, fará a busca insensível se o valor estará em caixa alta em minúscula
+grep -i -v negativa a busca, isto é, ele vai buscar aquelas linhas que não possuem o valor inserido, e já que tem um i, de forma insensível à formatação das letras
+grep -n entrega também a linha onde se encontra aquilo que o comando manda buscar
+grep -c entrega a quantidade de vezes em que se encontra o que se está buscando
+é possível concatenar os modificadores do comando, por exemplo, grep -ivc vai retornar a quantidade de vezes que não aparece aquilo que se busca
+wc revelará a quantidade de linhas, quantidade de palavras e quantidade de caracteres respectivamente de um dado arquivo
+ls * mostra todas as cadeias de arquivo dentro da pasta onde se encontra
+o caractere ? funciona como um coringa, por exemplo ls ?astaqueeunãolembroaprimeiraletra listará tudo que está dentro da pastaqeeunãolemroaprimeiraletra
+man é acessa o manual de um dado comando, por exemplo man rm, que explicará o que o comando rm faz.
+whatis é um comando que pergunta para o terminal 'o que é' tal comando.
+apropos é a forma com que você pergunta qual é o comando que você tem que usar para fazer o que deseja, por exemplo: apropos copy vai mostrar todos os comandos relacionados com copy
+preciso ainda estudar melhor as diferenças e aplicações de '*', '.' e '?' no terminal
+
+--
+
+cat depois de inicializado vazio permite o usuário a inserir valores no terminal, ctrl + d para sair deste modo.
+cat > nome vai salvar os valores inseridos depois com o nome dado, assim ele permite você gravar informações no seu sistema, por exemplo, cat > filmes.txt, depois digita a lista de filmes , vai criar um arquivo txt com a lista de filmes digitada
+cat >> serve para adicionar novos dados em um arquivo, por exemplo, cat >> filmes.txt deixará possível para o usuário inserir mais filmes na lista
+cat > nomedoarquivo1.* nomedoarquivo2.* > resultado.* faz com que as informações sejam concatenadas sob a forma de um só arquivo
+sort serve para ordenar os valores dentro de um arquivo, sort > nomedoarquivo, no entanto para não alterar o arquivo em que o sort está operando, e apenas dar o output desejado (mantendo o arquivo original) usa-se em vez de > o símbolo <, sort < nomedoarquivo
+somando os dois símbolos, > e <, é possível direcionar o output da operação para um outro arquivo sem modificar o original, sort < arquivobase > novoarquivodestino
+o comando who mostra quem está utilizando o sistema
+o símbolo | (pipe) serve como um funil que pega o output de um comando e insere em outro, por exemplo, who | sort vai mostrar os usuários do terminal de forma ordenada pelo sort
+ls -l mostra várias informações que não aparecem normalmente, acessos, permissões, tamanho e data de alteração.
+quando o terminal mostra as permissões, a letra r significa read / ler, w, write / escrever(editar), x de executar, - no início significa que é um arquivo comum, d o início da sequência significa que é um diretório.
+além disso, o ls -l vai mostrar essas permissões em sequência (início(- ou d)/permissões do usuário/ permissões do grupo do usuário / permissões de outros usuários), por exemplo drwc------@
+para mudar as permissões usa-se o comando chmod, chmod u para usuário atual, chmod o para outros usuários, chmod g para o grupo, chmod para all, todos.
+- para retirar e + para adicionar permissões, para adicionar todas as permissões, por exemplo, o comando fica chmod a+rwx nomedoarquivooudiretório
+ps devolve os processos sendo executados
+sleep é um processo executado que força o terminal a pausar pelo tempo inserido em segundos
+para deixar um processo no plano de fundo basta colocar um & no comando, nos moldes de sleep 10 &
+para suspender um processo rodando no terminal emprega-se o comando ctrl+z
+caso for inserido o comando bg, o processo volta a rodar no background
+jobs é o comando que mostra a lista de processos em execução da shell. A diferença entre ps e jobs é que o jobs diz sobre os processos do sistema, e não sabe sobre coisas internas ao shell.
+ctrl+c é o comando utilizado para cancelar o processo sendo executado
+kill é o comando para 'matar' um processo, isto é, parar de executá-lo.
+kill %1 mata o primeiro processo da lista de prioridade
+kill númerodePID pode ser utilizado também para eliminar um processo com base nesse seu número de identificação
+para forçar a finalização de um processo usa-se o modificador -9, por exemplo kill -9 númerodeidentificaçãodoprocesso
+o comando find é usado para encontrar algum dado, ele pode ser empregado junto do sufixo -name, -date, -size- e -type especificando o tipo de informação que se busca, por exemplo, find local -name "*.txt"
+outros exemplos são: find . -type d para buscar todos os diretórios na pasta atual, find ~ -tipe f para buscar todos os arquivos na pasta home
+history é um comando para mostrar o histórico dos comandos empregados no terminal, seu tamanho é configurável com os sufixos apropriados e com o pipe, por exemplo, history | head esse é um comando legal para ver suas primeiras aventuras com o terminal que está usando.
+echo é uma ordem para o terminal escrever o que o usuário deseja, sinalizando-o através de aspas duplas, por exemplo echo "lista", será seguido por um eco do terminal escrito lista, podendo ser utilizado com o > para inserir dados dentro de um arquivo de texto, por exemplo echo "TESTE" > teste.txt vai deixar dentro do teste.txt o texto TESTE
+
+
