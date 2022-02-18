@@ -1,0 +1,11 @@
+git init serve para inicializar um repositório git no local
+git status vai comparar o estado atual do local com o repositório git local
+git add consegue adicionar as modificações à lista que será entregue para modificação pelo git commit
+git commit -m "mensagem" envia sua modificação para o repositório git local
+git log mostra o histório de utilização do git
+git log -diff-filter=D --summary filtra o log para exibir sumariamente os commits que deletaram um arquivo, isto é, ele traz no log os commits que mostram os arquivos que foram deletados
+git checkout númerodocommit~1 nomedoarquivoarecuperar.extensao com esse comando é possível recuperar, a partir de uma versão identificada no log, um arquivo específico que foi modificado e ou deletado, checar melhor a documentação a respeito desse comando.
+git ignore serve para ignorar arquivos dentro de um repositório git iniciado, isto é, para não deixá-lo fora dos commits, para ignorar então, cria-se um arquivo invisível com touch .gitignora, neste arquivo insere-se aqueles que se quer ignorar. por exemplo, para ignorar todos os arquivos pdf basta inserir no .gitignore *.txt, é importante lembrar de commitar o .gitignore para que ele funcione sempre.
+Para sinalizar ao .gitignore para ignorar diretórios inteiros basta colocar / no fim do nome do diretório.
+https://www.toptal.com/developers/gitignore - boa ferramente que contém modelos prontos e úteis para se adicionar no gitignore.
+
