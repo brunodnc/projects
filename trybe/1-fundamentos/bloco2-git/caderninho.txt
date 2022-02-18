@@ -8,4 +8,10 @@ git checkout númerodocommit~1 nomedoarquivoarecuperar.extensao com esse comando
 git ignore serve para ignorar arquivos dentro de um repositório git iniciado, isto é, para não deixá-lo fora dos commits, para ignorar então, cria-se um arquivo invisível com touch .gitignora, neste arquivo insere-se aqueles que se quer ignorar. por exemplo, para ignorar todos os arquivos pdf basta inserir no .gitignore *.txt, é importante lembrar de commitar o .gitignore para que ele funcione sempre.
 Para sinalizar ao .gitignore para ignorar diretórios inteiros basta colocar / no fim do nome do diretório.
 https://www.toptal.com/developers/gitignore - boa ferramente que contém modelos prontos e úteis para se adicionar no gitignore.
-
+git push é o comando para enviar do repositório git local para o repositório remoto, o comando segue como git push -u origin nomedabranch da primeira vez para indicar para o git de onde está vindo para onde está indo  ler mais sobre a doc desse comando
+git clone endereço clona todos os arquivos do repositório git remoto
+git fetch verifica as modificações na branch do repositório remoto.
+git pull verifica alterações na branch do repositório remoto, mas também unifca-as, alterando o git local para igualá-lo ao git remoto
+learngitbranching.js.org é muito interessante pra treinar branching do git!
+git branch nome cria um branch com o nome nome
+git branc -d nome deleta o branch de tal nome
