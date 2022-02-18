@@ -14,4 +14,4 @@ git fetch verifica as modificações na branch do repositório remoto.
 git pull verifica alterações na branch do repositório remoto, mas também unifca-as, alterando o git local para igualá-lo ao git remoto
 learngitbranching.js.org é muito interessante pra treinar branching do git!
 git branch nome cria um branch com o nome nome
-git branc -d nome deleta o branch de tal nome
+git branch -d nome deleta o branch de tal nome
