@@ -1,0 +1,13 @@
+<!DOCTYPE html> serve para informar qual versão do html está sendo empregada na página.
+<html> </html> é a marcação raiz do html que abarca toda a página, é acompanhado pelo atributo lang="pt-br" para informar ao navegador qual a linguagem do conteúdo da página.
+<head></head> são as informações sobre a página e que ajudam a configurar a página, dados sobre os dados.
+<body></body> é o corpo da página, isto é, onde ficará os conteúdos da página.
+<h1></h1> é a tag de título, o número designa a importância do heading. Usado para criar seções por exemplo com o h2 e subseções com o h3.
+<p></p> é a tag de parágrafo.
+<br> é a tag para fazer quebra de linha; ajuda na organização da página.
+<strong> </strong> é a tag para dar ênfase, colocando o texto em negrito
+<em></em> é a tag para colocar em itálico, mas também semanticamente dá um peso de importância para o texto marcado
+<ul></ul> ou <ol></ol> inicia a criação de lista, não ordenada e ordenada respectivamente, e a tag <li> é empregada para cobrir cada membro da lista.
+<img src="caminhodafoto"> é como o html faz para colocar imagem na página, podendo ser configurada com outros atributos como width, heigth, o atributo alt="descrição" é utilizada para quando o navegador não consegue acessar a imagem, ou para deixar a página mais acessível para pessoas incapaz de enxergar a imagem.
+<a href="link">Palavra</a> é a tag utilizada para ancorar outras páginas na sua página, isto é, um modo de redirecionar o usuário através de um clique, adicionando o atributo target="_blank" informa para o navegador abrir o link em uma nova aba.
+
