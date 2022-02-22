@@ -10,4 +10,10 @@
 <ul></ul> ou <ol></ol> inicia a criação de lista, não ordenada e ordenada respectivamente, e a tag <li> é empregada para cobrir cada membro da lista.
 <img src="caminhodafoto"> é como o html faz para colocar imagem na página, podendo ser configurada com outros atributos como width, heigth, o atributo alt="descrição" é utilizada para quando o navegador não consegue acessar a imagem, ou para deixar a página mais acessível para pessoas incapaz de enxergar a imagem.
 <a href="link">Palavra</a> é a tag utilizada para ancorar outras páginas na sua página, isto é, um modo de redirecionar o usuário através de um clique, adicionando o atributo target="_blank" informa para o navegador abrir o link em uma nova aba.
-
+---
+abrir a tag <style></style> funciona como um substituto menos organizado para um arquivo .css
+color: é o atributo para dar cor ao conteúdo, aceita vários inputs, rgb, hexcode, nome da cor (dependendo da versão)
+background-color: cor do fundo
+Normalmente atribui-se uma identificação id="identificação" na respectiva div html para conseguir declarar diretamente seus atributos com o css. Por exemplo, no html vai ficar <div id="textinhocolorido"></div> e no css vai estar: #textinhocolorido {color: green}.
+Alternativamente é possível diretamente referenciar uma tag html, mas isso fará valer o atributo css para todas suas ocorrências na página, nesse caso não precisa do '#'. Por exemplo: h2 {color: pink}.
+Alternativamente é possível criar uma classe na chave html que pode ser referenciada pelo css, isto é importante porque o id não pode se repetir. Então cria-se uma class="nomedaclasse" para estilizar um conjunto específico de tags html ao mesmo tempo. No css o código ficará .nomedaclasse {atributo: valor}

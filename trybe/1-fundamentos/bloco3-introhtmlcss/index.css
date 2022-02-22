@@ -1,0 +1,22 @@
+body {
+    font-size: 1rem;
+    font-family: sans-serif;
+    line-height: 90%;
+
+}
+
+h1 {
+    font-size: 65px;
+    color: orange;
+    text-align: center;
+}
+
+classepeul {
+    background-color: gray;
+}
+
+p {
+    font-weight: 600;
+    font-size: 3rem;
+    text-align: justify;
+}
