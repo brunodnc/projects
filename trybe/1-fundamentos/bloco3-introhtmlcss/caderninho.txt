@@ -24,3 +24,4 @@ line-height: valor, é a propriedade para definir o espaçamento entre as linhas
 text-decoration: valor Decora o texto, por exemplo sublinhando-o, ou com uma 'wavy overline' (kkkkk).
 Para criar um link entre o arquivo html e o arquivo css basta colocar no head a tag <link rel="styleshet" type="text/css" href="caminhodoarquivocss">
 coolors.co é um ótimo site para econtrar o conjunto de cores que mais harmonizam-se (de acordo com um algoritmo, claro) para um site
+list-style: tipo-de-lista interno-ou-externo url-da-img é um comando interessante para customizar a lista pelo css, além de facilitar demais colocar aquele pontinho como ser interno à "caixa"... bom demais!

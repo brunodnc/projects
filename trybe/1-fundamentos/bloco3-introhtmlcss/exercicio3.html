@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - Seletores e Pseudoclasses</title>
+    <!-- CSS Interno ao HTML para não lotar o github -->
+    <style>
+        h1, h2, p {
+            text-align:center;
+            font-family:monospace;
+        }
+
+        ul {
+            list-style: trad-chinese-informal inside;
+        }
+        
+        #lista:hover {
+            background-color:blueviolet
+        }
+
+        .item:active {
+            font-family:monospace;
+        }
+        div:hover {
+            outline: 4mm ridge rgba(170, 50, 220, .6);
+            /* source: developer.mozilla.org/en-US/docs/Web/CSS/border */
+        }
+        div:first-of-type {
+            background-color: black;
+            color: white;
+        }
+        div:nth-of-type(2) {
+           color: black;
+           background-color: white; 
+        }
+        div:nth-of-type(3) {     
+            color:red;
+            background-color: blue;
+            padding: 10px;
+
+        }
+        div:nth-of-type(4) {
+            background-color: darkslategrey;
+            color:antiquewhite;
+        }
+        div:last-of-type {
+            background-color:bisque;
+        }
+
+        h3 {
+            font-family: monospace;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1> Título do site, nesse caso, exercício de seletores e pseudoclasses :) </h1>
+    <br>
+    <br>
+    <h2>Listona dos melhores sites da internet</h2>
+    <p>para quem não navega a internet desde os 3 anos de idade</p>
+    <ul id="lista">
+        <li class="item">
+            Google
+        </li>
+        <li class="item">
+            Youtube
+        </li>
+        <li class="item">
+            Wikipedia
+        </li>
+</ul>
+
+
+<h2>Olha essa paleta de cores! (paleta não é uma palavra engraçada? Detalhe, feita sem utilizar classe ou ID no html)</h2>
+<br>
+<div><h3><em>Cor primária, a primeira de seu tipo</em></h3></div>
+<div><h3>Cor secundária, a segunda de seu tipo</h3></div>
+<div><h3><em>Cor complementar, a terceira de seu tipo, e também a mais folgada</em></h3></div>
+<div><h3>Cor escura, a quarta de seu tipo</h3></div>
+<div><h3><em>Cor clara,a ultima de seu tipo</em></h3></div>
+</body>
+</html>
