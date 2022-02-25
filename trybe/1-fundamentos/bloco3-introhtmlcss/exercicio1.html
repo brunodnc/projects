@@ -6,20 +6,19 @@
         <title>Exercício 1: Box Model</title>
         <!-- CSS Interno ao HTML para não lotar o github -->
         <style>
-
             .caixa {
                 display: inline-block;
                 text-align: center;
             }
+            
             #caixa1 {
                 background-color:green;
                 color:pink;
-                height: 30%;
+                height: 100%;
+                /* tive que colocar uma div com div não relativo encima para essa porcentagem funcionar */
                 width: 30%;
-                /* será que se eu mexer com a propriedade overflow consigo fazer funcionar a height 30%? */
-
-
             }
+
             #caixa2 {
                 background-color: pink;
                 color: green;
@@ -49,9 +48,10 @@
         </style>
     </head>
     <body>
+        <div style="height:30vh">
         <div id="caixa1" class="caixa">Caixa 1</div>
         <div id="caixa2" class="caixa">Caixa 2</div>
-        <br>
+    </div><br>
         <div class="box">Box</div>
         <div class="box padding">Padding</div>
         <div class="box margin">Margin</div>

@@ -1,0 +1,88 @@
+body {
+    font-family: monospace;
+}
+
+li {
+    display: inline-block;
+    padding: 0 10%;
+    border-bottom: 3px gray solid;
+    border-right: 2px gray solid;
+}
+
+li:hover {
+    background-color: grey;
+    border-bottom: 3px black solid;
+    border-right: 2px black solid;
+}
+
+aside {
+    display: block;
+    float: right;
+}
+
+#maineside {
+    display: inline-block;
+    width: 100%;
+}
+.twin {
+    display: block;
+    width: 30vw;
+}
+
+main {
+    display: inline-block;
+    width: 50vw;
+}
+
+h1, h2, h3, p, footer {
+    text-align: justify;
+    padding: 10px;
+}
+
+footer {
+    font-size: 0.7rem;
+    text-align: right;
+}
+
+
+
+
+@media (max-width: 675px) {
+    
+    
+    #maineside {
+        display:block;
+    }
+
+    main {
+        display: block;
+        width: 90vw;
+    }
+
+    aside {
+        float:none;
+    }
+
+    .twin {
+        width: 90vw;
+    }
+
+
+
+    li {
+        display:block; 
+        padding: 10px 0; 
+
+}
+
+    #ulheader {
+       padding-left: 10px; 
+}
+    nav {
+        margin-right: 10px;
+    }
+
+    li {
+        border-top: 3px gray solid;
+    }
+}   
