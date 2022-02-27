@@ -84,6 +84,13 @@ h1 {
     transition: background-color 2s ease-in-out, border 2s ease-in-out, border-radius 2s ease-in-out, padding  2s ease-in-out;
 }
 
+main {
+    
+    /* esse margin foi uma mão na roda viu... source: freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ */
+    margin: 0 auto;
+    max-width: 1200px;
+    
+}
 
 h1:hover, #welcome-section p:hover, .navlist a:hover {
     background-color:greenyellow;
@@ -195,7 +202,7 @@ h2 {
 }
 
 #whoami #fav {
-    position: absolute
+    position: relative;
 }
 
 footer {
@@ -248,10 +255,31 @@ footer h2:hover {
         width: 70%;
         height: 70%;
     }
+    #whoami #fav {
+        position:relative;
+    }
+
+    #whoami .img {
+        float:none;
+    }
+
+    #whoami .img2 {
+        float:none;
+        padding-left: 0;
+        padding-right: 2rem;
+    }
+
+    #imgs {
+        display:block;
+        float:left;
+    }
 }
+
+@media (min-width)
 
 @media (prefers-reduced-motion) {
     * {
         transition: none;       
     }
 }
+
