@@ -5,7 +5,16 @@
     outline: 0;
     vertical-align: baseline;
     background: transparent;
-}       
+}
+
+body {
+    width: 99vw;
+    background-image: url(https://images.unsplash.com/photo-1612416364638-753a3834455c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80);
+    background-attachment:fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 nav {
     position:fixed;
@@ -83,7 +92,7 @@ h1:hover, #welcome-section p:hover, .navlist a:hover {
     padding: 2rem;
 }
 
-main {
+#projects {
     display: flex;
     flex-direction:column;
     background: linear-gradient(35deg, greenyellow, #FFCCCC);
@@ -98,6 +107,7 @@ h2 {
     text-align: center;
     text-shadow: 2px 2px greenyellow;
 }
+
 
 .project-tile {
     width: 35vw;
@@ -131,6 +141,15 @@ h2 {
     border:red solid 0.3rem;
 }
 
+#whoami {
+    padding: 2rem;
+    list-style-position: inside;
+    background: linear-gradient(-35deg, greenyellow, #FFCCCC);
+}
+
+#whoami:hover {
+    background-color: red;
+}
 
 footer {
 bottom: 0;
