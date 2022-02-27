@@ -145,10 +145,57 @@ h2 {
     padding: 2rem;
     list-style-position: inside;
     background: linear-gradient(-35deg, greenyellow, #FFCCCC);
+    text-shadow: 2px 2px greenyellow;
+    font-family: monospace;
 }
 
-#whoami:hover {
-    background-color: red;
+#whoami h2 {
+    margin-bottom: 1rem;
+}
+
+#whoami p {
+    font-family: monospace;
+    padding: 1rem;
+    color: red;
+    font-weight: bolder;
+    text-align: justify;
+}
+
+#whoami h3 {
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+#whoami li {
+    padding: 0.2rem;
+    text-shadow: 2px 2px greenyellow;
+    color: red;
+    font-weight: bolder;
+    list-style: square inside;
+    font-family: monospace;
+    text-align: justify;
+}
+
+#whoami .img {
+    float: left;
+    display: block;
+    padding-right: 2rem;
+}
+
+#whoami .img2 {
+    float:right;
+    display:block;
+    padding-left: 2rem;
+}
+
+#whoami img {
+    width: 30vh;
+    padding-bottom: 2rem;
+    display: block;
+}
+
+#whoami #fav {
+    position: absolute
 }
 
 footer {
