@@ -47,10 +47,7 @@ function convertToRoman(n) {
     f.unshift("XL");}
     return convertToRoman(n - 40);
   } 
-  
-//   pode ter bugado nesse debaixo, verificar depois
-  
-  else if (n >= 10) {
+else if (n >= 10) {
       if (f.join('').endsWith('X') || f.join('').endsWith('L') || f.join('').endsWith('C') || f.join('').endsWith('CD')  || f.join('').endsWith('D')  || f.join('').endsWith('M')) {
           f.push('X');
       } else {
@@ -75,7 +72,12 @@ function convertToRoman(n) {
     f.push("I");
     return convertToRoman(n - 1);
   } else if (n === 0) {
-    return f.join("");
+      let resp = f.join("");
+      f = []
+    return resp;
   }
 }
-console.log(convertToRoman(1996));
+console.log(convertToRoman(2));
+
+// DO JEITO QUE A FUNÇÃO ESTÁ, ELA NÃO ESTÁ LIMPANDO O ARRAY f PARA SER USADO NOVAMENTE, PRECISEI ADD UM RESET NO FINAL AO LADO DE UMA VARIAVEL TEMPORARIA PARA ENTREGAR O RESULTADO
+// cara deve ser possível fazer essa função em 2 linhas kkk
