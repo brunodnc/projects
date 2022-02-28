@@ -1,6 +1,6 @@
+let f = [];
 function convertToRoman(n) {
-  let f = [];
-  if (n >= 1000) {
+    if (n >= 1000) {
     f.unshift("M");
     return convertToRoman(n - 1000);
   } else if (n >= 900) {
@@ -24,25 +24,38 @@ function convertToRoman(n) {
   } else if (n >= 40) {
     f.unshift("XL");
     return convertToRoman(n - 40);
-  } else if (n >= 10) {
-    f.unshift("X");
+  } 
+  
+//   pode ter bugado nesse debaixo, verificar depois
+  
+  else if (n >= 10) {
+      if (f.join('').endsWith('X') || f.join('').endsWith('L')) {
+          f.push('X');
+      } else {
+    f.unshift("X");}
     return convertToRoman(n - 10);
   } else if (n >= 9) {
-    f.unshift("IX");
+      if (f.join('').endsWith('X') || f.join('').endsWith('L')) {
+    f.push('IX');
+} else {
+    f.unshift("IX");}
     return convertToRoman(n - 9);
   } else if (n >= 5) {
-    f.unshift("V");
+    f.push("V");
     return convertToRoman(n - 5);
   } else if (n >= 4) {
-    f.unshift("IV");
+    if (f.join('').endsWith('X') || f.join('').endsWith('L')) {
+        f.push('IV');
+    } else {
+    f.unshift("IV");}
     return convertToRoman(n - 4);
   } else if (n >= 1) {
-    f.unshift("I");
+    f.push("I");
     return convertToRoman(n - 1);
   } else if (n === 0) {
     return f.join("");
   }
 }
-console.log(convertToRoman(2));
+console.log(convertToRoman(53));
 
 // deveria tá printando 'II' mas não ta :'(
