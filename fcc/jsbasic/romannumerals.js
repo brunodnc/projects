@@ -4,38 +4,60 @@ function convertToRoman(n) {
     f.unshift("M");
     return convertToRoman(n - 1000);
   } else if (n >= 900) {
-    f.unshift("CM");
+      if (f.join('').endsWith('M')) {
+          f.push('CM');
+      } else {
+    f.unshift("CM");}
     return convertToRoman(n - 900);
   } else if (n >= 500) {
-    f.unshift("D");
+      if (f.join('').endsWith('M')) {
+          f.push("D");
+      } else {
+    f.unshift("D");}
     return convertToRoman(n - 500);
   } else if (n >= 400) {
-    f.unshift("CD");
+      if (f.join('').endsWith('M')) {
+          f.push("CD");
+      } else {
+    f.unshift("CD");}
     return convertToRoman(n - 400);
   } else if (n >= 100) {
+      if (f.join('').endsWith('D') || f.join('').endsWith('M')  || f.join('').endsWith('C')) {
+          f.push("C");
+      } else {
     f.unshift("C");
+      }
     return convertToRoman(n - 100);
   } else if (n >= 90) {
-    f.unshift("XC");
+    if (f.join('').endsWith('C') || f.join('').endsWith('CD') || f.join('').endsWith('D')  || f.join('').endsWith('M')) {
+        f.push("XC");
+    } else {
+    f.unshift("XC");}
     return convertToRoman(n - 90);
   } else if (n >= 50) {
-    f.unshift("L");
+      if (f.join('').endsWith('C')  || f.join('').endsWith('CD')  || f.join('').endsWith('D')  || f.join('').endsWith('M')) {
+          f.push("L");
+      } else {
+    f.unshift("L");}
     return convertToRoman(n - 50);
   } else if (n >= 40) {
-    f.unshift("XL");
+      if (f.join('').endsWith('C') || f.join('').endsWith('CD') || f.join('').endsWith('D')  || f.join('').endsWith('M')) {
+          f.push("XL");
+      } else {
+    f.unshift("XL");}
     return convertToRoman(n - 40);
   } 
   
 //   pode ter bugado nesse debaixo, verificar depois
   
   else if (n >= 10) {
-      if (f.join('').endsWith('X') || f.join('').endsWith('L')) {
+      if (f.join('').endsWith('X') || f.join('').endsWith('L') || f.join('').endsWith('C') || f.join('').endsWith('CD')  || f.join('').endsWith('D')  || f.join('').endsWith('M')) {
           f.push('X');
       } else {
     f.unshift("X");}
     return convertToRoman(n - 10);
   } else if (n >= 9) {
-      if (f.join('').endsWith('X') || f.join('').endsWith('L')) {
+      if (f.join('').endsWith('X') || f.join('').endsWith('L') || f.join('').endsWith('C') || f.join('').endsWith('CD')  || f.join('').endsWith('D') || f.join('').endsWith('M')) {
     f.push('IX');
 } else {
     f.unshift("IX");}
@@ -44,7 +66,7 @@ function convertToRoman(n) {
     f.push("V");
     return convertToRoman(n - 5);
   } else if (n >= 4) {
-    if (f.join('').endsWith('X') || f.join('').endsWith('L')) {
+    if (f.join('').endsWith('X') || f.join('').endsWith('L') || f.join('').endsWith('C')  || f.join('').endsWith('CD') || f.join('').endsWith('D')  || f.join('').endsWith('M')) {
         f.push('IV');
     } else {
     f.unshift("IV");}
@@ -56,6 +78,4 @@ function convertToRoman(n) {
     return f.join("");
   }
 }
-console.log(convertToRoman(53));
-
-// deveria tá printando 'II' mas não ta :'(
+console.log(convertToRoman(1996));
