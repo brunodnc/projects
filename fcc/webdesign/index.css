@@ -5,7 +5,16 @@
     outline: 0;
     vertical-align: baseline;
     background: transparent;
-}       
+}
+
+body {
+    width: 99vw;
+    background-image: url(https://images.unsplash.com/photo-1612416364638-753a3834455c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80);
+    background-attachment:fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 nav {
     position:fixed;
@@ -75,6 +84,13 @@ h1 {
     transition: background-color 2s ease-in-out, border 2s ease-in-out, border-radius 2s ease-in-out, padding  2s ease-in-out;
 }
 
+main {
+    
+    /* esse margin foi uma mão na roda viu... source: freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ */
+    margin: 0 auto;
+    max-width: 1200px;
+    
+}
 
 h1:hover, #welcome-section p:hover, .navlist a:hover {
     background-color:greenyellow;
@@ -83,7 +99,7 @@ h1:hover, #welcome-section p:hover, .navlist a:hover {
     padding: 2rem;
 }
 
-main {
+#projects {
     display: flex;
     flex-direction:column;
     background: linear-gradient(35deg, greenyellow, #FFCCCC);
@@ -98,6 +114,7 @@ h2 {
     text-align: center;
     text-shadow: 2px 2px greenyellow;
 }
+
 
 .project-tile {
     width: 35vw;
@@ -131,6 +148,62 @@ h2 {
     border:red solid 0.3rem;
 }
 
+#whoami {
+    padding: 2rem;
+    list-style-position: inside;
+    background: linear-gradient(-35deg, greenyellow, #FFCCCC);
+    text-shadow: 2px 2px greenyellow;
+    font-family: monospace;
+}
+
+#whoami h2 {
+    margin-bottom: 1rem;
+}
+
+#whoami p {
+    font-family: monospace;
+    padding: 1rem;
+    color: red;
+    font-weight: bolder;
+    text-align: justify;
+}
+
+#whoami h3 {
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+#whoami li {
+    padding: 0.2rem;
+    text-shadow: 2px 2px greenyellow;
+    color: red;
+    font-weight: bolder;
+    list-style: square inside;
+    font-family: monospace;
+    text-align: justify;
+}
+
+#whoami .img {
+    float: left;
+    display: block;
+    padding-right: 2rem;
+}
+
+#whoami .img2 {
+    float:right;
+    display:block;
+    padding-left: 2rem;
+}
+
+#whoami img {
+    width: 30vh;
+    padding-bottom: 2rem;
+    display: block;
+}
+
+#whoami #fav {
+    position: relative;
+}
 
 footer {
 bottom: 0;
@@ -182,10 +255,31 @@ footer h2:hover {
         width: 70%;
         height: 70%;
     }
+    #whoami #fav {
+        position:relative;
+    }
+
+    #whoami .img {
+        float:none;
+    }
+
+    #whoami .img2 {
+        float:none;
+        padding-left: 0;
+        padding-right: 2rem;
+    }
+
+    #imgs {
+        display:block;
+        float:left;
+    }
 }
+
+@media (min-width)
 
 @media (prefers-reduced-motion) {
     * {
         transition: none;       
     }
 }
+
