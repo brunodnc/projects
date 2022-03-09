@@ -52,6 +52,7 @@ function inputToButton(string) {
 
 inputToButton("Feriados");
 let on = false;
+
 function bgcchange(event) {
   arrholi = document.querySelectorAll(".holiday");
   if (on === false) {
@@ -70,3 +71,32 @@ function bgcchange(event) {
 document
   .getElementsByClassName("btn-holiday")[0]
   .addEventListener("click", bgcchange);
+
+  function inputToButton2(string) {
+    let inputToButton2 = document.createElement("button");
+    inputToButton2.innerText = string;
+    inputToButton2.classList.add("btn-friday");
+    document.querySelector(".buttons-container").appendChild(inputToButton2);
+  }
+
+inputToButton2("Sexta-feira");
+
+let on2 = false;
+function bgcchange2(event) {
+    let arrfri = document.querySelectorAll(".friday");
+    if (on2 === false) {
+      for (let day2 of arrfri) {
+        day2.style.backgroundColor = "red";
+      }
+      on2 = true;
+    } else if (on2 === true) {
+      for (let day2 of arrfri) {
+        day2.style.backgroundColor = "rgb(238,238,238)";
+      }
+      on2 = false;
+    }
+  }
+
+document
+  .getElementsByClassName("btn-friday")[0]
+  .addEventListener("click", bgcchange2);
