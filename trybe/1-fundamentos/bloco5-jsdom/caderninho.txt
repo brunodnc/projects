@@ -16,3 +16,5 @@ O fluxo usual desses dois comandos é o de criar um elemento HTML, por exemplo u
 .className é utilizado para adicionar uma classe a um elemento html;
 .removeChild(elemento) é o comando utilizado para remover um elemento HTML.
 O fluxo de pode ser iterar sobre um dado conjunto de elementos sob determinada classe com o document.querySelectorAll('.nomeDaClasseCSS'), para cada checagem do for of, verifica com o if se o ;innerText do elemento .includes('oquevocequerdeletar') se esse if for verdadeiro, só jogar o 'nomedoelementopai'.removeChild('elementofilho');
+Evento no JS pode ser chamado diretamente pelo html, por exemplo adicionando um atributo específico capaz de ativar o código, veja, o <button onclick="funcao()">. inicia a função assim que se clica no botão Ou esse evento pode ser ativado per sua chamada no <script></script>, por exemplo: window.onload = funcao(); que realiza a função assim que a página é completamente carregada.
+addEventListener(tipoDeEvento, função); é uma função que vai esperar pelo evento acontecer e então chamar a função designada como resposta.
