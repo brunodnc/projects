@@ -1,5 +1,8 @@
 body {
     font-family: monospace;
+    max-width: 1500px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 h1 {
@@ -17,6 +20,10 @@ h1 {
 
 #configdiv:hover {
     box-shadow: 1rem 1rem teal;
+}
+
+#configsect {
+    text-align: justify;
 }
 
 button {
@@ -46,6 +53,7 @@ h2 {
 
 main {
     padding-top: 1rem;
+
 }
 
 main p {
@@ -53,9 +61,34 @@ main p {
     text-align:justify;
 }
 
-
 @media (min-width: 500px) {
+    section {
+        text-align: center;
+    }
+    
     h3 {
         display:inline;
+    }
+
+    section input {
+        display: inline;
+        right: 100px;
+    }
+}
+
+@media (min-width: 1000px) {
+    aside {
+        vertical-align: middle;
+    }
+    
+    #configsect {
+        display:inline-block;
+    }
+
+    section:last-of-type {
+        display:block;
+        float: right;
+        margin-right: 10%;
+        width: 30%;
     }
 }
