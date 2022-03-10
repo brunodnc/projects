@@ -23,7 +23,7 @@ let artobj = {
 // função para, se não tiver nada no localStorage, criar lá um objeto padrão, e se tiver já algo salvo, carregar para página e atualizar os campos do input com esss valores
 function load() {
     if (localStorage.getItem('saveObj') === null) {
-        localStorage.Storage.setItem('saveObj', JSON.stringify(artobj));
+        localStorage.setItem('saveObj', JSON.stringify(artobj));
     } else {
         let artobj = JSON.parse(localStorage.getItem('saveObj'));
         
@@ -49,8 +49,10 @@ function load() {
 
 window.onload = load();
 
+// função que salva na medida que se modifica os campos
 function save() {
-    
+    localStorage.setItem('saveObj', JSON.stringify(artobj));
+
 }
 
 // functions that get the input and cusomize text.
