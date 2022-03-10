@@ -8,15 +8,35 @@ h1 {
 
 #configdiv {
     border: 3px inset salmon;
-    box-shadow: 1rem 1rem teal ;
+    box-shadow: 0 0 salmon ;
     padding-left: 1rem;
     padding-bottom: 2rem;
     margin:1rem;
+    transition: box-shadow 2s;
 }
 
+#configdiv:hover {
+    box-shadow: 1rem 1rem teal;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.3rem 0.7rem;
+}
 section p {
     padding-top: 0.5rem;
     padding-right: 1rem;
+}
+
+textarea {
+    padding: 1rem;
+    width:calc(100% - 3rem);
+    overflow:auto;
+    white-space:pre-wrap;
+    height: 200px;
+    word-break: break-word;
+    background-color: rgba(250, 128, 114, .1);
+    border: inset    1px teal;
 }
 
 h2 {
@@ -32,4 +52,5 @@ main p {
     padding: 1rem; 
     text-align:justify;
 }
+
 
