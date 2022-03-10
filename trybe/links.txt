@@ -6,3 +6,6 @@ squizlabs.gihub.io/HTML_CodeSniffer/ - é um ótimo site para testar se seu HTML
 https://docs.emmet.io/cheat-sheet/ - resumo das abreviações que podem ser usadas no vscode para ganhar tempo :)
 https://color.adobe.com/pt/create/color-wheel - brincar com esquema de harmonização de cores, alternativa do coolors
 https://www.behance.net/ - Site muito interessante para ver pastinhas criativas dos outros, bom pra procurar inspirações.
+https://gsnedders.html5.org/outliner/ - visualiza um site através da semântica do seu html
+https://webflow.com/ - site para montar interface de um site
+https://picresize.com/ - bom site para redimensionar uma imagem
