@@ -54,3 +54,8 @@ main p {
 }
 
 
+@media (min-width: 500px) {
+    h3 {
+        display:inline;
+    }
+}

@@ -21,6 +21,11 @@ let artobj = {
     'letter-spacing':textart.style.letterSpacing,
 }
 
+// função que da update no textarea toda vez que o localStorage muda
+function localStorageUpdate() {
+    tarea.innerHTML = localStorage.getItem('saveObj').replaceAll(',', ',\n');
+}
+
 // função para, se não tiver nada no localStorage, criar lá um objeto padrão, e se tiver já algo salvo, carregar para página e atualizar os campos do input com esss valores
 function load() {
     if (localStorage.getItem('saveObj') === null) {
@@ -48,14 +53,8 @@ function load() {
     }
     localStorageUpdate();
 }
-
 window.onload = load();
 
-function localStorageUpdate() {
-    // tarea.innerHTML = localStorage.getItem('saveObj').replaceAll(',', ',                             ');
-    tarea.innerHTML = localStorage.getItem('saveObj').replaceAll(',', ',\n');
-
-}
 // função que salva na medida que se modifica os campos
 function save() {
     localStorage.setItem('saveObj', JSON.stringify(artobj));
@@ -76,7 +75,12 @@ function clear(event) {
     textart.style.lineHeight = "inherit";
     textart.style.fontFamily = "inherit";
     textart.style.letterSpacing = "inherit";
-    localStorageUpdate();
+    
+    // precisa das próximas linhas para resetar a textarea com o obj inicial
+    for (key in artobj) {
+        artobj[key] = '';
+    }
+    tarea.innerHTML = JSON.stringify(artobj).replaceAll(',', ',\n'); 
 }
 
 clearbtn.addEventListener('click', clear);
