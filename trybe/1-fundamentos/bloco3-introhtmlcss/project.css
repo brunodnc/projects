@@ -1,0 +1,75 @@
+body {
+  background-color: rgb(253, 251, 251);
+  font-family: monospace;
+  color: coral;
+}
+
+h1 {font-size: 2rem;
+  display: inline-block;}
+
+img {
+  width: 10vw;
+  height: 10vh;
+  border-radius: 30px;
+}
+
+#cabecalho {
+  top: 0;
+  position: fixed;
+  text-align: center;
+  border: 1px solid snow;
+  width: 100%;
+  background-color: gray;
+}
+
+main {
+  padding: 0.5rem;
+  margin: 0.1rem;
+  margin-top: 20vh;
+  width: 60vw;
+}
+
+section {
+  display: inline-block;
+  margin-left: 5vw;
+  font-size: 1rem;
+  border: dotted salmon 2px;
+  width: 24vw;
+}
+
+p {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  line-height: 20px;
+}
+
+.lado-direito {
+  margin-top: 20vh;
+  padding-right: 5vw;
+  float: right;
+  width: 30vw;
+  text-align: justify;
+  height: auto;
+}
+
+.lado-esquerdo {
+  display: inline-block;
+}
+
+article {
+  text-align: justify;
+  padding-left: 5vw;
+  margin-right: 4vw;
+  margin-top: 10vh;
+}
+
+footer {
+  padding-right: 5vw;
+  text-align: right;
+}
+
+td {
+  border: 1px solid salmon;
+  font-size: 2rem;
+  padding: 1.8rem;
+}
