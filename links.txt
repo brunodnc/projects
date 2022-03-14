@@ -9,3 +9,5 @@ https://www.behance.net/ - Site muito interessante para ver pastinhas criativas 
 https://gsnedders.html5.org/outliner/ - visualiza um site através da semântica do seu html
 https://webflow.com/ - site para montar interface de um site
 https://picresize.com/ - bom site para redimensionar uma imagem
+cubic-bezier.com - site para visualizar e gerar velocidade pras animações css.
+surge.sh - site para deploy de sites gratis
