@@ -11,3 +11,5 @@ https://webflow.com/ - site para montar interface de um site
 https://picresize.com/ - bom site para redimensionar uma imagem
 cubic-bezier.com - site para visualizar e gerar velocidade pras animações css.
 surge.sh - site para deploy de sites gratis
+the-echoplex.net/flexyboxes/ - site bom para experimentar com o flexbox
+css-tricks.com/snippets/css/a-guide-to-flexbox/ - bom cheatsheet pro flexbox
