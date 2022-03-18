@@ -21,3 +21,21 @@ a função .preventDedault() pode ser utilizada junto com uma função de evento
 
 Para importar bibliotecas já instaladas para o código cria-se uma variável, por exemplo let momento = require('moment');
 
+-
+
+flex-direction pode ser row ou column, o padrão é row que coloca o main-axis na horizontal.
+flex-wrap: define se os itens quebram e vão para a próxima linha, ou se ajuntam em uma linha apenas.
+flex-flow: junta o flex direction e o flex-wrap, por exemplo: flex-flow: column nowrap.
+justify-content ajusta o espaçamento entre os items flex, tendo como referência o main-axis.(horizontal para row, vertical para column)
+align-items ajusta o espaçamento entre os items flex e tem como referência o cross-axis. (vertical para row, horizontal para column. (o padrão é strech, o que faz os items esticarem até o fim daquilo que o contém.
+align-content trabalha em conjunto com o align items para ajustar em fino grano o aspaçamento, e chegar em um resultado parecido com o do justify-content para o cross-axis. ( o padrão é 'normal'). Influencia pricipalmente se tiver múltiplas 'linhas' (isto é, no caso de um nowrap)
+
+aling-self é uma propriedade para um item dentro de um container flxbox que aplica valores de alinhamento somente para este item.
+order permite ordenar os itens de um container flexbo, exibindo-os na ordem crescente, por padrão todos os items recebem a order: 0 (vale dizer que também aceita valores negativos.
+
+flex-grow valor padrão é 0, 1 faz ele preencher o espaço restante do container no main-axis.
+flex-shrink valor padrão é 1, conforme esse valor aumenta, ele encolhe o elemento em proporção ao restante.
+flex-basis valor padrão é auto, ele especifica o tamanho inicial do flexitem.
+os 3 podem ser resumidos no comando flex: 1 1 auto, isto é, flex: grow shrink basis.
+
+
