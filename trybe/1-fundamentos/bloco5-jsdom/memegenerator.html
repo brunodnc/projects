@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="memegenerator.css">
+</head>
+<body>
+    <header>
+        <h1>Meme Generator</h1>
+    </header>
+    <main>
+        <section>
+            <label for="text-input">Text to be memefied: <input id="text-input" type="text" maxlength="60"></label>
+        </section>
+        <section>
+            <label for="meme-insert">Image to be memefied: <input id="meme-insert" type="file"></label>
+            <!-- <label for="btn"><button f</label> -->
+        </section>
+        <section>
+            <button id="fire">Fire Dash</button>
+            <button id="water">Water Double</button>
+            <button id="earth">Green Groove</button>
+        </section>
+        <section id="meme-image-container"> 
+            <canvas id="meme-image"></canvas>
+            <canvas id="meme-text"></canvas>
+        </section>
+        
+    </main>
+    
+<script src="memegenerator.js"></script></body>
+</html>
