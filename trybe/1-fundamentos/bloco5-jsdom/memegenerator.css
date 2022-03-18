@@ -9,36 +9,43 @@
     width: 350px;
     height: 350px;
     background-color: white;
+    margin-left: 1rem;
 }
 
 #meme-image {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
 }
 
-#meme-text {
+#meme-text, #bottext {
 
     text-shadow: 5px 5px 5px black;
     font-size: 30px;
     color: white;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    text-align:center;
+    word-wrap: break-word;
+    margin-left: 1.5rem;
+    
 }
 
-#fire {
+#bottext {
+    top:60%;
+}
+
+
+.fire {
     border: 3px dashed red;
 }
 
-#water {
+.water {
     border: 5px double blue;
 }
 
-#earth {
+.earth {
     border: 6px groove green;
 }
