@@ -8,7 +8,7 @@ let classarr = [
     ['newspaper', 'magazine1', 'magazine2'], 
     ['medium', 'big', 'reallybig'], 
     ['rotateleft', 'rotateright'], 
-    ['skewleft', 'skewright']
+    ['skewleft', 'skewright'],
     ['random'] // Esse "classe" tá aqui para servir de queryselector para aplicar o addEventListener para a função de re-randomizar as classe de uma palavra
 ]
 
@@ -28,16 +28,18 @@ function setContador() {
 
 function generateML(event) {
     let text = input.value;
-    let textarr = text.split(' ');
+    let textarr = text.split(' ').filter(item => item !== '');
     contador = textarr.length;
     setContador();
     if (textarr.length <= 0) {
-        letter.innerText = 'Por favor, digite o conteúdo da carta'
+        letter.innerText = 'Por favor, digite o conteúdo da carta';
+        console.log('devia ir erro');
     } else {
+        letter.innerHTML = '';
         for (let word of textarr) {
             let mword = document.createElement('span');
             mword.innerText = word;
-            randomizeClass(mword).
+            randomizeClass(mword);
             letter.appendChild(mword);
         }
         addReMistify();
