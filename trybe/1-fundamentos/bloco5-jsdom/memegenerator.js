@@ -10,6 +10,7 @@ let water = document.getElementById('water');
 let earth = document.getElementById('earth');
 let cont = document.getElementById('meme-image-container');
 let dl = document.getElementById('dl');
+let libimgarr = document.querySelectorAll('.libimg');
 
 
 function upImage(event) {
@@ -21,6 +22,7 @@ function upImage(event) {
 }
 
 function draw(a) {
+    cont.innerHTML = '';
     cont.appendChild(a);
 }
 
@@ -71,6 +73,14 @@ function alertDev(event) {
     alert('Print > Paste in Paint > Crop > Save');
 }
 
+function drawLibImg(event) {
+    let img1 = document.createElement('img');
+    img1.onload = draw(img1);
+    img1.src = event.target.src;
+    img1.width = 350;
+    img1.height = 350;
+}
+
 fileup.addEventListener('change', upImage);
 textup.addEventListener('keyup', upText);
 textbot.addEventListener('keyup', botText);
@@ -79,3 +89,6 @@ water.addEventListener('click', addWaterBorder);
 earth.addEventListener('click', addEarthBorder);
 dl.addEventListener('click', alertDev);
 
+for (let libimg of libimgarr) {
+    libimg.addEventListener('click', drawLibImg)
+}

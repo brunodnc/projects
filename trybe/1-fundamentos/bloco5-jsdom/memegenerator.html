@@ -13,9 +13,9 @@
         <article class="container-fluid">
             <h1 class="display-1 text-center">Meme Generator</h1>
             <section class="row align-items-start justify-content-evenly">
-                <div class="col-md-3"><label for="meme-insert">Image to be memefied: <input id="meme-insert" type="file"></label></div>
-                <div class="col-md-3"><label for="text-input">Text to be memefied on top: <input id="text-input" type="text" maxlength="60"></label></div>
-                <div class="col-md-3"><label for="text-input-bot">Text to be memefied on bottom: <input id="text-input-bot" type="text" maxlength="60"></label></div>
+                <div class="col-md-3"><label for="meme-insert">meme image: <input id="meme-insert" type="file"></label></div>
+                <div class="col-md-3"><label for="text-input">meme text top: <input id="text-input" type="text" maxlength="60"></label></div>
+                <div class="col-md-3"><label for="text-input-bot">meme text bottom: <input id="text-input-bot" type="text" maxlength="60"></label></div>
             </section>
             <div class="text-center">
                 <section class="btn-group btn-group-sm" role="group" aria-label="Choose your border group">
@@ -28,6 +28,17 @@
                 <div id="meme-image"></div>
                 <h2 id="meme-text"></h2>
                 <h2 id="bottext"></h2>
+            </section>
+            <section class="row justify-content-center"> 
+                <h3 class="text-center">Meme Image Library</h3>
+                <div class="col-6 lib text-center">
+                    <img class="lib libimg" width="100" height="100" src="goodguygreg.png"></img>
+                    <img class="lib libimg" width="100" height="100" src="scumbagsteve.png"></img>
+                    <img class="lib libimg" width="100" height="100" src="hidethepainharold.png"></img>
+                    <img class="lib libimg" width="100" height="100" src="trollface.png"></img>
+                    <img class="lib libimg" width="100" height="100" src="ffuu.png"></img>
+                </div>
+
             </section>
             <section class="row justify-content-center">
                 <button type="button" id="dl" class="btn btn-secondary col-4">Download</button>
