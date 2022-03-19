@@ -46,7 +46,7 @@ function addFireBorder(event) {
     cont.classList.add('fire');
     console.log('foi');
 }
-
+    
 function addWaterBorder(event) {
     if (cont.classList.contains('fire')) {
         cont.classList.remove('fire');
