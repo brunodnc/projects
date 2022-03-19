@@ -1,3 +1,27 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+
+section {
+    width: 100vw;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+input {
+    min-width: 200px;
+    width: 50%;
+}
+
+button {
+    max-width: 265px;
+}
+
+
 .newspapper {
     background-color: antiquewhite;
     font-family: 'Times New Roman', Times, serif;
@@ -53,3 +77,4 @@
     display: inline-block;
     transform: skewX(-10deg);
 }
+
