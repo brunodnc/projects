@@ -1,15 +1,20 @@
 * {
-    border: 0px;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: 2rem 0;
 }
 
 #meme-image-container {
+    padding: 0;
     position: relative;
+    margin: 0 auto;
     border: 1px solid black;
     width: 350px;
     height: 350px;
     background-color: white;
-    margin-left: 1rem;
 }
 
 #meme-image {
@@ -34,7 +39,7 @@
 }
 
 #bottext {
-    top:60%;
+    top:65%;
 }
 
 
