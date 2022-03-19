@@ -14,7 +14,7 @@ let libimgarr = document.querySelectorAll('.libimg');
 
 
 function upImage(event) {
-    image.src = URL.createObjectURL(this.files[0]);
+    image.src = URL.createObjectURL(event.target.files[0]);
     image.width = 350;
     image.height = 350;
 }
