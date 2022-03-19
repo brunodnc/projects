@@ -14,19 +14,10 @@ let libimgarr = document.querySelectorAll('.libimg');
 
 
 function upImage(event) {
-    let img1 = document.createElement('img');
-    img1.onload = draw(img1);
-    img1.src = URL.createObjectURL(this.files[0]);
-    img1.width = 350;
-    img1.height = 350;
+    image.src = URL.createObjectURL(this.files[0]);
+    image.width = 350;
+    image.height = 350;
 }
-
-function draw(a) {
-    cont.innerHTML = '';
-    cont.appendChild(a);
-}
-
-// draw text on canvas > w3schools.com/graphics/canvas_text.asp
 
 function upText(event) {
     let text = event.target.value;
@@ -74,11 +65,9 @@ function alertDev(event) {
 }
 
 function drawLibImg(event) {
-    let img1 = document.createElement('img');
-    img1.onload = draw(img1);
-    img1.src = event.target.src;
-    img1.width = 350;
-    img1.height = 350;
+    image.src = event.target.src;
+    image.width = 350;
+    image.height = 350;
 }
 
 fileup.addEventListener('change', upImage);

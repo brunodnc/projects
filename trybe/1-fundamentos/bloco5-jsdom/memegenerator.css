@@ -8,6 +8,7 @@ section {
 }
 
 #meme-image-container {
+    box-sizing: content-box;
     padding: 0;
     position: relative;
     margin: 0 auto;
@@ -17,16 +18,7 @@ section {
     background-color: white;
 }
 
-#meme-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 350px;
-    height: 350px;
-}
-
 #meme-text, #bottext {
-
     text-shadow: 5px 5px 5px black;
     font-size: 30px;
     color: white;
@@ -35,11 +27,13 @@ section {
     text-align:center;
     word-wrap: break-word;
     margin-left: 1.5rem;
+    z-index: 1;
     
 }
 
 #bottext {
     top:65%;
+    text-align: center;
 }
 
 
