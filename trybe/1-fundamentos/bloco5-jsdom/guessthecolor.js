@@ -14,7 +14,7 @@ function generateRandomRGB() {
     let g = Math.floor(Math.random() * 255);
     let b = Math.floor(Math.random() * 255);
     rgbarr = [r, g, b];
-    rgbstr = '(' + rgbarr.join(', ') + ')';
+    rgbstr = 'rgb(' + rgbarr.join(', ') + ')';
     answer.innerText = 'Escolha uma cor';
     scorehtml.innerText = score;
     rgbcolor.innerText = rgbstr;
@@ -26,8 +26,8 @@ function generateRandomBalls() {
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
         let rgbarr2 = [r, g, b];
-        let rgbstr2 = '(' + rgbarr2.join(', ') + ')';
-        ball.style.backgroundColor = rgbstr2;
+        let rgbstr2 = 'rgb(' + rgbarr2.join(', ') + ')';
+        ball.style.backgroundColor = rgbstr2;   
         ball.style.color = rgbstr2;
     }
     let randomball = Math.floor(Math.random() * ballsarr.length);
@@ -55,8 +55,6 @@ function resetGame() {
 }
 
 resetbtn.addEventListener('click', resetGame);
-
-window.onload = generateRandomRGB, generateRandomBalls;
-rgbcolor.innerText = rgbstr;
+window.onload = resetGame;
 
 
