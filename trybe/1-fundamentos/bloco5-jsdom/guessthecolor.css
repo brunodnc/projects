@@ -10,7 +10,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: cyan outset 10px ;
+    border-right: cyan outset 10px;
     border-top: red groove 10px;
     border-left: salmon inset 10px;
     border-bottom: pink ridge 10px;
@@ -29,4 +29,9 @@ footer {
     height: 100px;
     width: 100px;
     background-color: '(255, 0, 255)';
+}
+
+h1, h2, p {
+    font-family: monospace;
+    text-shadow: 0 0 5px white;
 }

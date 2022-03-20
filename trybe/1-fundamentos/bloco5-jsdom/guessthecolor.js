@@ -1,8 +1,3 @@
-// globais
-let rgbarr = []
-let rgbstr = '';
-let score = 0;
-let bordergamearr = [];
 // html links
 let rgbcolor = document.getElementById('rgb-color');
 let ballsarr = document.getElementsByClassName('ball');
@@ -11,6 +6,17 @@ let scorehtml = document.getElementById('score')
 let resetbtn = document.getElementById('reset-game');
 let scorebtn = document.getElementById('reset-score');
 let main = document.getElementById('main');
+
+// globais
+let rgbarr = []
+let rgbstr = '';
+let score = 0;
+let bordergamearr = [];
+let borderarr = ['borderRightColor','borderLeftColor',
+'borderTopColor',
+'borderBottomColor',
+'backgroundColor'];
+
 
 // generate target RGB
 function generateRandomRGB() {
@@ -26,7 +32,7 @@ function generateRandomRGB() {
 // border mini-game, places on screen colors that aren't the target color
 
 // fisherYatesShuffle source: stackoverflow.com/questions/64925666/how-can-i-sort-an-array-randomly-in-javascript
-function fisherYaterShuffle (arr) {
+function fisherYatesShuffle (arr) {
     for (let i = arr.length - 1; i > 0; i -= 1) {
         let j = Math.floor(Math.random() * i)
         let k = arr[i];
@@ -36,14 +42,15 @@ function fisherYaterShuffle (arr) {
 }
 
 function borderFunction() {
-    let brc = main.style.borderRightColor;
-    let blc = main.style.borderLeftColor;
-    let btc = main.style.borderTopColor;
-    let bbc = main.style.borderBottomColor;
-    let bc = main.style.backgroundColor;
-    let borderarr = [brc, blc, btc, bbc, bc];
     // randomize with fisher yates shuffle both borderarr (main settings) and bordergamearr (non target rgb colors)
-    
+    fisherYatesShuffle(borderarr);
+    fisherYatesShuffle(bordergamearr);
+    // now matches the two random arrs (color and css prop)
+    for (let i = 0; i < borderarr.length; i += 1) {
+        main.style[borderarr[i]] = bordergamearr[i];    
+    }
+    // now resets colors arr
+    bordergamearr = [];
 }
 
 // generate other random rgb
