@@ -1,3 +1,27 @@
+header {
+    text-align: center;
+}
+
+section {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: cyan outset 10px ;
+    border-top: red groove 10px;
+    border-left: salmon inset 10px;
+    border-bottom: pink ridge 10px;
+    background-color: aliceblue;
+    margin: 1rem 0;
+}
+
+footer {
+    text-align: center;
+}
+
 .ball {
     display: inline-block;
     border: 1px solid black;

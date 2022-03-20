@@ -1,14 +1,18 @@
-
+// globais
 let rgbarr = []
 let rgbstr = '';
 let score = 0;
-
+let bordergamearr = [];
+// html links
 let rgbcolor = document.getElementById('rgb-color');
 let ballsarr = document.getElementsByClassName('ball');
 let answer = document.getElementById('answer');
 let scorehtml = document.getElementById('score')
 let resetbtn = document.getElementById('reset-game');
+let scorebtn = document.getElementById('reset-score');
+let main = document.getElementById('main');
 
+// generate target RGB
 function generateRandomRGB() {
     let r = Math.floor(Math.random() * 255);
     let g = Math.floor(Math.random() * 255);
@@ -19,7 +23,12 @@ function generateRandomRGB() {
     scorehtml.innerText = score;
     rgbcolor.innerText = rgbstr;
 }
+// border mini-game, places on screen colors that aren't the target color
+function borderFunction() {
+    
+}
 
+// generate other random rgb
 function generateRandomBalls() {
     for (let ball of ballsarr) {
         let r = Math.floor(Math.random() * 255);
@@ -33,7 +42,16 @@ function generateRandomBalls() {
     let randomball = Math.floor(Math.random() * ballsarr.length);
     ballsarr[randomball].style.backgroundColor = rgbstr;
     ballsarr[randomball].style.color = rgbstr;
+    // generate array without target rgb
+    for (let i = 0; i < ballsarr.length; i += 1) {
+        if (ballsarr[i] !== ballsarr[randomball]) {
+            bordergamearr.push(ballsarr[i].style.backgroundColor);
+        }
+    }
+    borderFunction();
 }
+
+
 
 function chooseBall(event) {
     if (event.target.style.color === rgbstr) {
@@ -55,6 +73,11 @@ function resetGame() {
 }
 
 resetbtn.addEventListener('click', resetGame);
+scorebtn.addEventListener('click', () => {
+    score = 0;
+    scorehtml.innerText = score
+        }
+    );
 window.onload = resetGame;
 
 
