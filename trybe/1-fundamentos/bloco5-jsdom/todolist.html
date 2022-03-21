@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task List</title>
     <link rel="stylesheet" href="todolist.css">
 </head>
 <body>
-    
+    <header>Minha Lista de Tarefas</header>
+    <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+    <main>
+        <label for="texto-tarefa">Insira a tarefa na sua lista: <input id="texto-tarefa"></label>
+        <button id="criar-tarefa"></button>
+        <ol id="lista-tarefas">
+
+        </ol>
+        <button id="mover-cima">Item Move Up</button>
+        <button id="mover-baixo">Item Move Down</button>
+        <button id="remover-selecionado"></button>        
+        <button id="apaga-tudo">Clear List</button>
+        <button id="remover-finalizados">Clear Done</button>
+        <button id="salvar-tarefas">Save List</button>
+
+    </main>
 <script src="todolist.js"></script>
 </body>
 </html>
