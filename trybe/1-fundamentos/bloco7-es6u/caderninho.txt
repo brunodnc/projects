@@ -1,0 +1,15 @@
+Assert é uma ferramente que vem com o Node para testar expressões, ele sempre retorna true se não houver falhas.
+utiliza-se const assert = require('assert'); para implementar o assert no código.
+documentação do assert: https://nodejs.org/api/assert.html
+
+Criar arquivo package.json para armazenar informações importantes sobre o projeto em qustão, definindo e configurando dependências do projeto.
+npm init -y cria o package.json
+npm install --save -dev jest para instalar o jestco
+
+O jest emprega a função expect para trabalhar métodos que realizaram o teste desejado. Normalmente escreve-se a função do teste expect('resultado').matcher(função(param)).
+Os matchers são vários.
+expect('resultado').toBe(func(param)), usa o matcher toBe que equivale à tripla igualdade '===' do javascript, a qual compara tanto o conteúdo quanto o tipo.
+.toEqual acessa o 'objeto referência' e não 'diretamente' o valor, é empregado principalmente para testar igualdade de objetos e arrays, já que ele realiza um trabalho de comparação que perpassa cada elemento interno do objeto em questão
+.toContain e .toHaveLength são exxemplos de matchers que trabalham especificamente com arrays
+.toHaveProperty checa se há em um objeto tal propriedade.
+acessar jestjs.io para encontrar a documentação do jest

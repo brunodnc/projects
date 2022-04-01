@@ -35,7 +35,14 @@ order permite ordenar os itens de um container flexbo, exibindo-os na ordem cres
 
 flex-grow valor padrão é 0, 1 faz ele preencher o espaço restante do container no main-axis.
 flex-shrink valor padrão é 1, conforme esse valor aumenta, ele encolhe o elemento em proporção ao restante.
-flex-basis valor padrão é auto, ele especifica o tamanho inicial do flexitem.
+flex-basis valor padrão é auto, ele especifica o tamanho inicial do flexitem, consegue distribuir igualitariamente um tamanho máximo (e uma responsividade mínima) para os items individuais.
 os 3 podem ser resumidos no comando flex: 1 1 auto, isto é, flex: grow shrink basis.
+
+nesse sentido, o grow e o shrink se baseiam no flex-basis para estabelecer quando quem encolhe e quando quem cresce, isto é quem tem a prioridade para encolher ou crescer
+--
+
+@media estabelece algumas condições para que seja ativado um dado código CSS, utilizado principalmente para regular qual CSS para qual tamanho de tela
+
+
 
 
