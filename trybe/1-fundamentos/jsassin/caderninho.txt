@@ -10,4 +10,14 @@ setTimeout(função, milisegundos) vai executar uma dada função após passar e
 
 Outro detalhe é que para o teste desse javascript assíncrono funcionar com o Jest é preciso adicionar em cada teste a função done() para mandar o teste esperar o tempo de execução das tarefas de outras pilhas.
 Outra coisa que deve ser feita é adicionar o try e o catch para, (chamando o done()) em ambos, e assim garantir que tanto a correta execução quanto qualquer eventual erro será digerido com sucesso pelo teste.
-Preciso dar uma reforçada nos estudos para entender melhor o teste de javascript assíncrono! 
+
+--
+
+Utiliza-se o fetch para puxar os dados da API, é preciso instalar a API do Fetch que oferece diversos recursos para trabalhar com requisições http no JavaScript.
+para instalar a versão do fetch api tem que rodar npm i node-fetch@^2 (versão específica empregada no curso da Trybe), verificar documentação para ver as diferenãs com a versão mais atual.
+Parece que a versão mais atual não permite a utilização do require mas apenas do import. (pq essa decisão?).
+Existem duas formas de fazer uma requisição API com a assincronicidade do JS: usando o .then, e usando a dupla async e await.
+O .then(especificações) Aguarda a requisição anterior, ENTÃO (then) realiza uma devolutiva baseada o parâmetro inserido. Nesse sentido, o parâmetro passado ao .then, quando usado em sequência, é o valor retornado pelo anterior.
+No async e await, cria-se uma função assincrona inserindo async antes, exemplo: async function nome(param) { return }; e o await obriga a função a esperar determinada resposta antes de continuar, por exemplo const example = fetch(url).
+Pode-se utilizar o try e o catch para lidar com os eventuais erros com as API's, no caso do .then, precisa apenas do catch(error) {} pois o then funciona como uma sequência de tentativas, já no caso do async e await é preciso usar o try {} antes de puxar o erro com o catch.
+
