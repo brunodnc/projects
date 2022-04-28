@@ -13,3 +13,16 @@ diferença entre npm e npx, o npm instala o pacote no seu diretório, o npx exec
 
 'npx create-react-app nome-da-pasta' por exemplo, vai executar um pacote que tem a função de criar tudo necessário para criar e rodar um aplicativo React
 
+ReactDOM.render(element, container) é uma função que vai renderizar no DOM o element, dentro de dado container, esse element. Ele é eficiente porque só atualiza o que mudou com o último estado que o DOM se encontrava, isto é, só atualiza o necessário e não toda a página cada vez que renderiza algo.
+
+Um componente com classe em React é criado da seguinte forma: extends simplesmente significa que ele vai compartilhar os mesmos métodos que já estão criados no React.Component, como o render() que renderiza o conteúdo.
+
+class nome-da-classe extends React.Component{
+	render() {
+		return (
+			<h1>conteúdo</h1>
+			)
+		}
+	}
+
+detalhe importante, a função render() precisa retornar algo para ser renderizado!
