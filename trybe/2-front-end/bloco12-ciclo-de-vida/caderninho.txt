@@ -1,0 +1,71 @@
+O react emprega algumas funções para fazer a manutenção de seu 'ciclo de vida', isto é, os momentos em que ele é criado, está rodando, ou é eliminado do DOM. (Montagem, Atualização, Desmontagem).
+
+
+componentDidMount() - função executada após fase de montagem inicial do componente
+shouldComponentUpdate() - Uma função que autoriza ou não o componente a se atualizar.
+componentDidUpdate() - função executada assim que o componente é atualizado
+componentWillUnmount() - função executada assim que o componente começa a ser desmontado da página
+
+Um artifício para atualizar o estado de um componente apenas quando terminar toda a mobilização assíncrona envolvida é utilizar o segundo parâmetro do setState(), que recebe uma função qualquer que será executada quando tudo estiver pronto.
+exemplo: this.setState({loading: true}, async () => {
+		return fetch(x)
+			.then(obj => obj.json())
+			.then(data => {array: [...array, data], loading: false});
+});
+
+Somando esse artifício com a renderização condicional é possível mostrar determinado campo enquanto loading === true, e quando terminar de carregar (loading === false), o componente com o estado já atualizado.
+
+SPA (Single Page Application) são aplicações webs que funcionam sem precisar de 'carregar' seu conteúdo, ou ficar trocando de página de forma que tenha que recarregar tudo que já foi carregado.
+
+props.children é utilizado para acessar os filhos dentro de um componente, retornando um objeto, (quando apenas um filho), e um array de objetos (quando dois ou mais), por exemplo:
+
+<ComponentePai>
+<p>Filho</p>
+<ComponentePai/>
+
+~
+dentro da classe do componente pai basta chamar {props.children} no render, ele é utilizado normalmente em componentes cujo os filhos você não sabe o que é antes da hora, ou para componentes reutilizáveis que possuem filhos.
+
+Para instalar o react router é preciso baixar o pacote node com o comando 
+npm install react-router-dom@v5 (versão utilizada pela Trybe, todavia existem versões mais recentes não compatíveis com o conteúdo).
+depois para importar no app react usa-se o: import { BrowserRouter } from 'react-router-dom'
+Primeiro Coloca-se o componente para rotear ao colocá-lo como filho do componente BrowserRouter.
+
+function App() {
+	render() {
+		return (
+			<BrowserRouter>
+				<AppExemplo />
+			<BrowserRouter />
+			)
+	}
+}
+
+Depois no 'componente filho', no caso, o AppExemplo, importa-se do react-router-dom o { Route } e adiciona uma tag específica para verificar a rota URL da página atual <Route path='/fimDaURL' component={} />.
+O que essa tag basicamente faz é checar se o path termina com o valor inserido em path='/FinalDoCaminhoExemplo' e se sim, renderiza o componente inserido em 'component={NomeDoComponenteASerRenderizado}';
+É possível abdicar da propriedade component inserindo o componente que deseja-se renderizar como filho do <Route />, por exemplo: 
+
+<Route path=''>
+	<ComponenteASerRenderizado />
+</Route>
+
+No caso de uma página sem caminho, por exemplo uma landing page ou uma home page, uma página inicial, basta também criar uma rota com um caminho 'vazio' após a barra  <Route exact path='/'><HomeApp /></Route>
+Detalhe no emprego do exact path, que impede o BrowserRouter de pesquisar de aceitar comparações parciais entre a URL e as rotas. 
+
+Para criar um link com o react-router importa-se { Link } do react-router-dom, e abre-se o componente <Link to="/caminho">Texto do link </Link>. A diferença do componente Link do react router para o anchor do html é que o Link não exige que a página seja recarregada, enquadrando-se na lógica do React.
+O atributo component do Route é empregado quando não precisa-se transmitir props alguma para o componente destino, com o React Router é preciso usar o aributo do Route render que aceita uma função (props) => <Componente {...props} atributo={valor}>. 
+Esse parâmetro props que o render aceito, é lido no URL e transformado em um objeto key:value pelo <Route />, por exemplo <Route exact path="/profile/:user" render={(props) => <User {...props}> renderizará o componente user, onde props.params.user será igual o valor inserido após a route "/profile/" onde o ":user" funciona como a abertura da chave, que recebe então um valor que será transferido pelo Route ao componente renderizado.
+
+Vale salianter também que o componente renderizado pelo React Router dão como props diversas informações que podem ser empregadas e manipuladas na aplicação react, pesquisar sobre match, location e history do React Router.
+
+O Switch busca de cima para baixo o primeiro Route que tem seu caminho correspondido com a URL da apicação, isto é, ele permitirá que apenas um dos componentes que ele engloba renderize. Detalhe que o uso do Switch não torna o exact desnecessário, já que seu fator de prioridade é a ordem inversa dos componentes.
+Sua estrutra fica mais ou menos:
+
+<Switch>
+	<Route path="/" render={() => <Home />}/>
+	<Route path="/about"> 
+		{nãoTemCadastro ? <Redirect to="/cadastro/" /> : <About /> 
+	</Route>
+</Switch>
+
+É possível dentro do Switch colocar uma chave de redirecionamento com o Redirect, como no exemplo acima, vai para a página de cadastro caso o usuário não estiver cadastrado.

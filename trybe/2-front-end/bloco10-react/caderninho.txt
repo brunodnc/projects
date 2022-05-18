@@ -26,3 +26,32 @@ class nome-da-classe extends React.Component{
 	}
 
 detalhe importante, a função render() precisa retornar algo para ser renderizado!
+
+Toda propriedade que um componente do React receber é inserida dentro do objeto props, que pode ser accessado pelo componente/classe com this.props
+
+O react é capaz de controlar a tipagem das props com o PropTypes, regulando dentro de cada componente qual o tipo exato que cada props deveria receber. Por exemplo:
+
+No componente 'X', ele receberá um objeto X.propTypes = {propriedade: PropTypes.tipo} e assim, X.props.propriedade apenas poderá ser do 'tipo' determinado.
+
+Todavia para utilizar o PropTypes é preciso importá-lo com import PropTypes from 'prop-types'
+
+É possível utilizar o .isRequired para definir uma props de indispensável definição, assim o objeto X.propTypes seria {propriedade: PropTypes.tipo.isRequired}
+
+Os propTypes básicos do JS são:
+PropTypes.string
+PropTypes.number
+PropTypes.bool
+PropTypes.func
+PropTypes.object
+PropTypes.array
+PropTYpes.symbol
+
+É possível tipar também o conteúdo de um array ou de objeto:
+PropTypes.arrayOf(PropTypes.tipo)
+PropTypes.objectOf(PropTypes.tipo)
+
+É possível definir uma estrutura esperada para um objeto:
+PropTypes.shape({key: PropTypes.tipo, nomeDaSegundaKey: PropTypes.tipo})
+PropTypes.exact({key: PropTypes.tipo}) // neste exact não é permitido a adição de propriedades extras
+
+Detalhe, o PropTypes não impede a execução da aplicação, mas joga no console um erro avisando o emprego de uma props errada.
