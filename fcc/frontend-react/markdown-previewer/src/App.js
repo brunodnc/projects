@@ -102,7 +102,6 @@ source from this text: [links](https://codepen.io/freeCodeCamp/full/GrZVVO)
         </main>
         <br />
       </div>
-      
     );
   } 
 }
