@@ -3,45 +3,55 @@ import './App.css';
 import React from 'react';
 import Pad from './Pad';
 
+// audio source from: https://codepen.io/freeCodeCamp/pen/MJyNMd
+
 const padArr = [
   {
-    key: 'Q',
-    audio: './data/beba.mp3',
+    keyTrigger: 'Q',
+    keyCode: 81,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
   },
   {
-    key: 'W',
-    audio: './data/coca.mp3',
+    keyTrigger: 'W',
+    keyCode: 87,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3',
   },
   {
-    key: 'E',
-    audio: './data/babe.mp3',
+    keyTrigger: 'E',
+    keyCode: 69,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3',
   },
   {
-    key: 'A',
-    audio: './data/cola.mp3',
+    keyTrigger: 'A',
+    keyCode: 65,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3',
   },
   {
-    key: 'S',
-    audio: './data/caco.mp3',
+    keyTrigger: 'S',
+    keyCode: 83,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3',
   },
   {
-    key: 'D',
-    audio: './data/cloaca.mp3',
+    keyTrigger: 'D',
+    keyCode: 68,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3',
   },
   {
-    key: 'Z',
-    audio: './data/bebacoca.mp3',
+    keyTrigger: 'Z',
+    keyCode: 90,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3',
   },
   {
-    key: 'X',
-    audio: './data/babecola.mp3',
+    keyTrigger: 'X',
+    keyCode: 88,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3',
   },
   {
-    key: 'C',
-    audio: './data/decio.mp3',
+    keyTrigger: 'C',
+    keyCode: 67,
+    audio: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3',
   },
 ]
-
 
 class App extends React.Component {
   state = {
@@ -49,8 +59,8 @@ class App extends React.Component {
   }
 
   handleClick = (e) => {
+    console.log(e.target);
     this.setState({clickedBtn: e.target.id})
-    this.audio.play();
   }
 
   render(){
@@ -61,7 +71,10 @@ class App extends React.Component {
         </header>
         <section id="display">
           {padArr.map((p) => <Pad key={p.audio}
-          keyButton={p.key} audio={p.audio} handleClick={this.handleClick}/>)}
+          keyTrigger={p.keyTrigger} 
+          audio={p.audio}
+          keyCode={p.keyCode}
+          handleClick={this.handleClick}/>)}
         </section>
      </div>
     );

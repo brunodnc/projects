@@ -1,27 +1,33 @@
 import React from "react";
 
 class Pad extends React.Component {
-    
-    componentDidMount() {
-    
+    // source: stackoverflow.com/questions/47686345/playing-sound-in-react-js
+
+    audio = new Audio(this.props.audio);
+
+    audioPlay = (e) => {
+        const { handleClick } = this.props;
+        handleClick(e);
+        this.audio.play();
     }
 
     render() {
-    const { keyButton, audio, handleClick } = this.props;
+    const { keyTrigger, keyCode, audio, } = this.props;
 
         return (
-            <div 
+            <div
             className="drum-pad" 
             id={audio} 
-            onClick={handleClick} 
+            onClick={this.audioPlay} 
             onKeyDown={(e) => {
-                if (e.key === keyButton) {
-                    this.props.handleClick(e);
+                if (e.key === keyTrigger) { // should i use key or keyCode?
+                    this.audioPlay(e);
+                    console.log('apertei');
                     }
                 }
             }>
-                {keyButton}
-                <audio src={audio} id={keyButton}></audio>
+                {keyTrigger}
+                <audio src={audio} id={keyTrigger}></audio>
             </div>
             
         )
