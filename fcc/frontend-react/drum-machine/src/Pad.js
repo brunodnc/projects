@@ -5,6 +5,17 @@ class Pad extends React.Component {
 
     audio = new Audio(this.props.audio);
 
+
+    componentDidMount() {
+        document.addEventListener('keydown', (e) => {
+            const { keyTrigger } = this.props
+            if (e.code === `Key${keyTrigger}`) {
+                this.audioPlay(e);
+                console.log('apertei');
+                }
+            })
+    }
+
     audioPlay = (e) => {
         const { handleClick } = this.props;
         handleClick(e);
@@ -12,20 +23,13 @@ class Pad extends React.Component {
     }
 
     render() {
-    const { keyTrigger, keyCode, audio, } = this.props;
+    const { keyTrigger, audio, } = this.props;
 
         return (
             <div
             className="drum-pad" 
             id={audio} 
-            onClick={this.audioPlay} 
-            onKeyDown={(e) => {
-                if (e.key === keyTrigger) { // should i use key or keyCode?
-                    this.audioPlay(e);
-                    console.log('apertei');
-                    }
-                }
-            }>
+            onClick={this.audioPlay} >
                 {keyTrigger}
                 <audio src={audio} id={keyTrigger}></audio>
             </div>
