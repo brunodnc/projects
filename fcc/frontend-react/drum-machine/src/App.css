@@ -1,3 +1,65 @@
 .App {
   text-align: center;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+#display {
+  font-size: 32px;
+  background-color: blue;
+  color: white;
+}
+.drummachine {
+  display: flex;
+  background-color: red;
+}
+.drum-pad {
+  width: 33%;
+  border: 3px solid black;
+}
+
+.Q {
+  background-color: red;
+  text-decoration: line-through;
+}
+
+.W {
+  background-color: blueviolet;
+  text-transform: lowercase;
+}
+
+.E {
+  background-color: palevioletred;
+  letter-spacing: 20px;
+}
+
+.D {
+  background-color: wheat;
+  font-family: serif;
+}
+
+.S {
+  background-color: chartreuse;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.A {
+  background-color: goldenrod;
+  font-weight: lighter;
+  border-radius: 30%;
+}
+
+.Z {
+  background-color: greenyellow;
+  font-family: monospace;
+}
+
+.X {
+  background-color: yellow;
+  font-weight: bolder;
+}
+
+.C {
+  font-style: italic;
+  background-color: salmon;
 }

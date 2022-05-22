@@ -50,13 +50,12 @@ class App extends React.Component {
   }
 
   handleClick = (e) => {
-    console.log(e.target);
-    this.setState({clickedBtn: e.target.id})
+    this.setState({clickedBtn: e})
   }
 
   render(){
     return(
-      <div className="App" id="drum-machine">
+      <div className={`App ${this.state.clickedBtn}`} id="drum-machine">
         <header className="App-header">
           <h1>Audio Samples</h1>
         </header>

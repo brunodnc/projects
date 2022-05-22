@@ -4,21 +4,21 @@ class Pad extends React.Component {
     // source: stackoverflow.com/questions/47686345/playing-sound-in-react-js
 
     audio = new Audio(this.props.audio);
-
+    keyd = this.props.keyTrigger
 
     componentDidMount() {
         document.addEventListener('keydown', (e) => {
-            const { keyTrigger } = this.props
+            const { keyTrigger, handleClick } = this.props
             if (e.code === `Key${keyTrigger}`) {
-                this.audioPlay(e);
-                console.log('apertei');
+                this.audio.play();
+                handleClick(this.keyd);
                 }
             })
     }
 
     audioPlay = (e) => {
         const { handleClick } = this.props;
-        handleClick(e);
+        handleClick(this.keyd);
         this.audio.play();
     }
 
