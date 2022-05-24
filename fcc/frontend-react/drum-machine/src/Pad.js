@@ -3,8 +3,9 @@ import React from "react";
 class Pad extends React.Component {
     // source: stackoverflow.com/questions/47686345/playing-sound-in-react-js
 
-    audio = new Audio(this.props.audio);
+    
     keyd = this.props.keyTrigger
+    audio = document.getElementById(this.keyd)
 
     componentDidMount() {
         document.addEventListener('keydown', (e) => {

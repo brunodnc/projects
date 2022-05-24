@@ -1,0 +1,83 @@
+react-testing-library é a biblioteca recomendada pelo React para testar suas aplicações.
+
+
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('nome do teste', () => {
+função do teste
+})
+
+exemplo de uma função teste:
+
+render(<App /> (renderiza o elemento para começar o teste)
+const textoLido = screen.getByLabelText("texto a ser procurado na tela") (pede para o computador a buscar certo elemento na tela)
+expect(textoLido).toBeInTheDocument(); (testa  especificamente coisas relacionadas com o elemento buscado)
+expect(textoLido.type).toBe('string');
+
+Alguns seletores da RTL: 
+
+screen. vai receber todos os elementos carregados no DOM, sendo possível acessá-los e selecioná-los através de alguns seletores específicos da RTL, por exemplo.
+
+screen.getByText(/texto/i) (utiliza-se o /regex/i para ser case insentitive)
+screen.getByRole('button') (seleciona apenas um elemento com base em seu papel desempanhado na aplicação)
+screen.getAllByRole('button') (retorna um array com todos os botões renderizados na tela)
+screen.getByTestId(data-testid) (busca o elemento que possui a propriedade data-testid específica)
+
+
+Alguns matchers da RTL:
+
+expect(elemento).toBeInTheDocument(); (busca pelomenos um elemento no documento)
+expect(elemento).toHaveProperty('type, 'email'); (busca se a propriedade (param 1) possui tal valor (param 2)
+expect(arrayDeElementos).toHaveLength(3)
+expect(element).toHaveValue(valorEsperado)
+expect(element).toHaveTextContent('conteúdoDeTexto para elementos que não possuem value mas possuem conteúdo de texto')
+expect(mockFunction).toHaveBeenCalledTimes(númeroDeVezes)
+expect(mockFunction).toHaveBeenCalledWith(...argumentos)
+
+
+Para interagir com os elementos a RTL fornece o objeto userEvent, que deve ser manualmente importado para dentro do arquivo teste
+Alguns exemplos de userEvent:
+
+UserEvent.type(input-local, aquiloQueÉDigitado)) // userEvent.type(email-input, 'teste@email.com')
+userEvent.click(componenteAserClicado) // useEvent.click(button)
+
+É possível agrupar os testes em um describe("titulo do grupo", () => {
+	test('teste exemplo', () => {
+		função do teste
+		}
+}
+
+é possível simular em um teste os resultados das funções internas ao componente que esta sendo testado com as 'mock functions', (principalmente para isolar a função e sua relação com o componente).
+A Trybe destaca três formas de simular esse resultado com o Jest.
+funçãoTeste = jest.fn().mockReturnValue('valor')
+jest.mock('./arquivoParaSerSimulado) - o jest.mock() vai simular um grupo de funções 'importadas' para seu arquivo, (detalhe que é preciso ainda, antes do jest.mock() importar para dentro do teste o arquivo que está sendo simulado)
+
+const mockFunc = jest.spyOn(classeImportada, funcaoTeste)
+mockFunc(...param);
+
+o spyOn consegue simular a implementação da função com base naquilo que é originalmente importado para o arquivo teste.
+
+mockFunc.mockClear() - Limpa os dados gerados pelo emprego de uma mock function em seu teste.
+mockFunc.mockReset() - Além de rodar o mockClear(), ela remove qualquer possível influencia gerada pela implementação ou retorno no arquivo, isto é, ela reseta a simulação testada.
+mockFunc.mockRestore() - Além de rodar o mockReset(), ela restaura a implementação original da função... abandonando a simulação ?
+
+para sobrescrever um fetch e deixá-lo 'preditivamente testável' emprega-se no início do teste o:
+
+global.fetch = (url) => {
+	return Promise.resolve({
+		json: () => Promise.resolve({ objetoRetornadoPeloFetchDepoisDoJson() })
+	})
+}
+
+todavia dessa forma não cria-se uma mock (que aceitará as funções que só se aplicam às funções simuladas)
+Então para fazer funcionar deve-se utilizar o .mockResolvedValue para simular uma promise que vai ser levada a cabo.
+
+global.fetch = jest.fn().mockResolvedValue({
+	json: jest.fn().mockResolvedValue({
+		objetoRetornadoPeloFetchDepoisDoJson()
+		})
+	})
+
+
