@@ -1,0 +1,70 @@
+Redux é utilizado para fazer a manutenção do estado de sua aplicação de uma forma centralizada. Pode ser utilizado com qualquer front-end lib.
+
+npm init -y
+
+npm install redux - Para instalar o redux
+
+const Redux = require('redux') - importa o redux para a arquivo .js
+
+const store = Redux.createStore() - cria o store para armazenar o estado da aplicação
+
+Todavia o create só funciona se passar uma callback que define o 'reducer', uma função que fará o gerenciamento do store.
+
+const reducer = (state) => {
+	return state;
+	};
+const store = Redux.createStore(reducer)
+
+
+Todavia, no reducer, o state vem como undefined, é preciso definir um estado inicial.
+
+const reducer = (state = { key: '' }) => {
+	return state;
+	};
+const store = Redux.createStore(reducer)
+
+agora se após esse código for chamado a função store.getState(), seu retorno será { key: '' }
+
+A alteração do store é feita através da interação entre uma action e a reducer.
+
+action é basicamente um objeto que possui uma propriedade type, e que através dessa propriedade ele comunica ao reducer qual mudança deve ser feita na store.
+
+No Redux normalmente cria-se uma action através de uma função actionCreator, a qual retornará uma action, por exemplo uma função que cria uma ação de login:
+
+const loginAction = (login) => ({type: "LOGIN", login});
+
+Entretanto apenas criar uma ação não basta, é necessário criar uma resposta para essa ação na função reducer, que engatilhará uma mudança no estado da store.
+
+const reducer = (state = { login: '' }, action) => {
+	switch (action.type) {
+		case 'LOGIN':
+			return {
+				...state,
+				login: action.login,
+			};
+		default:
+			return state;
+		}
+	};
+
+Então após definir o reducer e criar o store com Redux.createStore(reducer), é possível engatilhar uma ação com a store.dispatch(action), e utilizando a actionCreator ficaria do seguinte modo:
+
+store.dispatch(loginAcion('usuário'));
+
+e agora, o retorno da store.getState seria { login: 'usuario' };
+
+O Redux também possibilita uma forma de juntar vários reducers diferentes em um com a combineReducers(), isso facilita o fluxo de trabalho conforme a aplicação cresce.
+A combineReducers recebe como parâmetro um objeto contendo os diferentes reducers para serem combinados:
+const combinado = combineReducers({reducer1, reducer2});
+const store = createStore(combinado).
+
+Nesse caso o retorno de store.getState() um objeto parecido como:
+
+{
+reducer1: {estado do reducer1},
+reducer2: {estado do reducer2},
+}
+
+Quando os reducers são combinados, todos receberão a action através do store.dispatch, e então modificarão seus respectivos estados com base em seus respectivos switches. Detalhe também que o acesso da informação contida em cada reducer é diferente agora, já que a informação de um determinado estado estará contida em um objeto dentro de outro objeto
+
+store.subscribe(callback) recebe uma função que será executada toda vez que uma ação for despachada ao store com o store.dispatch.
