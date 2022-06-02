@@ -68,3 +68,36 @@ reducer2: {estado do reducer2},
 Quando os reducers são combinados, todos receberão a action através do store.dispatch, e então modificarão seus respectivos estados com base em seus respectivos switches. Detalhe também que o acesso da informação contida em cada reducer é diferente agora, já que a informação de um determinado estado estará contida em um objeto dentro de outro objeto
 
 store.subscribe(callback) recebe uma função que será executada toda vez que uma ação for despachada ao store com o store.dispatch.
+
+Para se utilizar o store do Redux em uma aplicação react, é preciso englobal o componente principal da aplicação na tag do <Provider> que recebe o store como atributo, por exemplo:
+
+import { Provider } from 'react-redux';
+import store from './store';
+ReactDOM.render(
+	<Provider store={ store }>
+		<App />
+	</Provider>,
+	document.getElementById('root'),
+	);
+
+No nível de um componente React utiliza-se a função mapSateToProps, que recebe como parâmetro o estado e retorna um objeto cuja chave será o nome da props, e seu valor é o que está armazenado na store, no estado. (???), por exemplo:
+
+import { connect } from 'react-redux';
+const mapStateToProps = state => ({loginProps: state.reducer1.login}) 
+const mapDispatchToProps = (dispatch) => ({dispatchProps: (state) => dispatch(actionCreator(state))});
+
+-- esses são métodos nativos do Redux, são empregados na função connect como o exemplo a seguir para realizar a interação do componente com o redux store, no caso da mapDispatchToProps, é nela que se chama a função dispatch do Redux.
+
+export default connect(mapStateToProps, mapDispatchToProps)(nomeDoComponente)
+
+Dessa forma, é possível conectar tanto o store, com o mapStateToProps, quanto as funções que fazem a manutenção do store com o mapDispatchToProps, caso sua aplicação não utilize alguma delas, basta colocar null como parâmetro do connect.
+
+O estado do redux é imutável.
+
+redux-thunk possibilita o manuseio de actions assíncronas, ele intercepta as actions antes de serem enviadas ao reducer.
+npm install redux-thunk para instalá-lo
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+const store = createStore(reducer, applyMiddleware(thunk));
+
+utilizando o redux-thunk é possível, invés de retornar um objeto action, retornar uma função assyncrona que retorna um objeto action.
