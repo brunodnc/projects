@@ -64,27 +64,27 @@ class App extends React.Component {
     return (
       <div className="App">
         <div id="display">{ display }</div>
-        <div class="numbers">
-          <button onClick = { this.numberClick }type="button" class="num" id="1">1</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="2">2</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="3">3</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="4">4</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="5">5</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="6">6</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="7">7</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="8">8</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="9">9</button>
-          <button onClick = { this.numberClick }type="button" class="num" id="0">0</button>
+        <div className="numbers">
+          <button onClick = { this.numberClick }type="button" className="num" id="1">1</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="2">2</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="3">3</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="4">4</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="5">5</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="6">6</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="7">7</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="8">8</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="9">9</button>
+          <button onClick = { this.numberClick }type="button" className="num" id="0">0</button>
+          <button onClick = { this.decimalClick } type="button" className="num" name="." id="decimal">.</button>
+          <button onClick = { this.clearClick } type="button" className="num" name="clear" id="clear">clear</button>
         </div>
-        <div class="operators">
+        <div className="operators">
           <button onClick={ this.plusOperatorClick } type="button" name="+" id="add">+</button>
           <button onClick={ this.minusOperatorClick } type="button" name="-" id="subtract">-</button>
           <button onClick={ this.specialOperatorClick } type="button" name="*" id="multiply">*</button>
           <button onClick={ this.specialOperatorClick } type="button" name="/" id="divide">/</button>
-          <button onClick={ this.decimalClick } type="button" name="." id="decimal">.</button>
-          <button onClick={ this.equalsClick } type="button" name="=" id="equals">=</button>
-          <button onClick={ this.clearClick } type="button" name="clear" id="clear">clear</button>
         </div>
+        <button onClick={ this.equalsClick } type="button" name="=" id="equals">=</button>
       </div>
     );
   }
