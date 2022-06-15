@@ -24,15 +24,15 @@ body {
 }
 
 #tooltip {
-    /* visibility: hidden */
     display: block;
     position:absolute;
     top: 150px;
-    left: 50%;
-    background-color:gray;
-    color: blueviolet;
-    border: 1px solid black;
+    text-align: center;
+    font-size: 2rem;
+    color:salmon;
+    font-weight: 1000;
+    font-family: 'Courier New', Courier, monospace;
     height: 100px;
-    width: 300px;
+    width: 100%;
     margin: 0 auto;
 }

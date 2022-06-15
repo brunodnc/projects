@@ -68,15 +68,14 @@ const monthName = (m) => {
     .attr('width', w / dates.length - 0.1)
     .attr('height', (d, i) => scaled[i])
     .attr('transform', 'translate(100, 80)')
-    .on('mouseover', (e) =>{ tooltip
-    // .style('visibility', 'visible')
-    .innerHTML = `<div id="tooltip" data-date"${dataset[e.target.id][0]}">${tooltipString(e.target.id)}</div>`
+    .on('mouseover', (e) =>{
+        tooltip.innerHTML = `<div id="tooltip" data-date"${dataset[e.target.id][0]}">${tooltipString(e.target.id)}</div>`
+}).on('mouseout', () => tooltip.innerHTML = '<div id="tooltip">:)</div>')
     
 
-    }
     // .attr('data-date', (d, i) => d[0])
     // .attr('data-gdp', (d, i) => d[1])
-    )
+    
     // tooltip test dont work...
     // .append('title')
     // .attr('id', 'tooltip')
