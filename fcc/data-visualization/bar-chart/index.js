@@ -68,27 +68,10 @@ const monthName = (m) => {
     .attr('width', w / dates.length - 0.1)
     .attr('height', (d, i) => scaled[i])
     .attr('transform', 'translate(100, 80)')
-    .on('mouseover', (e) =>{
-        tooltip.innerHTML = `<div id="tooltip" data-date"${dataset[e.target.id][0]}">${tooltipString(e.target.id)}</div>`
-}).on('mouseout', () => tooltip.innerHTML = '<div id="tooltip">:)</div>')
-    
-
-    // .attr('data-date', (d, i) => d[0])
-    // .attr('data-gdp', (d, i) => d[1])
-    
-    // tooltip test dont work...
-    // .append('title')
-    // .attr('id', 'tooltip')
-    // .attr('data-date', (d, i) => d[0])
-    // .attr('data-gdp', (d, i) => d[1])
-    // .text((d, i) => monthName(dataset[i][0].split('-')[1]) + '-' + dataset[i][0].split('-')[0] + ' '  + `GDP: $${numbers[i]} Billion `)
-    
-    
-
-
-    
-    
-    
+    .on('mouseover', (e) =>{ // Tooltip
+        tooltip.innerHTML = `<div id="tooltip" data-date="${dataset[e.target.id][0]}">${tooltipString(e.target.id)}</div>`
+}).on('mouseout', () => tooltip.innerHTML = '<div id="tooltip data-date="${dataset[e.target.id][0]">:)</div>')   
+        
     const xAxis = d3.axisBottom(xScale)
 
     svg.append('g')
