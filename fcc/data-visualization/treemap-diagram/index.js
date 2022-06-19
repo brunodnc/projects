@@ -43,11 +43,13 @@ const buildChart = (data, container, fet) => {
 
     d3.json(fet).then((d) => { // learning from d3 documentation @ d3-graph-gallery.com/graph/treemap_json.html
         const root = d3.hierarchy(data)
-        .sum((d) => d.value);
+        .sum((d) => d.value)
+        .sort(function (a, b) {
+            return b.height - a.height || b.value - a.value;});
 
         const treemap = d3.treemap()
         .size([w, h])
-        .padding(2);
+        .padding(1);
         
         treemap(root);
         
@@ -119,7 +121,6 @@ const buildChart = (data, container, fet) => {
             .attr('data-name', (d) => d.data.name )
             .attr('data-category', (d) => d.data.category )
             .attr('data-value', (d) => d.data.value )
-            // .style('stroke', 'black')
             .attr('fill', (d) => switchColor(d.data.category))
             .style('transform', `translate(${margin}, 0)`)
             .on('mousemove', (e, d) => {
@@ -146,26 +147,22 @@ const buildChart = (data, container, fet) => {
             .attr('x', (d) => d.x0+5)
             .attr('y', (d) => d.y0+10)
             .selectAll('tspan')
-            .data(d => d.data.name.split(' ').map((item) => ({split: item, name: d.data.name})))
+            .data(d => d.data.name.split(' ').map((item) => ({split: item, name: d.data.name, category: d.data.category})))
             .enter()
             .append('tspan')
             .text((d) => d.split)
             .attr('font-size', '15px')
-            .attr('fill', 'white')
+            .attr('fill', 'BLACK')
             .attr('x', (d, i) => {
                 const name = d.name;
-                const nodes = root.leaves().filter((n) => n.data.name === name)
-                const node = root.leaves().find((node) => node.data.name === name)
-                if (nodes.length > 1) {
-                    // constructSameNameTexts(nodes);
-                    return node.x0 + 5
-                } else {
-                    return node.x0 + 5
-                }
+                const category = d.category;
+                const node = root.leaves().find((node) => node.data.name === name && node.data.category === category);
+                return node.x0 + 5                
             })
             .attr('y', (d, i) => {
                 const name = d.name;
-                const node = root.leaves().find((node) => node.data.name === name)
+                const category = d.category;
+                const node = root.leaves().find((node) => node.data.name === name && node.data.category === category);
                 return (node.y0 + 11) + 15 * i
             })
 
@@ -181,13 +178,14 @@ const buildChart = (data, container, fet) => {
             .attr('width', w / categories.length - 3)
             .attr('height', margin / 2)
             .attr('id', 'legend')
+            .style('stroke', 'black')
             .attr('fill', (d) => switchColor(d))
-            // dont know wy above line dont show, so I needed to reselectAll 'g', and create new littles 'g's to render legend's text
-            .append('text')
-            .attr('x', (d, i) => w / categories.length * i)
-            .attr('y', h - 20)
-            .attr('fill', 'black')
-            .text((d, i) => categories[i])
+            // dont know wy bellow lines dont show, so I needed to reselectAll 'g', and create new littles 'g's to render legend's text
+            // .append('text')
+            // .attr('x', (d, i) => w / categories.length * i)
+            // .attr('y', h - 20)
+            // .attr('fill', 'black')
+            // .text((d, i) => categories[i])
 
             svg.selectAll('g')
             .data(categories)
@@ -198,11 +196,7 @@ const buildChart = (data, container, fet) => {
             .attr('y', h + 20)
             .attr('fill', 'black')
             .text((d, i) => categories[i])
-            
     })
-
-     
-
 }
 
 
