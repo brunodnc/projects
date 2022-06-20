@@ -80,4 +80,22 @@ global.fetch = jest.fn().mockResolvedValue({
 		})
 	})
 
+Para fazer teste com rotas é preciso empregar a função da RTL renderWithRouter, ja que a render não serve para trabalhar com rotas.
+o renderWithRouter usa o createMemoryHistory para simular um histórico de navegação 
 
+import React from 'react';
+import { render } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+
+export default const renderWithRouter = (component) => {
+	const history = createMemoryHistory();
+	return ({
+		... render(<Router history={history}> {component} </Router>)), 
+		history
+		});
+	};
+
+Agora pode-se utilizar das informações contidas do history do React Router para os testes { history } renderWithRouter(componente);
+por exemplo com o history.location para conseguir o caminho da URL em que se encontra a página.
+history.push pode ser utilizado para inserir algum caminho na URL, bom para testar os componentes de uma 'página não encontrada'.

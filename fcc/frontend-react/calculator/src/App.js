@@ -6,53 +6,70 @@ class App extends React.Component {
     display: 0
   }  
   
-  numberClick = (e) => {
+  numberClick = (e, n) => {
     if (this.state.display === 0) {
-      this.setState({display: e.target.id});
+      this.setState({display: n});
+    } else if (this.state.display === "0" && n === "0") {
+      return undefined
     } else {
-      this.setState((prev) => ({display: prev.display + e.target.id}));
+      this.setState((prev) => ({display: prev.display + n}));
     }
   }
 
   plusOperatorClick = (e) => {
     if (this.state.display === 0) {
-      this.setState({display: e.target.name});
-    } else if (!/[0-9]+$/.test(this.state.display) && this.state.display.slice(-1) !== '+') {
-      this.setState((prev) => ({display: prev.display + e.target.name}));
-    } else if (/[0-9]+$/.test(this.state.display)) {
-      this.setState((prev) => ({display: prev.display + e.target.name}));
-    }
+      this.setState({display: "+"});
+    } else if (/[+ | * | \- | /][+ | * | \- | /]$/.test(this.state.display)) {
+        this.setState((prev => ({display: prev.display.slice(0,-2) + "+"})));
+      } else if (this.state.display.slice(-1) === '-') {
+        this.setState((prev) => ({display: prev.display.slice(0, -1) + "+"}));
+      } else if (/[0-9]+$/.test(this.state.display)) {
+        this.setState((prev) => ({display: prev.display + "+"}));
+      }
   }
 
   minusOperatorClick = (e) => {
     if (this.state.display === 0) {
-      this.setState({display: e.target.name});
-    } else if (!/[0-9]+$/.test(this.state.display) && this.state.display.slice(-1) !== '-') {
-      this.setState((prev) => ({display: prev.display + e.target.name}));
-    } else if (/[0-9]+$/.test(this.state.display)) {
-      this.setState((prev) => ({display: prev.display + e.target.name}));
-    }
-  }
+      this.setState({display: "-"});
+    } else if (/[+ | * | \- | /][+ | * | \- | /]$/.test(this.state.display)) {
+        this.setState((prev => ({display: prev.display.slice(0,-2) + "-"})));
+      } else if (this.state.display.slice(-1) === '+') {
+        this.setState((prev) => ({display: prev.display.slice(0, -1) + "-"}));
+      } else if (this.state.display.slice(-1) !== '-') {
+        this.setState((prev) => ({display: prev.display + "-"}));
+      } else if (/[0-9]+$/.test(this.state.display)) {
+        this.setState((prev) => ({display: prev.display + "-"}));
+      }
+    } 
 
-  specialOperatorClick = (e) => {
-    if (this.state.display !== 0 && /[0-9]+$/.test(this.state.display)) {
-      this.setState((prev) => ({display: prev.display + e.target.name}));
-    } else if (!/[0-9]+$/.test(this.state.display[this.state.display.length - 1]))
-      this.setState((prev) => ({display: prev.display.slice(0, -1).concat(e.target.name)}))
-  }
+  specialOperatorClick = (e, n) => {
+    if (this.state.display === 0 ) {
+      this.setState((prev) => ({display: prev.display + n}));
+    } else if (/[+ | * | \- | /][+ | * | \- | /]$/.test(this.state.display)) {
+        this.setState((prev => ({display: prev.display.slice(0,-2) + n})));
+      } else if (this.state.display !== 0 && /[0-9]+$/.test(this.state.display)) {
+        this.setState((prev) => ({display: prev.display + n}));
+      } else if (this.state.display !== 0 && !/[0-9]+$/.test(this.state.display[this.state.display.length - 1])) {
+        this.setState((prev) => ({display: prev.display.slice(0, -1).concat(n)}))}
+    }
 
   decimalClick = (e) => {
-    if (/[0-9]+$/.test(this.state.display)) {
-      this.setState((prev) => ({display: prev.display + e.target.name}));
+    if (this.state.display === 0) {
+      this.setState((prev) => ({display: prev.display + "."}));
+    } else {
+    const decimalSplit = this.state.display.split(/[+ | * | \- | /]/);
+    const cantDecimal = decimalSplit.every((item) => item.includes('.'))
+    if (/[0-9]+$/.test(this.state.display) && !cantDecimal) {
+      this.setState((prev) => ({display: prev.display + "."}));
     }
+  }
   }
 
   equalsClick = (e) => {
-    
     if (/[0-9]+$/.test(this.state.display)) {
       // eslint-disable-next-line no-eval
       // using eval because in a hurry, I should find other ways for doing a calculator later.
-      this.setState((prev) => ({display: eval(prev.display)}));
+      this.setState((prev) => ({display: eval(prev.display).toString()}));
     }
   }
 
@@ -65,24 +82,24 @@ class App extends React.Component {
       <div className="App">
         <div id="display">{ display }</div>
         <div className="numbers">
-          <button onClick = { this.numberClick }type="button" className="num" id="1">1</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="2">2</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="3">3</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="4">4</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="5">5</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="6">6</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="7">7</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="8">8</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="9">9</button>
-          <button onClick = { this.numberClick }type="button" className="num" id="0">0</button>
+          <button onClick = { (e) => this.numberClick(e, "1") }type="button" className="num" id="one" name="1">1</button>
+          <button onClick = { (e) => this.numberClick(e, "2") }type="button" className="num" id="two" name="2">2</button>
+          <button onClick = { (e) => this.numberClick(e, "3") }type="button" className="num" id="three" name="3">3</button>
+          <button onClick = { (e) => this.numberClick(e, "4") }type="button" className="num" id="four" name="4">4</button>
+          <button onClick = { (e) => this.numberClick(e, "5") }type="button" className="num" id="five" name="5">5</button>
+          <button onClick = { (e) => this.numberClick(e, "6") }type="button" className="num" id="six" name="6">6</button>
+          <button onClick = { (e) => this.numberClick(e, "7") }type="button" className="num" id="seven" name="7">7</button>
+          <button onClick = { (e) => this.numberClick(e, "8") }type="button" className="num" id="eight" name="8">8</button>
+          <button onClick = { (e) => this.numberClick(e, "9") }type="button" className="num" id="nine" name="9">9</button>
+          <button onClick = { (e) => this.numberClick(e, "0") }type="button" className="num" id="zero" name="0">0</button>
           <button onClick = { this.decimalClick } type="button" className="num" name="." id="decimal">.</button>
           <button onClick = { this.clearClick } type="button" className="num" name="clear" id="clear">clear</button>
         </div>
         <div className="operators">
           <button onClick={ this.plusOperatorClick } type="button" name="+" id="add">+</button>
           <button onClick={ this.minusOperatorClick } type="button" name="-" id="subtract">-</button>
-          <button onClick={ this.specialOperatorClick } type="button" name="*" id="multiply">*</button>
-          <button onClick={ this.specialOperatorClick } type="button" name="/" id="divide">/</button>
+          <button onClick={ (e) => this.specialOperatorClick(e, "*") } type="button" name="*" id="multiply">*</button>
+          <button onClick={ (e) => this.specialOperatorClick(e, "/") } type="button" name="/" id="divide">/</button>
         </div>
         <button onClick={ this.equalsClick } type="button" name="=" id="equals">=</button>
       </div>

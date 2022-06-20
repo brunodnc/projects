@@ -1,0 +1,103 @@
+Context API é a maneira nativa das versões mais recentes do React de fazer o gerenciamento de estado das suas aplicações.
+
+const Context = React.createContext(defaultValue) - Cria um 'contexto', que recebe como argumento um valor padrão para que o Consumer manipule quando não encontrar um Provider em algum de seus componentes hierarquicamente superiores. 
+
+Após sua instanciação, o createContext então permite o emprego das funções Provider e Consumer dentro da função render() do React. 
+
+O Provider vai fornecer um estado manipulável a seus consumidores, isto é, a todos os componentes que ele engloba (incluindo seus subsequentes filhos).
+O Provider recebe um atributo value, que deve ser um objeto que contem o estado a ser compartilhado.
+Seguindo o exemplo: 
+
+const contextValue = {...this.state, this.func()}
+<Context.Provider value{contextValue}>
+	 <Component>
+</Context.Provider>
+Detalhe, 
+
+No caso do Provider, é um componente que tem como filho uma função, que receberá como parâmetro o contextValue, o qual deverá ser manipulado a fim de ser renderizado em um retorno jsx.
+Por exemplo: 
+<Context.Consumer> {context => <h1>{context}</h1>} </Context.Consumer>
+
+No entanto, nos métodos de ciclo de vida react, que estão fora da função render(), não possuirão o componente <Context.Consumer />, para acessar o Context nesse caso é preciso deixar no fim de código a seguinte linha:
+NomeDoComponente.contextType = MyContext; 
+Ela permite o acesso do context nos métodos de ciclo de vida através da variável this.context.
+
+O useState permite que componentes funcionais façam o gerenciamento de seus próprios estados.
+A useState() retorna um array, que vai ser usualmente destruturado, em sua primeira posição está a variável de leitura do state, e a segunda é o nome de uma variável que irá fazer a manutenção da primeira variável (assim como o setState faz a manutenção do estado em componentes de classe)
+
+import React, { useState } from 'react;
+
+cost [estado, setEstado] = useState(estadoInicial); (vai iniciar um estado com o valor estadoInicial, que poderá ser modificado com o setEstado aos moldes de: 
+
+setTodos(novoEstado); depois disso se o estado for chamado seu valor será novoEstado.
+
+para usar como um setState de estado é preciso retornar o prev desestruturado..., continuando o exemplo: 
+
+setEstado(prev => ({...prev, novoEstado}))
+
+useContext facilita o uso da context API
+
+Primeiro cria-se um componente Provider, que englobará a árvore de componentes que serão seus clientes, elas receberão acesso ao estado definido no provider, acessadas pelo componente Context.Consumer, que retorna uma função, ou acessada através do hook useContext.
+
+import React, { useState } from 'react';
+
+const Context = React.createContext();
+
+function Provider({children}) {
+	const [estado, setEstado] = useState({a: 'a'}];
+
+	const changeEstado = (x, z) => {
+	
+        setEstado((prev) => ({...prev, [x]: z}));
+		}
+	return (
+		<main>
+			<Context.Provider value={{estado, changeEstado}}>
+				{children}
+			</Context.Provider>
+		</main>
+		);
+	}
+
+export default Provider
+
+Em componentes funcionais, o hook useContext permite o abandono do componente Consumer para acessar o contexto a partir do provider, para utilizar basta passar como parâmetro o Context inserido no Provider como valor e desconstruir seu retorno:
+
+const { estado, changeEstado } = useContext(Context);
+
+O hook useEffect é uma forma de controlar através d eum Hook o ciclo de vida de um componente funcional. Usualmente ele recebe como parâmetro uma funçao callback e um array.
+
+Basicamente, ele roda a função do primeiro parâmetro, com base nas métricas inseridas no segundo parâmetro
+no caso de não passar nada como segundo parâmetro o useEffect executará a função toda vez que algo for renderizado ou atualizado na tela
+no caso do segundo array ser vazio '[]', ele funcionará como o componentDidMount() e executará a função passada no primeiro parâmetro na primeira vez que o componente for renderizado. (Nesse caso, o recomendado é declarar a função dentro da callback, e depois chamá-la. segue exemplo.
+caso exista alguma variável dentro do array, ele executará a função assim que essa variável for atualizada
+caso a callback retorna outra função, ele executará essa função retornada pela callback assim que o componente 'desmontar', funcionando como o componentWillUnmount
+
+// renderizar quando qualquer coisa atualizar (nada como segundo parâmetro
+useEffect(() => {
+	return algo});
+
+// componentDidMount
+	useEffect(() => {
+	const func = () => {
+		return	renderizarAlgoInicialmente
+		}
+	func();
+	}, []);
+
+// componentDidUpdate
+	useEffect(() => {
+		Modificação que ocorrerá quando 'var1, ou var2' mudar
+		}, [var1, var2]);
+
+// componentWillUnmount
+	useEffect(() => {
+		return () => {
+			o que fazer quando desmontar
+			}
+		}, []);
+		
+Hooks personalizados.
+
+
+

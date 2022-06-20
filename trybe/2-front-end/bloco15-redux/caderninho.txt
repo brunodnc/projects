@@ -80,7 +80,7 @@ ReactDOM.render(
 	document.getElementById('root'),
 	);
 
-No nível de um componente React utiliza-se a função mapSateToProps, que recebe como parâmetro o estado e retorna um objeto cuja chave será o nome da props, e seu valor é o que está armazenado na store, no estado. (???), por exemplo:
+No nível de um componente React utiliza-se a função mapSateToProps, que recebe como parâmetro o estado e retorna um objeto cuja chave será o nome da prducops, e seu valor é o que está armazenado na store, no estado. (???), por exemplo:
 
 import { connect } from 'react-redux';
 const mapStateToProps = state => ({loginProps: state.reducer1.login}) 
@@ -101,3 +101,17 @@ import thunk from 'redux-thunk';
 const store = createStore(reducer, applyMiddleware(thunk));
 
 utilizando o redux-thunk é possível, invés de retornar um objeto action, retornar uma função assyncrona que retorna um objeto action.
+
+Para testar com o Redux, existe a função renderWithRedux, ela recebe 2 parâmetros, o primeiro é o componente a ser renderizado, e o segundo um objeto no seguinte molde {estadoInicial, store = createStore(reducer, estadoInicial) } = {} (desconstruindo)
+
+na prática:
+
+const renderWithRedux = (component, { estadoInicial, store = createStore(reducer, estadoInicial) } = {} ) => {
+	return {
+	...render(<Provider store={store}> {component} </Provider>),
+	store,
+	}
+}
+
+usar o helper fetchMock from 'fetch-mock-jest' para simular fetch de forma simples em RTL
+

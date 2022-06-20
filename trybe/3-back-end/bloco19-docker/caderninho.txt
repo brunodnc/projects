@@ -1,0 +1,32 @@
+contêiner - processo do Docker que possui tudo aquilo que é preciso para seu auto funcionamento (Sistema operacional, bibliotecas, etc.)
+imagem - uma estrutura pré-definida para um contêiner rodar.
+
+Um contêiner do Docker funciona a partir de uma virtualização a nível do sistema operacional, isto é, ele compartilha dos mesmos recursos do sistema operacional que roda o contêiner
+E também é muito mais leve que uma máquina virtual, já que um contêiner serve apenas ao seu propósito ja definido, pois seu contéudo contém apenas o essencial para rodar sua aplicação.
+
+As imagens para o Docker podem ser encontrados no Docker Hub, e podem ser requisitadas através do registro
+
+Comandos Docker ->
+
+docker <comando> <subcomando> <parâmetros>
+
+docker container run <imagem>:<versão> => para criar um container com a seguinte imagem, com a seguinte versão, caso não passe parâmetro para versão, o Docker procurará a última versão estável da imagem.
+docker container run --name nomeDoContainer <imagem>:versão => dá um nome específico para um contâiner a ser executado
+docker container run -d <imagem>:<tag> => roda o container em segundo plano (-d de --detach)
+docker container attach <ContainerID ou nome)> acessa um contêiner que estava ativo em segundo plano
+docker container create -it <imagem>:<tag> o parâmetro -it garante que o container iniciado se mantenha ativo e inicie um terminal de comando.
+É possível somar os parâmetros, por exemplo:
+docker container run -dit <imagem>:<tag> => roda em segundo plano uma imagem de forma que permita o acesso a seu terminal caso ela venha ao 'primeiro plano' com o attach
+
+
+
+docker container ps - mostra por padrão os contâiners ativos
+docker container ps -a - mostra todos os contâiners (-a de -all)
+docker container ps -l - mostra o último contâiner iniciado (-l de -last)
+docker container start <containerId> - executa um contâiner a partir do ID dele
+docker container stop <containerId> - para a execução de um contâiner
+docker container prune - remove todos os contâiners parados
+docker container rm <containerID ou nome> - remove um contâiner inativo especifico com base em seu nome ou ID
+docker container rm <containerID ou nome> -f - força a remoção de um contâiner ativo especifico com base em seu nome ou ID (-f de -force)
+
+
