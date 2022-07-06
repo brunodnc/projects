@@ -1,0 +1,67 @@
+SQL - Structured Query Language
+
+Os dados no SQL são organizados em tabelas
+
+Esses dados podem ter restrições de inserção através de regras aplicadas na criação da tabela, ou em sua alteração (CREATE ou ALTER TABLE)
+
+Algumas restrições possíveis às chaves de uma dada tabela no SQL:
+
+NOT NULL - não pode inserir ou atualizar um valor com um valor vazio ou nulo
+UNIQUE - garante a não repetição de valores em uma coluna/chave da tabela
+PRIMARY KEY - identificador principal e único de um item na tabela, então carrega consigo as regras do NOT NULL e o UNIQUE
+FOREIGN KEY - Referencia uma primary key de uma outra tabela, garante relação entre tabelas
+DEFAULT - define um valor padrão caso não se atribua um valor na hora de inserção na tabela
+
+Para os comandos do SQL no terminal é necessário colocar ; no final
+
+USE <bancoDeDados>; - conecta a um banco de dados
+SELECT * FROM <NomeDoBancoDeDados>.<nomeDaTabela>; - faz o mesmo que o use.
+
+SHOW TABLES; - retorna todas as tabelas selecionadas]
+DESCRIBE <nomeDaTabela>; - mostra a estrutura de uma tabela específica
+CREATE DATABASE <nomeDoBancoDeDados>; - cria um banco de dados 
+
+MySQL Workbench é utilizado como interface gráfica para um database. (MariaDB substitui o MySQL?)
+
+--
+
+Tipos de queries -> comandados dado a um banco de dado -
+
+DDL - Data Definition Language, define dados diretamente
+CREATE: Cria coisas
+ALTER: altera estruturas
+DROP: deleta objetos
+TRUNCATE: esvazia uma tabela (é mais rápido e utiliza menos recurso que o DELETE, já que ele deleta linha por linha e faz um log de cada linha deletada, o truncate não faz isso, ele registra apenas uma vez no log de transações a truncada)
+
+DML - Data Manipulation Language - manipula dados
+SELECT: Seleciona algo, também pode ser usado para gerar e calcular valores com o SELECT <nome> AS <chave>, com isso começa a manipular o valor <nome> com a chave <chave>, na tabela a chave seria uma nova coluna.
+
+O select pode ser utilizado também para selecionar os dados que serão exibidos na tabela, por exemplo SELECT <chave1, chave2> FROM <bancoDeDados>.<tabela>, isso vai fazer mostrar a tabela com apenas as chaves especificadas
+Ainda com Select, é possível modular a tabela de forma a concatenar campos com o CONCAT, por exemplo SELECT CONCAT(chave1, ' ', chave2) AS 'concatenados' FROM <database>.<tabela>, com isso, o banco de dados criará uma nova chave, nomeada 'concatenados' e o valor de cada item nesta coluna será o valor de chave1 + ' ' + chave2.
+Ainda com Select, é possível remover os dados duplicados do banco de dados, por exemplo SELECT DISTINCT <chaves> FROM <bancodedados>.<tabela>, vai filtrar a tabela e retirar dela todos os valores que se repetem, deixando apenas valores únicos
+Ainda com Select, é possível estabelecer regras para se contar os dados de uma tabela, por exemplo SELECT COUNT(*) FROM banco_de_dados.tabela, conta os dados de acordo com o que é definido dentro dos (), nesse caso '*' significa todos.
+É possível especificar ainda mais o seletor do banco de dados com o WHERE, que irá definir o valor de uma chave a ser examinada, por exemplo:
+
+SELECT COUNT(chave¹) FROM tabela;
+WHERE chave = 'valor_especifico';
+
+faz com que o computador conte quantos items possuem o 'valor_especifico' na chave¹
+Ainda com Select, é possível limitar a quantidade de linhas que sua pesquisa retorna com o LIMIT, por exemplo, SELECT * FROM tabela LIMIT N, onde N é a quantidade de linhas aparecerá
+ainda com o Limit do Select é possível determinar a quantidade de linha que ele irá 'pular', isto é, a partir de qual valor a tabela deverá aparecer, por exemplo SELECT * FROM tabela LIMIT 10 OFFSET 5; fará aparecer 10 linhas a partir da quinta linha
+Além de tudo isso, é possível ainda ordenar os resultados retornados pelo select com o ORDER BY, por exemplo, SELECT * from tabela ORDER BY <chave> <critério>; isto fará com que o select retorne ordenado pela chave seguindo o critério estabelecido, podendo ser ASC, DESC
+
+INSERT: Insere dados
+UPDATE: Altera dados
+DELETE: Exclui dados
+
+DCL - Data Control Language - controle de permissões
+GRANT: concede acesso
+REVOKE: remove acesso
+
+TCL: Transactional Control Language - controle transações no banco de dados
+COMMIT: Torna permanente as alterações no banco de dados
+ROLLBACK: Desfaz as alterações no banco de dados
+SAVEPOINT: Define estados para o qual a query pode retornar
+TRANSACTION: Define transações
+
+
