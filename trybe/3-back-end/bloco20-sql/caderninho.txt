@@ -31,7 +31,7 @@ DDL - Data Definition Language, define dados diretamente
 CREATE: Cria coisas
 ALTER: altera estruturas
 DROP: deleta objetos
-TRUNCATE: esvazia uma tabela (é mais rápido e utiliza menos recurso que o DELETE, já que ele deleta linha por linha e faz um log de cada linha deletada, o truncate não faz isso, ele registra apenas uma vez no log de transações a truncada)
+TRUNCATE: esvazia uma tabela (é mais rápido e utiliza menos recurso que o DELETE, já que ele deleta linha por linha e faz um log de cada linha deletada, o truncate não faz isso, ele registra apenas uma vez no log de transações a truncada, e por isso não é possível especificar o que deletar com o TRUNCATE, ele deleta toda a tabela, diferente do DELETE)
 
 DML - Data Manipulation Language - manipula dados
 SELECT: Seleciona algo, também pode ser usado para gerar e calcular valores com o SELECT <nome> AS <chave>, com isso começa a manipular o valor <nome> com a chave <chave>, na tabela a chave seria uma nova coluna.
@@ -46,13 +46,99 @@ SELECT COUNT(chave¹) FROM tabela;
 WHERE chave = 'valor_especifico';
 
 faz com que o computador conte quantos items possuem o 'valor_especifico' na chave¹
+As funcionalidades do WHERE podem ser modificadas com os operadores
+=, >, <, >=, <=, AND, OR, IS (TRUE, FALSE, NULL), NOT, <> (diferente de), LIKE, IN, BETWEEN, DATE
+
+Por exemplo:
+
+SELECT * from <tabelaDeFilmes>
+WHERE duracao > 60;
+
+O Like realiza uma busca na sequêncie de caracteres de um dado valor, e com ele utiliza-se os simbolos coringas % (0, 1, ou múltiplos caracteres) e _ (1 caractere)
+Assim para pesquisar valores terminados com 'ão', por exemplo,
+
+SELECT * FROM tabela
+WHERE chave LIKE '%ão';
+
+É possível também utilizar o operador IN para resumir a sintaxe do OR transformando
+
+WHERE chave = 'um',
+OR chave = 'dois';
+
+em 
+
+WHERE chave IN ('um', 'dois');
+
+Assim como o IN, existe o operador BETWEEN para pesquisar valores que estão entre um alcance específico, por exemplo:
+
+WHERE duração BETWEEN 30 AND 120
+
+Utiliza-se DATE no caso de interação com datas no formato especifico e abarcado pelo MySQL (YYYY-MM-DD HH:MM:SS) (Anos 1001 até 9999), e no caso de datas, é possível ainda especificar apenas uma de suas partes com YEAR, MONTH, DAY, HOUR, MINUTE, SECOND
+
 Ainda com Select, é possível limitar a quantidade de linhas que sua pesquisa retorna com o LIMIT, por exemplo, SELECT * FROM tabela LIMIT N, onde N é a quantidade de linhas aparecerá
 ainda com o Limit do Select é possível determinar a quantidade de linha que ele irá 'pular', isto é, a partir de qual valor a tabela deverá aparecer, por exemplo SELECT * FROM tabela LIMIT 10 OFFSET 5; fará aparecer 10 linhas a partir da quinta linha
 Além de tudo isso, é possível ainda ordenar os resultados retornados pelo select com o ORDER BY, por exemplo, SELECT * from tabela ORDER BY <chave> <critério>; isto fará com que o select retorne ordenado pela chave seguindo o critério estabelecido, podendo ser ASC, DESC
 
+
+
 INSERT: Insere dados
+
+A sintaxe do insert fica:
+
+INSERT INTO tabela (coluna1, coluna2)
+VALUES ('valorDaColuna1', 'valorDaColuna2');
+
+Ou para inserir múltiplas linhas:
+
+INSERT INTO tabela (coluna1, coluna2) VALUES
+('valorDaColuna1', 'valorDaColuna2')
+('valorDaColuna1', 'valorDaColuna2')
+('valorDaColuna1', 'valorDaColuna2');
+
+É possível ignorar os erros gerados durante a inserção da tabela, fazendo com que a insersação não pare após o erro, e continue inserindo os valores possíveis de serem inseridos com o IGNORE:
+
+INSERT IGNORE INTO tabela (coluna) VALUES (VALOR);
+
+Algumas colunas possuem a função de auto_increment, isso significa que com cada adição de linha, seu valor é incrementado por um e por isso deve ser omitida no INSERT pois seu valor é gerado automaticamente.
+
+Para inserir dados de outra tabela utiliza-se o INSERT SELECT com a seguinte forma: (veja também a adição do WHERE e do ORDER possibilitando a manipulação dos dados na hora de transferência de uma tabela para outra)
+
+INSERT INTO tabelaDeEntrada (coluna)
+	SELECT tabelaDeSaída.coluna
+	FROM tabelaDeSaída
+	WHERE tabelaDeSaída.coluna <> 'valorDiferente'
+	ORDER BY (critérios de ordenação)
+
+
+
+
 UPDATE: Altera dados
+
+Para usar o update utiliza-se também o WHERE para atualizar condicionalmente uma coluna especifica, sem o where ele mudará toda a coluna, por exemplo para atualizar um valor específico:
+
+UPDATE tabela
+SET coluna = 'valorNovo'
+WHERE coluna = 'valorAntigo';
+
+Por padrão o SQL tem uma proteção contra updates que não envolvam um valor de ID, para desabilitar essa chave de segurança, basta abrí-lo com SET SQL_SAFE_UPDATES = 0;
+
+Para fazer um update com CASE:
+
+UPDATE tabela
+set coluna = (
+CASE outraColuna WHEN ' THEN 'TRUE'
+		WHEN 2 THEN 'FALSE'
+		ELSE ''
+END);
+
+Para fazer um update com valores sequenciais
+
 DELETE: Exclui dados
+
+O modelo do delete é parecido com o do update, utilizando os condicionais para estabelecer restrições, se não deletará todas as linhas da tabela, por exemplo
+
+DELETE FROM tabela
+WHERE coluna = 'valor;
 
 DCL - Data Control Language - controle de permissões
 GRANT: concede acesso

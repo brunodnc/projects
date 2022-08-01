@@ -47,6 +47,83 @@ HAVING COUNT(*) > n;
 
 Esse comando gerará uma tabela contendo apenas os items que se repetiram mais que n vezes, exibindo tanto o valor da chave quanto a quantidade do COUNT.
 
+JOIN - Permite mesclar registro de tabelas, criando uma relação direta entre elas.
+
+INNER JOIN - mescla duas tabelas com base em um valor comum entre elas
+
+SELECT t1.coluna1, t1.coluna2, t2.coluna1, t2.coluna3
+FRON tabela as t1.
+INNER JOIN outraTabela AS t2
+ON t1.coluna_em_comum = t2.coluna_em_comum;
+
+JOIN LEFT ou JOIN RIGHT - coloca uma das tabelas (da esquerda ou da direita) como padrão de referência, e usa o critério do ON para preencher os valores que estão chegando da outra tabela, por exemplo
+
+SELECT t1.coluna1, t1.coluna2, t2.coluna1, t2.coluna3
+FRON tabela as t1.
+LEFT JOIN outraTabela AS t2
+ON t1.coluna_em_comum = t2.coluna_em_comum;
+
+preencherá todas as t1.coluna1 e t2.coluna2, mas os valores t2.coluna1 e t2.coluna3 só serão preenchidos caso a igualdade do ON for verdadeira, caso fosse utilizado o RIGHT JOIN, a prioridade seria para a tabela t2.
+
+UNION - Diretamente une duas tabelas, removendo os valores duplicados, por exemplo
+
+SELECT coluna1, FROM tabela1
+UNION
+SELECT coluna1, FROM tabela2
+
+UNION ALL - mesma coisa que o UNION porém não remove os dados duplicados
+
+---
+
+Tipos de dados no MySQL
+Booleanos,
+CHAR(n) - Caracteres de tamanho fixo N, 
+VARCHAR(n) - tamanhoa variável, de máximo n
+TINYINT - 0 a 255 UNSIGNED(sem sinal positivo ou negativo) ou -128 a 127(aceitando sinal negativo ou positivo
+SMALLINT, MEDIUMINT, INT, BIGINT - número exato igual tinyint porém cada um com sua propria faixa de valor
+DECIMAL(x, y) - numero de casa decimal onde x é a quantidade de casa, e y é a quantidade de casas decimais
+LOAT/REAL - numero com a precisão de uma casa decimal
+DOUBLE - número com a precisão de duas casas decimais
+DATE - armazena valor com o padrão YYYY-MM-DD
+TIME - armazena valor com o padrão HH:MM>SS
+YEAR - ARMAZENA O ANO ENTRE 1901 E 2155
+DATETIME junta valor temporal em YYYY-MM-DD HH:MM:SS com a faixa de valor 1000-01-01 00:00:00 até 9999-12-31 23:59:59
+TIMESTAMP igual o DATETIME mas pode ser configurado para operar com fusos horários
+
+Para criar um banco de dados:
+
+CREATE DATABASE IF NOT EXISTS nomeDoDB;
+
+Para começar a usar o banco de dados:
+
+USE nomeDoDB;
+
+Para criar uma tabela definindo uma primary key:
+
+CREATE TABLE nome (
+	nome_coluna tipo_de_dado PRIMARY KEY,
+	nome_coluna tipo_de_dado
+	);
+
+Para criar uma tabela definindo uma primary key com a função de auto incrementação conforme adição de itens na tabela:
+
+CREATE TABLE nome (
+	nome_coluna tipo_de_dado PRIMARY KEY AUTO_INCREMENT,
+	nome_coluna tipo_de_dado
+	);
+
+
+Para criar uma tabela definindo uma primary key composta por duas foreign keys, também estabelecendo que elas não podem ser nulas:
+
+CREATE TABLE tabela(
+	coluna1 tipo_de_dado NOT NULL,
+	coluna2 tipo_de_dado NOT NULL,
+	CONSTRAINT PRAMARY KEY(coluna1, coluna2),
+	FOREIGN KEY (coluna1) REFERENCES tabelaDeOrigemDaColuna1,
+	FOREIGN KEY (coluna2) REFERENCES tabelaDeOrigemDaColuna2
+	);
+
+
 
 
 
