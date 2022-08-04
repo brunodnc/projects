@@ -119,4 +119,138 @@ fs.writeFile(caminhoDoArquivo, texto, { flag: wx })
 wx significa que ele não reescreverá o arquivo caso ele já exista, funcionando apenas escrevendo um novo arquivo;
 nodejs.org/api/fs.html#fs_file_system_flags - documentação que explica cada flag possível
 
+---
+
+Testes --- Trybe passa mocha + chai ?? por que utilizar eles em vez do JEST????
+
+Deve ser adicionado no package.json o comando de teste -> nos moldes de "mocha nomeDoArquivoDeTeste", por exemplo
+{ 
+"scripts: {
+	"start": "node index.js",
+	"test": "mocha test.js"
+	},
+}
+
+Testar operações que modificam leem e escrevem dados, arquivos, deve-se criar um arquivo especifico para ser manipulado pelo teste - um 'dublê' isolado - para não atrapalhar os outros ambientes e para não macular a integridade do próprio teste
+É possível criar tal dublê com o Sinon, para instalá-la:
+npm install --save-dev sinon
+'stub' é a alcunha dada para os objetos que simulam a interação com o sistema testado, exemplo de seu emprego:
+
+const fs = require('fs');
+const sinon = require('sinon');
+
+sinon.stub(fs, 'readFileSync').returns('Valor a ser retornado');
+
+---
+
+API é uma aplicação que faz a comunicação entre dois pontos, no nosso caso é principalment e utilizada  na parte da web para fazer a comunicação do cliente com o servidor
+
+Express é o framework utilizado em conjunto com o node.js para facilitar as operações http, para instalá-lo:
+
+npm install express
+
+Dentro do código para inicializar uma aplicação express basta relacioná-lo com uma variável.
+
+const express = require('express');
+const app = express();
+
+Depois, para estabelecer uma operação quando receber uma requisição em um caminho específico, rota ou endpoint:
+
+app.get('/caminho', handleCaminhoRequest);
+
+const handleCaminhoRequest = (req, res, next) => { // req = informações do pedido / requisição, res = resposta a ser devolvida, next = função do Express que termina uma função e inicia a próxima callback da rota
+	res.status(200).send('Você caminhou e chegou');
+}
+
+E para comandar ao express criar um servidor HTTP e colocá-lo para escutar uma porta específica:
+
+app.listen(numeroDaPorta, () => {
+	console.log('aplicação atrelada a porta ' + numeroDaPorta);
+});
+
+A aplicação express segue um padrão na sua lide com as respostas às requisições http, por exemplo
+app.MÉTODO(caminho, callback(req, res, next));
+possíveis métodos de requisição são
+get
+post
+put
+delete
+all - aplica-se em qualquer outro método da requisição
+
+No express é possível concatenar os métodos em uma rota específica determinada pelo route(), como exemplo:
+app.route('/')
+.get(() => {})
+.post(() => {})
+.delete(() => {})
+
+Um exemplo decódigo funcional do express que devolve um array de objetos mediante à requisição get em determinada rota:
+
+const express = require('express);
+const app = express();
+const cors = require('cors');
+
+app.use(cors()); // O express precisa de módulos que controlam o acesso da API por outras aplicações, por exemplo o cors.
+
+const ArrObj = [{id: 1}, {id: 2}];
+
+app.get('/caminho', (req, res) => {
+	res.status(200).json(ArrObj). // note que em vez de utilizar o send genérico, utiliza-se aqui o json para informar a natureza do que está sendo enviado
+	});
+
+app.listen(3001, () => {
+	console.log('Escutando porta 3001');
+	});
+
+Utilizando ainda o exemplo acima, é possível passar parâmetros através da requisição, que o node pode conseguintemente manipular:
+
+app.get('caminho/:id' (req, res) => {
+	const { id } = req.params;
+	const obj = ArrObj.find((objeto) => objeto.id === Number(id))
+	if (!obj) return res.status(404).json({ message: 'Objeto não encontrado!'});
+	res,status(200).json(obj)
+	})
+
+O get acima retorna um objeto específico de acordo com o id fornecido pelo caminho da requisição
+
+O Express permite ainda trabalhar com queries customizadas através do método da requisição .query, que filtrará o caminho da requisição depois do '?' e estabelecerá um objeto a partir do '=', nos moldes de ,'chave=valor' no link, fica {chave: valor} no req.query;, por exemplo
+
+entra-se no site www.site.com/caminho?search=pesquisa&outrabusca=anothersearch&chave=valor
+
+app.get('/caminho', (req, res) => {
+	const { search, outrabusca, chave } = req.query;
+	console.log(search + ' ' + outrabusca + ' ' + chave); // no console estará: pesquisa anothersearch valor
+	});
+	res.end() // o .end() retorna a requisição sem nenhuma informação
+
+o método http POST permite a insersação de dados no corpo da requisição, que só será 'descomprimido' quando a requisição chegar em seus destinos, ideal para o envio de dados sensíveis.
+
+Para ler esses dados recebidos no corpo da requisição, utiliza-se junto do node o pacote body-parser (npm install body-parser para instalá-lo), para utilizá-lo:
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.post('/caminho', (req, res) => {
+	const token = req.headers.authorization; // NÃO PRECISA SER MAIÚSCULO ESSE Authorization???
+	if (token !== 'senha') return res.status(401).json({message: 'Token inválido!'}); // verifica se o token está errado, se estiver, retorna a mensagem 'Token inválido'
+	const { id, data1, password }= req.body;
+	console.log('Esses dados vieram através do corpo da requisição: ' + id + ' ' + data1 + ' ' + password); // o resultado do console.log será: Esses dados vieram através do corpo da requisição: 3 string senha
+	res.status(201).json({message: "POST recebido"}); // status 201 = uma ou mais informação foi gravada no servidor
+
+Do outro lado, no cliente, para realizar o POST, basta fazer um fetch definindo o metodo como post, veja o exemplo:
+
+fetch('url', {
+	method: 'POST',
+	headers: {
+		'Accept': 'application/json', // qual o tipo de dados esperado como resposta da requisição
+		'Content-Type': 'application/json', // tipo de dado do conteúdo da requisição
+		'Authorization': 'senha';
+	}
+	body: JSON.stringify({
+		id: 3,
+		password: 'senha',
+		data1: 'string
+	})
+})
+
+Além do GET e POST, para receber e enviar dados, outros dois métodos são bem comuns, o PUT (modifica) e o DELETE.
 
