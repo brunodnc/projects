@@ -29,3 +29,6 @@ sessionStorage salva informação apenas na sessão atual, e expiram assim que a
 Tanto o localStorage quanto o sessionStorage sempre armazenam dados nesse formato de objeto, com chave e valor, e os dados sempre são do tipo string.
 Isso não impede de salvar outros tipos de dados no localStorage, graças ao JSON.stringify(nãostring), uma função que transforma uma não string em string.
 Para recuperar o objeto no formato original, utiliza-se então o JSON.parse(strigifyedItem).
+
+
+!!! box-sizing salva vidas a respeito de bordas pestinhas

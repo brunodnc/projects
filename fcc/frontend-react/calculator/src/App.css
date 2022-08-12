@@ -1,0 +1,46 @@
+.App {
+  margin: 0 auto;
+  width: 30vw;
+  min-width: 15rem;
+  word-wrap: break-word;
+}
+
+#display {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.numbers {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  min-width: 15rem;
+}
+
+.num {
+  width: 30%;
+  margin: 0.1rem;
+  padding: 1rem;
+}
+
+.operators {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  min-width: 15rem; 
+  flex-wrap:wrap;
+}
+
+.operators button {
+  width: 22.2%;
+  margin: 0.1rem;
+  padding: 1rem;
+}
+
+#equals {
+  text-align: center;
+  width: 94%;
+  margin: 0.1rem;
+  padding: 1rem;
+}

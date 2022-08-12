@@ -1,0 +1,57 @@
+O react trabalha de forma mais eficiente junto com outros pacotes: JSX, Babel, Webpack, Flux/Redux, fetch e Jest/RTL.
+
+Para mexer com javascript temos que estar um pouco familiarizado com o node packet manager
+
+npm initi o comando empregado para iniciar o npm em um diretório, podendo conter a flag -y para sinalizar uma inicialização padrão, e já adiciona a chave 'scripts' também.
+
+o npm install pode ser empregado sem nenhuma flag, para instalar os pacotes mas pode ser configurado com algumas flags importantes também.
+--save-dev é utilizada para pacotes que serão somente utilizadas no desenvolvimento do projeto.
+
+para não enviar ao repositório git os pacotes (pode acabar ficando muita coisa), lembre-se de adicionar no .gitignore uma linha escrita node_modules/
+
+diferença entre npm e npx, o npm instala o pacote no seu diretório, o npx executa o pacote.
+
+'npx create-react-app nome-da-pasta' por exemplo, vai executar um pacote que tem a função de criar tudo necessário para criar e rodar um aplicativo React
+
+ReactDOM.render(element, container) é uma função que vai renderizar no DOM o element, dentro de dado container, esse element. Ele é eficiente porque só atualiza o que mudou com o último estado que o DOM se encontrava, isto é, só atualiza o necessário e não toda a página cada vez que renderiza algo.
+
+Um componente com classe em React é criado da seguinte forma: extends simplesmente significa que ele vai compartilhar os mesmos métodos que já estão criados no React.Component, como o render() que renderiza o conteúdo.
+
+class nome-da-classe extends React.Component{
+	render() {
+		return (
+			<h1>conteúdo</h1>
+			)
+		}
+	}
+
+detalhe importante, a função render() precisa retornar algo para ser renderizado!
+
+Toda propriedade que um componente do React receber é inserida dentro do objeto props, que pode ser accessado pelo componente/classe com this.props
+
+O react é capaz de controlar a tipagem das props com o PropTypes, regulando dentro de cada componente qual o tipo exato que cada props deveria receber. Por exemplo:
+
+No componente 'X', ele receberá um objeto X.propTypes = {propriedade: PropTypes.tipo} e assim, X.props.propriedade apenas poderá ser do 'tipo' determinado.
+
+Todavia para utilizar o PropTypes é preciso importá-lo com import PropTypes from 'prop-types'
+
+É possível utilizar o .isRequired para definir uma props de indispensável definição, assim o objeto X.propTypes seria {propriedade: PropTypes.tipo.isRequired}
+
+Os propTypes básicos do JS são:
+PropTypes.string
+PropTypes.number
+PropTypes.bool
+PropTypes.func
+PropTypes.object
+PropTypes.array
+PropTYpes.symbol
+
+É possível tipar também o conteúdo de um array ou de objeto:
+PropTypes.arrayOf(PropTypes.tipo)
+PropTypes.objectOf(PropTypes.tipo)
+
+É possível definir uma estrutura esperada para um objeto:
+PropTypes.shape({key: PropTypes.tipo, nomeDaSegundaKey: PropTypes.tipo})
+PropTypes.exact({key: PropTypes.tipo}) // neste exact não é permitido a adição de propriedades extras
+
+Detalhe, o PropTypes não impede a execução da aplicação, mas joga no console um erro avisando o emprego de uma props errada.

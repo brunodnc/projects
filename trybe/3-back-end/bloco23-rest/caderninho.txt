@@ -1,0 +1,65 @@
+Para manipular o MySQL com o node instala-se o pacote mysql2 da seguinte forma 'npm install mysql2'
+
+Para importar o mysql2 de forma que permite trabalhar com promises:
+
+const mysql = require('mysql2/promise');
+
+const connection = mysql.createPool({ // estabelece uma conexão com o database, que gerenciará internamente as requisições feitas pelo node
+	user: 'root', //usuário que acessa o db 
+	password: '',
+	host: 'localhost', // local onde o servidor MySQL está armazenado
+	database: 'model', // nome do banco
+	});
+
+module.exports = connection;
+
+Agora para criar as queries que o banco de dados - conectado pelo código acima - executará:
+
+const connection = require('./connecion);
+
+const getAll = async () => {
+	const result = await connection.execute('SQL // AQUI INSERE-SE A QUERY ENVIADA AO BANCO DE DADOS');
+	// todavia dessa forma o result devolve um array onde o primeiro elemento é o resultado da busca, e o segundo elemento são metadados que o db devolve, para retornar apenas o resultado da busca basta desestruturar o resultado da seguinte forma:
+	// const [result] = await connect.execute('SQL // AQUI INSERE-SE A QUERY ENVIADA AO BANCO DE DADOS');
+	};
+
+module.exports = {
+	getAll,
+	}
+
+Para trabalhar com uma variável na query do SQL nunca deve-se utilizar os literals do JS, mas sim passar dentro de um array como segundo parâmetro do execute, que será chamado na query, veja o exemplo:
+
+const findById = async (id) => {
+	const [result] = await connection.execute('SELECT id, name FROM tabela WHERE id=?', [id]);
+	};
+
+Para cadastrar algo no DB:
+
+Primeiro verifica se os dados são validos
+
+const validCheck = (name) => typeof name === 'string';
+
+E depois insere no banco de dados:
+
+const createData = async (name) => {
+	connection.execute(1INSERT INTO db.tabela (name) VALUES (?)', [name]
+	};
+
+Com o node também é possível configurar variávis de ambiente a partir do objeto 'env' dentro de uma variável global nomeada process, assim digitando no console:
+
+MYSQL_HOST=localhost node index.js
+
+configura de modo que dentro do arquivo index.js a variavel process.env.MYSQL_HOST === localhost;
+
+---
+
+REST é uma padronização de API definida pela w3c, a qual estabelece 6 restrições para uma estrutura de uma API:
+
+1 - Interface uniforme - seguir um padrão nos endpoints, no retorno da requisição, tipos, erros (incluindo os status code: 100 a 199 - informação, 200 a 299 - Sucesso, 300 a 399 - Redirecionamento, 400 a 499 - Erro do cliente, 500 a 599 - Erro no servidor), e na lide com os verbos HTTP (POST, GET, PUT DELETE)
+2- Arquitetura cliente-servidor - separação que permite a independência do cliente (incluindo uma gama de plataformas) e do servidor(facilita a escalabilidade e manutenção)
+3- Sem estado - A ausência de estado faz com que seja necessário que a requisição contenha todas as informações para a API realizar sua ação, em vez de depender de seus estados ou ciclos internos.
+4- Cacheficável (Cacheable) - Organiza se uma resposta pode se tornar um cache do lado do cliente ou não. Algumas informações são sensíveis demais para serem cache, todavia outras podem diminuir bastante a carga de serviço do servidor. (Para controlar no HTP o cache, ele pode ser definido no header através do Cache-Control: max-age=segundos, assim o cliente irá tornar a resposta da requisição um cache pelo tempo de segundos estabelecidos, não precisando interagir com o servidor todas as vezes que fizer a requisição.
+5- Sistema em camadas - Por motivos de seurança, efetividade e escalabilidade recomenda-se construira interação servidor-cliente através de camadas que controlam e gerenciam o acesso de um polo ao outro do sistema, já que o cliente precisa somente da resposta da requisição, e não das manipulações e maquinações internas ao servidor
+6 - Código sob demanda - Possibilidade do servidor enviar códigos a serem executados pelo cliente (condição não necessária de definição de uma arquitetura REST, pois nem todos os servidores tem como propósito essa possibilidade);
+
+

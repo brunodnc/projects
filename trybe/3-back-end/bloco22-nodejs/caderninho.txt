@@ -1,0 +1,299 @@
+O node possui módulos internos, locais e de terceiros
+
+Os módulos internos, ou core modules em inglês, são instalados juntos com o node que formam as funcionalidades mínimas do node, cada um deles possuindo seu próprio contexto, mesmo assim, ainda é preciso importá-los nas aplicações para serem utilizados. São eles os principais:
+
+http - inclui classes, métodos e eventos para criar um servidor http
+url - inclui métodos para a manipulação de url
+querystring - inclui métodos relacionados com querystrings
+path - inclui métodos para trabalhar com o caminho dos arquivos
+fs - inclui classes, métodos e eventos para lidar com a entrada e saída de arquivos
+util - inclui funções úteis.
+
+Módulos locais são os módulos do node que funcionam em paralelo, mas encontram-se separados da aplicação em questão, estes funcionam de forma autônoma o bastante para a publicação no NPM
+
+Módulos de terceiros são os módulos criados por outrem e disponibilizados através do npm
+
+Existem duas formas para se importar um módulo no Node, o Módulo ES6 e CommonJS.
+
+O método do ECMAScript6, que usa as palavras-chaves import e export, não são aceitos por padrão pelo Node, e por isso, é necessário também o uso de transpiladores como Babel ou o do TypeScript
+
+O sistema de importação e exportação de módulos do CommonJS pode ser utilizado no Node.js por padrão, nele utiliza-se o module.exports = 'valor a ser exportado' para exportar, e const NomeDaVariavelImportada = require('./caminhoDoArquivoQueTemModuleExport')
+
+comandos básicos npm:
+
+npm init - cria um pacote node
+npm run <comando> - roda um script pre-determinado pelo package.son, que definirá tanto o <comando> quanto seu processo
+npm start - atalho para 'npm run start', ele, por convenção, 'roda' o código do pacote
+npm install nomeDoPacote - busca, baixa e instalada do registro do NPM um determinado pacote
+npm install -D nomeDoPacote - mesma coisa que o de cima, porém sinaliza que este pacote não é necessário para a execução da aplicação, e estará presente apenas em seu desenvolvimento
+npm install - busca nas dependências do package.json o nome dos pacotes que serão em sequência baixados
+
+---
+
+3 métodos de leitura de arquivo com o node:
+
+Detalhe, os daodos desses arquivos ficam armazenados na memória RAM!!
+
+Método síncrono:
+
+const fs = require('fs');
+try {
+	const data = fs.readFileSync(pathDoArquivo, encoding); // onde encoding = o modo que o node interpretará os bytes do arquivo, o formato padrão do encoding, caso não especificado é o raw buffer,
+	console.log(data);
+} catch(err) {
+	console.error('Erro ao ler arquivo: ' + err.path )
+	console.log(err);
+}
+
+Método assíncrono sem Promise:
+
+const fs = require('fs');
+fs.readFile(pathDoArquivo, encoding, (err, data) => {
+	if (err) {
+	console.error('Erro': + err);
+	process.exit(1);
+	}
+	console.log('Arquivo lido: ' + data);
+});
+
+Método assíncrono com Promise:
+
+const fs = require('fs').promises;
+fs.readFile(pathDoArquivo, encoding)
+	.then(data => {
+		console.log(data);
+		})
+	.catch(err => {
+		console.error('erro : ' + err);
+		process.exit(1);
+		});
+
+Para escrever dados um em arquivo usando promises:
+
+const fs = require('fs).promises;
+fs.writeFile(caminhoDoArquivo, texto)
+	.then(() => {
+console.log('sucesso'
+	))
+	.catch((err) => {
+		console.error(err);
+		});
+
+Escrever dados em um arquivo usando async/æwait:
+
+const fs = require('fs').promises;
+const funcaoAsyn = async () => {
+	try {
+		await fs.writeFile(caminhoDoArquivo, texto)
+		console.log('sucesso');
+		}
+	catch (err) {
+		console.error(err);
+		}
+	}
+
+---
+
+Promise.all é um método que possibilita a manipulação de várias promises passando-as como seu parâmatro, e quando todas forem resolvidas, poderá ser tratado como um array de resultados, empregando apenas um catch para tratar o erro na rejeição de qualquer uma delas.
+Por exemplo:
+
+const fs = require('fs').promises;
+
+Promise.all([
+	fs.readfile(arquivo1),
+	fs.readfile(arquivo2)
+	fs.readfile(arquivo3)
+	])
+	.then(([file1, file2, file3]) => {
+		const tamanhoTotalDosArquivos = file1.byteLength + file2.byteLength + file3.byteLength;
+		console.log('Tamanho total: ' + tamanhoTotalDosArquivos);
+		})
+	.catch((err) => {
+		console.error(err.message);
+		});
+
+É possível estabelecer alguns parâmetros de execução para alguns métodos do fs, por exemplo, na função .writeFile, ela pode receber como terceiro parâmetro um objeto para configurá-la, veja o exemplo:
+
+fs.writeFile(caminhoDoArquivo, texto, { flag: wx })
+
+wx significa que ele não reescreverá o arquivo caso ele já exista, funcionando apenas escrevendo um novo arquivo;
+nodejs.org/api/fs.html#fs_file_system_flags - documentação que explica cada flag possível
+
+---
+
+Testes --- Trybe passa mocha + chai ?? por que utilizar eles em vez do JEST????
+
+Deve ser adicionado no package.json o comando de teste -> nos moldes de "mocha nomeDoArquivoDeTeste", por exemplo
+{ 
+"scripts: {
+	"start": "node index.js",
+	"test": "mocha test.js"
+	},
+}
+
+Testar operações que modificam leem e escrevem dados, arquivos, deve-se criar um arquivo especifico para ser manipulado pelo teste - um 'dublê' isolado - para não atrapalhar os outros ambientes e para não macular a integridade do próprio teste
+É possível criar tal dublê com o Sinon, para instalá-la:
+npm install --save-dev sinon
+'stub' é a alcunha dada para os objetos que simulam a interação com o sistema testado, exemplo de seu emprego:
+
+const fs = require('fs');
+const sinon = require('sinon');
+
+sinon.stub(fs, 'readFileSync').returns('Valor a ser retornado');
+
+---
+
+API é uma aplicação que faz a comunicação entre dois pontos, no nosso caso é principalment e utilizada  na parte da web para fazer a comunicação do cliente com o servidor
+
+Express é o framework utilizado em conjunto com o node.js para facilitar as operações http, para instalá-lo:
+
+npm install express
+
+Dentro do código para inicializar uma aplicação express basta relacioná-lo com uma variável.
+
+const express = require('express');
+const app = express();
+
+Depois, para estabelecer uma operação quando receber uma requisição em um caminho específico, rota ou endpoint:
+
+app.get('/caminho', handleCaminhoRequest);
+
+const handleCaminhoRequest = (req, res, next) => { // req = informações do pedido / requisição, res = resposta a ser devolvida, next = função do Express que termina uma função e inicia a próxima callback da rota
+	res.status(200).send('Você caminhou e chegou');
+}
+
+E para comandar ao express criar um servidor HTTP e colocá-lo para escutar uma porta específica:
+
+app.listen(numeroDaPorta, () => {
+	console.log('aplicação atrelada a porta ' + numeroDaPorta);
+});
+
+A aplicação express segue um padrão na sua lide com as respostas às requisições http, por exemplo
+app.MÉTODO(caminho, callback(req, res, next));
+possíveis métodos de requisição são
+get
+post
+put
+delete
+all - aplica-se em qualquer outro método da requisição
+
+No express é possível concatenar os métodos em uma rota específica determinada pelo route(), como exemplo:
+app.route('/')
+.get(() => {})
+.post(() => {})
+.delete(() => {})
+
+Um exemplo decódigo funcional do express que devolve um array de objetos mediante à requisição get em determinada rota:
+
+const express = require('express);
+const app = express();
+const cors = require('cors');
+
+app.use(cors()); // O express precisa de módulos que controlam o acesso da API por outras aplicações, por exemplo o cors.
+
+const ArrObj = [{id: 1}, {id: 2}];
+
+app.get('/caminho', (req, res) => {
+	res.status(200).json(ArrObj). // note que em vez de utilizar o send genérico, utiliza-se aqui o json para informar a natureza do que está sendo enviado
+	});
+
+app.listen(3001, () => {
+	console.log('Escutando porta 3001');
+	});
+
+Utilizando ainda o exemplo acima, é possível passar parâmetros através da requisição, que o node pode conseguintemente manipular:
+
+app.get('caminho/:id' (req, res) => {
+	const { id } = req.params;
+	const obj = ArrObj.find((objeto) => objeto.id === Number(id))
+	if (!obj) return res.status(404).json({ message: 'Objeto não encontrado!'});
+	res,status(200).json(obj)
+	})
+
+O get acima retorna um objeto específico de acordo com o id fornecido pelo caminho da requisição
+
+O Express permite ainda trabalhar com queries customizadas através do método da requisição .query, que filtrará o caminho da requisição depois do '?' e estabelecerá um objeto a partir do '=', nos moldes de ,'chave=valor' no link, fica {chave: valor} no req.query;, por exemplo
+
+entra-se no site www.site.com/caminho?search=pesquisa&outrabusca=anothersearch&chave=valor
+
+app.get('/caminho', (req, res) => {
+	const { search, outrabusca, chave } = req.query;
+	console.log(search + ' ' + outrabusca + ' ' + chave); // no console estará: pesquisa anothersearch valor
+	});
+	res.end() // o .end() retorna a requisição sem nenhuma informação
+
+o método http POST permite a insersação de dados no corpo da requisição, que só será 'descomprimido' quando a requisição chegar em seus destinos, ideal para o envio de dados sensíveis.
+
+Para ler esses dados recebidos no corpo da requisição, utiliza-se junto do node o pacote body-parser (npm install body-parser para instalá-lo), para utilizá-lo:
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.post('/caminho', (req, res) => {
+	const token = req.headers.authorization; // NÃO PRECISA SER MAIÚSCULO ESSE Authorization???
+	if (token !== 'senha') return res.status(401).json({message: 'Token inválido!'}); // verifica se o token está errado, se estiver, retorna a mensagem 'Token inválido'
+	const { id, data1, password }= req.body;
+	console.log('Esses dados vieram através do corpo da requisição: ' + id + ' ' + data1 + ' ' + password); // o resultado do console.log será: Esses dados vieram através do corpo da requisição: 3 string senha
+	res.status(201).json({message: "POST recebido"}); // status 201 = uma ou mais informação foi gravada no servidor
+
+Do outro lado, no cliente, para realizar o POST, basta fazer um fetch definindo o metodo como post, veja o exemplo:
+
+fetch('url', {
+	method: 'POST',
+	headers: {
+		'Accept': 'application/json', // qual o tipo de dados esperado como resposta da requisição
+		'Content-Type': 'application/json', // tipo de dado do conteúdo da requisição
+		'Authorization': 'senha';
+	}
+	body: JSON.stringify({
+		id: 3,
+		password: 'senha',
+		data1: 'string
+	})
+})
+
+Além do GET e POST, para receber e enviar dados, outros dois métodos são bem comuns, o PUT (modifica) e o DELETE.
+
+---
+
+Middleware no contexto do Express nada mais é que uma função que trata uma requesição http
+Os métodos do Express para lidar com as requisições podem receber mais de uma callback, sendo que a próxima callback só será chamada com a chamada interna da função next() (um de seus parâmetros, além de req, e res)
+
+Com o app.use é possível estabelecer um middleware global que vai rodar antes dos outros para em qualquer tipo de requisição. Para isso basta inserir antes das manipulações das requisições, dessa forma, o app.use() só se aplica às rotas posteriores a ele: 
+
+app.use(MiddlewareGlobal);
+
+Outra vantagem de utilizar do middleware global é a capacidade de enviar novas informações junto da requisição, por exemplo, se a requisição entrega apenas um ID, este primeiro middleware pode atrelar a esse ID um objeto que contenha outras informações, por exemplo:
+
+const middlewareGlobal = (req, res, next) => {
+	const {id} = req.headers
+	const req.info = database.find(item => item.id === id);
+	if (!req.info) return res.status(401).json({message: 'Invalid Id'})
+	next();
+	}
+
+Dessa forma todos os middlewares após este middleware global do exemplo poderá acessar as informações contidas no req.info
+
+Existe também a possibilidade de utilizar o middleware global para estabelecer middlewares de erro, seguindo algumas regras, eles sempre estão depois de todas as outras rotas e os outros middlewares, e sempre recebem quatro parâmetros, veja o exemplo
+
+app.use((err, req, res, next) => {
+	res.status(500).send('ERRO: ' + err.message);
+	// next(err); O next está aqui para demonstrar a possibilidade de atribuição de diversos middlewares que lidam com erros, e passando o erro como parâmetro ele sinaliza para o express para apenas rodar middlewares que tratam erros.
+	}
+	
+O próprio express identifica o middleware de erro porque ele possui 4 parâmetros,
+
+O pacote express-rescue serve para garantir o tratamento dos erros, para instalá-lo: npm install express-rescue, e para utilizá-lo:
+
+const rescue = require('express-rescue')
+app.get('path',	rescue(callback));;
+app.use((err, req, res, next) => {
+	res..status(500).json({error: err.message});
+	});
+
+Dessa forma, o rescue garante um try catch implicito onde o catch passa como next o erro.
+
+
+
+
+

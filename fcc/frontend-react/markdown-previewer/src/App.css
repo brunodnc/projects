@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+textarea {
+  text-align: justify;
+  border: 2px solid black;
+  margin: 0 auto;
+  width: 75vw;
+  height: 50vh;
+  overflow: scroll;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+section, h2 {
+  margin: 2rem 0;
+}
+
+.result {
+  text-align: justify;
+  border: 2px solid black;
+  margin: 0 auto;
+  width: 75vw;
+  height: 50vh;
+  overflow: scroll;
+  max-width: 500px;
+}
+
+img {
+  max-width: 100%;
+}

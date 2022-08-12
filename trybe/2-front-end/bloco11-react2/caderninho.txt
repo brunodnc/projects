@@ -1,0 +1,27 @@
+para utilizar eventos em um componente react, o ideal é atrelar o evento ao próprio componente com o bind(this) dentro da função constructor(), ficando:
+this.nomeDaFuncao = this.nomedaFuncao.bind(this);
+Agora sempre que chamar this.nomeDaFuncao o react entenderá que esse nomeDaFuncao faz parte do componente em questão, permitindo-a acesso ao this interno a classe em que ela é chamada.
+Detalhe que dessa forma deve-se jogar a função para dentro da classe também, e como uma classe nada mais é que um conjunto de funções, ela não precisará do prefixo function antes de seu nome.
+
+A função constructor no inicio do componente react é rodada antes de renderizar o elemento no DOM. Sendo basicamente o 'head' do componente, mas para isso ocorrer é preciso adicionar dentro da função constructor() a função super(), que extende a função constructor do componente à função construtor interna ao react.
+
+this.state deve ser chamado apenas no constructor para inicializar o estado do seu componente.
+para modificar o estado de um componente, deve-se utilizar a função this.setState((estadoAnterior, props) => ({estadoModificado}) porque o react faz toda a manipulação dos estados dos componentes de forma assincrona. Então precisa-se indicar o estado anterior e as props que estão sendo passadas. 
+
+É possível gerenciar um componente através do React tornando-o um componente controlado, para isso, deve-se empregar os mecanismos de gerenciamento de estado do React this.state e this.setState() para salvar as informações do componente, que serão então manipulas pelas funções internas à classe em questão, além de vincular o valor do input diretamente ao estado.
+
+handleChange generico para ser usado com forms no React, mas para ele funcionar é necessário dar name="nome" a cada input do formulário de acordo com o nome delas fornecido ao this.state = {} inicial
+
+handleChange({ target }) {
+  const { name } = target;
+  const value = target.type === 'checkbox' ? target.checked : target.value;
+
+  this.setState({
+    [name]: value,
+  });
+}
+
+Para manipular o estado de um componente pai em um componente filho é necessário passar como props o value=this.state.value , vinculando o value do componente filho com o this.props.value.
+Além disso, é preciso enviar a função que manipula a mudança de estados também como prop, que será inserida dentro do filho chamando-a também com o this.props.nomeDaFuncaoPassada.
+Nesse sentido, quando o filho chama o this.props, ele está conectando diretamente com aquilo que o pai passou como props, no caso, o necessário para a manipulação do seu estado.
+Dessa forma, o estado fica sendo controlado apenas pelo componente pai, centralizando os dados sobre o estado de tal componente em um lugar só.

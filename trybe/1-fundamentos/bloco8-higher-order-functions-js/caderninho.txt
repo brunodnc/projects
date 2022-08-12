@@ -1,0 +1,1 @@
+Higher Order Functions são funções que tomam como parâmetro outras funções.

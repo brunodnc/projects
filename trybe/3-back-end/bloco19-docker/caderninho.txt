@@ -1,0 +1,181 @@
+namspaces - uma forma de isolar os recursos do Linux (network, disco, usuários, processos), o que possibilitou ao surgimento do Docker.
+cgroups - desenvolviedo pelo google para isolar e limitar recursos do CPU e memória.
+
+contêiner - processo do Docker que possui tudo aquilo que é preciso para seu auto funcionamento (Sistema operacional, bibliotecas, etc.), ele isola os recursos necessários para rodar uma aplicação conteinerizada.
+imagem - uma estrutura pré-definida para um contêiner rodar.
+
+Um contêiner do Docker funciona a partir de uma virtualização a nível do sistema operacional, isto é, ele compartilha dos mesmos recursos do sistema operacional que roda o contêiner
+E também é muito mais leve que uma máquina virtual, já que um contêiner serve apenas ao seu propósito ja definido, pois seu contéudo contém apenas o essencial para rodar sua aplicação.
+
+Dados importantes não devem ser salvos apenas dentro do Container, já que sua parte que pode ser sobreescrita, será perdida assim que o tempo de vida do container terminar
+
+As imagens para o Docker podem ser encontrados no Docker Hub, e podem ser requisitadas através do registro
+
+Comandos Docker ->
+
+docker <comando> <subcomando> <parâmetros>
+
+docker container run <imagem>:<versão> => para criar um container com a seguinte imagem, com a seguinte versão, caso não passe parâmetro para versão, o Docker procurará a última versão estável da imagem.
+docker container run --name nomeDoContainer <imagem>:versão => dá um nome específico para um contâiner a ser executado
+docker container run -d <imagem>:<tag> => roda o container em segundo plano (-d de --detach ou -deaemon)
+docker run -p <portaDoHost>:portaDoContainer> - binda a porta do container com a porta do host (ou -P para fazer essa bindagem automatica, isto é, sem estabelecer a porta da máquina a qual o conteiner será vinculado)
+docker container attach <ContainerID ou nome)> acessa um contêiner que estava ativo em segundo plano
+docker container create -it <imagem>:<tag> o parâmetro -it garante que o container iniciado se mantenha ativo e inicie um terminal de comando.(-it = interatividade e terminal de comando)
+É possível somar os parâmetros, por exemplo:
+docker container run -dit <imagem>:<tag> => roda em segundo plano uma imagem de forma que permita o acesso a seu terminal caso ela venha ao 'primeiro plano' com o attach
+
+
+docker container ls - lista os contâiners
+docker ps - mostra por padrão os contâiners ativos
+docker ps -a - mostra todos os contâiners (-a de -all)
+docker ps -l - mostra o último contâiner iniciado (-l de -last)
+docker start <containerId> - executa um contâiner a partir do ID dele
+docker stop <containerId> - para a execução de um contâiner
+docker restart <containerId> - reinicia um contâiner a partir do ID dele
+docker container prune - remove todos os contâiners parados
+docker container rm <containerID ou nome> - remove um contâiner inativo especifico com base em seu nome ou ID
+docker container rm <containerID ou nome> -f - força a remoção de um contâiner ativo especifico com base em seu nome ou ID (-f de -force)
+
+Sobre imagens:
+docker images -> verifica as imagens docker baixadas
+docker image inspect <ID ou nome da imagem> - inspeciona os detalhes da imagem 
+docker pull <nome>:<versão> baixa uma imagem do DockerHub para a máquina Host (processo automatico feito pelo RUN quando não encontra a imagem no computador)
+
+docker logs -f <nome ou ID> - lê o arquivo de log de determinado container
+docker container exec -it <container><comando> executa o comando dentro de determinado container
+para sair do container 'CTRL + D'
+
+Dockerfile -> específica o que o container fará em seu processo de montagem.
+
+FROM <nome> - instrução que dirá qual container será a base do novo container, defina a imagem base
+RUN <nome> - executa algo no momento de build, normalmente empregado na instalação de dependências
+WORKDIR <nome> - estabelece o diretório padrão do conteiner
+COPY <path> <destino> - copia algo da máquina para o container
+EXPOSE <porta> - Porta final do web server
+ENTRYPOINT <processo> - Principal processo do container (cmd se torna parâmetros para o entrypoint, se entrypoint for definido, pois ele se torna o ponto de entrada da imagem)
+CMD <comando> - O que será executado após o container estar completamente e rodando montado
+FROM <nome> AS <nome-do-estágio> - Define um nome para o estágio em que essa build do Dockerfile, ou o container se encontra. Utilizado para criar imagens intermediárias no Dockerfile. (Cada linha FROM inicia um novo estágio)
+COPY --from=<nome-do-estágio> <path-de-origem> <path-de-destino> - Copia a partir de um estágio determinado da Dockerfile os arquivos, para outro estágio.
+
+
+---
+para rodar um container a partir de uma Dockerfile: 
+
+docker build -t (nome):<versão(padrão é latest)> (diretorio onde se encontra o Dockerfile) (--tag coloca um nome no container)
+
+docker image tag <ID da imagem ou Nome:versão> <nome ou ID:novoNomedeVersão> para mudar o tag de uma imagem
+
+
+Para compartilhar sua imagem => criar um repositório no Dockerub
+docker login -u usuárioDockerHub
+vai pedir um código resgatável diretamente no DockerHub... (não é a senha do DockerHub mas um token de acesso criado na aba segurança do DockerHub)
+docker push nomeDaImagem(padrão é nomedousuario/nome-da-imagem)
+
+
+Volumes no Docker:
+
+Forma de fazer os dados importantes do container persistir independente da parada do processo do container
+
+2 tipos de volume
+1) Volume do tipo bind, uma referência, que faz-se uma referência no container para usar um espaço específico determinado na máquina hospedeira do contâiner
+2) Volume gerenciado pelo próprio Docker.
+
+Comando de volume Docker
+
+docker volume create <nome-do-volume> - cria um volume
+docker volume ls - lista os volumes criados
+docker volume inspect <nome do volume> - inspeciona um volume determinado
+docker volume -rm <nomeDoVolume> - remove um volume
+
+no docker run especifica-se o volume a ser utilizado pelo container, por exemplo:
+docker run -d (em segundo plano) -p 3000:3000 (qual porta do host linka em qual porta do container) -v (volume) <nomeDoVolume>:<localNoContainer> <nomeDaImagem>
+
+Network -
+
+Todo container Docker quando é iniciado, caso uma rede não seja especificada, é associado a rede Bridge, que permite a comunicação com o mundo exterior através do protocolo TCP/IP, no entanto, toda vez que é reiniciado, ele poderá gerar um novo IP
+Outro modelo de rede é a Host, que caso seja assinalada à execução do container ele recebe do Host sua rede.
+Para iniciar sem nenhuma rede, um container isolado, atribui-se a rede 'None'
+
+Além disso é possível criar uma rede para os contâiners:
+
+docker network create nomeDaNetwork
+(depois inicia-se o container (com o run) passando para ele também a parâmetro --network nomeDaNetwork / uma outra opção utilizada é a -e que estabelece variáveis goblais para o ambiente do container)
+(--network-alias dá um nome para a network)
+
+
+docker network connect <nome-da-rede> <container> - para conectar um container já criado a uma rede
+docker network disconnect <nomeda-da-rede> <container> - para desconectar um container de uma rede
+??
+
+Docker compose -  ferramenta para compor uma rede de relações entre os contâiners, isto é rodar aplicações Docker de multi-contâiners
+O compose utiliz um arquivo de configuração YAML(Yaml an't markup language) é uma estrutura de  linguagem de serialização de dados usada como forma de input para o Docker compose, e diversas outras aplicações.
+O arquivo Compose indica a ordem que cada container e seus componentes devam ser executados como também gerencia a comunicação entre os conteineres fazendo o controle da relação de redes
+
+Todo arquivo docker-compose.yaml começa especificando sua versão com a chave 
+
+version: <númeroDaVersão>
+
+Depois define-se os 'serviços' que nada mais é do que estabelecer as imagens ou builds que o Compose irá gerenciar, tambem com as seguintes chaves:
+
+build ou image, para definir uma build especifica a partir de uma Dockerfile ou a partir de uma imagem pronta,
+ports, que faz o mapeamento da porta do host para a porta do container
+Além disso, é possível atrelar a cada serviço a chave 'restart', com ela o compose permite estabelecer uma política de reinicialização para controlar o comportamento do contâiner caso ele encontre problemas em sua execução ou pare de funcionar.
+Ela possui quatro possíveis parâmetros:
+
+restart: no - não reiniciará automaticamente
+restart: on-failure - reinicia quando o código falha
+restart: always - sempre que o serviço parar ele deve ser reiniciado, seja por falha ou porque terminou sua execução
+restart: unless-stopped - sempre reiniciará, a não ser quando for empregado o comando docker stop <contâiner> para pará-lo
+
+Outro benefício do compose é facilmente estabelecer variável de ambiente dentro dos contâinere com a chave environment, estabelecendo um par variável=valor para o funcionamento do contâiner
+
+Através da chave 'depends_on' é possível definir a ordem de execução dos serviços.
+
+Define-se os volumes de cada serviço com a chave 'volumes' inserindo o nome do volume, seguido de sua locação no contâiner do serviço, esse volume persistirá mesmo com a finalização e reinicialização do contâiner
+a chave volume pode ser utilizado também para dividir uma pasta do Host, com a pasta de um contâiner gerenciado pelo docker-compose, inserindo depois do volume: - <nomeDaPastaHost>: <localPastaContainer>
+
+Com a chave 'networks' É possível criar redes virtuais que limitam a comunicação entre os contâiners, principalmente por motivos de segurança.
+
+Um exemplo de arquivo docker-compose.yaml:
+
+version: <númeroDaVersão>
+service:
+	<nomeDaServiço¹>:
+		build: <localDaDockerFile>
+		ports: 
+			- <portaHost>:<portaContainer>
+		volume: 
+			- <nomeDoVolume>: <localNoContâinerDoServiço¹>
+		networks: 
+			- <nomeDaRedeVirtual¹>
+	<nomeDoServiço²>:
+		image: <caminhoDaImagem || usuário/nomeDaImagem:<tag>>
+		environment:
+			- <variableName>=<value>
+		volume:
+			- <caminhoHost>: <caminhoContainer>
+		networks: 
+			- <nomeDaRedeVirtual¹>
+			- <nomeDaRedeVirtual²>
+		depends-on:
+			- <nomeDoServiço¹>
+			
+
+Para a execução do Docker compose utiliza-se o comando em uma pasta que contêm o arquivo docker-compose.yaml
+docker-compose up -d (-d de dettach, que executará em segundo plano a aplicação multi-contâiner)
+docker-compose logs <nome-do-serviço> - faz aparecer o log de determinado serviço rodando no compose (--tail <n> para mostrar as ultimas n linhas, -- 
+docker-compose ps - lista os containers do docker-compose
+docker-compose up --build - força o docker-compose a reconstruir os containers (comando utilizado caso haja alteração na build ou imagem Docker)
+docker-compose down - para a execução dos serviços rodando no docker-compose
+docker-compose up <nomeDoServiço) - usado quando se quer subir apenas um serviço específico encontrado na docker-compose.yaml (incluindo todos os serviços que ele depende para ser executado)
+docker-compose up --scale <nomeDoServiço>=<n> cria 'n' contâiners réplicas de um serviço especificados na docker-compose.yaml
+
+
+
+
+
+
+
+
+
+

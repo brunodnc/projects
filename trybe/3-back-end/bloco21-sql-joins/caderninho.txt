@@ -1,0 +1,130 @@
+É possível ainda manipular strings com o selector do MySQL, eis os casos:
+
+SELECT UCASE('string') - Transforma a string em UPPERCASE
+	LCASE('string) - Transforma em lowercase
+	REPLACE('string que contém uma substring', 'substring', 'nova_string') Substitui as ocorrências de 'substring' por 'nova_string' na string passada como primeiro parâmetro
+	LEFT('string', n) retorna a parte da esquerda a partir do caractere na posição n
+	RIGHT('string', n) retorna a parte da direita a partir do caractere na posição n
+	CHAR_LENGTH('string') exibe o tamanho (em bytes) da string
+	SUBSTRING('string', indice inicial, quantidade de caracteres) retorna um recorte da quantidade de caracteres a partir do indice inicial estabelecido
+	SUBSTRING('string', indice inicial) retorna o resto  da string a partir do indice inicial
+
+É possível ainda operar os valores fornecidos pelas tabelas, por exemplo:
+
+SELECT chave1 + chave2 FROM tabela;
+SELECT chave1 + chave2 FROM tabela;
+SELECT chave1 / chave2 FROM tabela;
+SELECT chave1 * chave2 FROM tabela;
+SELECT chave1 DIV chave2 FROM tabela; - retorna o resultado como um número inteiro
+SELECT chave1 MOD chave2 FROM tabela; - operador para resto '%' no javaScript
+SELECT ROUND(chave, casasDecimais) FROM tabela; - arredendo maior ou igual a cinco para cima, menor para baixo, conseguindo também determinar a precisão das casas decimais
+SELECT CEIL(chave) FROM tabela; - arredonda para cima
+SELECT FLOOR(chave) FROM tabela; - arredonda para baixo
+SELECT POW(chave, n); - chave^n
+SELECT SQRT(n); - raiz quadrada de n
+SELECT RAND(); - gera um valor aleatório entre 0 e 1
+SELECT AVG(chave) FROM tabela; - média entre todos os valores na chave específica
+SELECT MIN(chave) FROM tabela; - menor valor na chave
+SELECT MAX(chave) FROM tabela; - maior valor na c;have
+SELECT SUM(chave) FROM tabela; - soma dos valores
+
+O select ainda permite manipular em detalhe as datas, sendo assim:
+
+SELECT CURRENT_DATE(); - retorna a data no molde YYYY-MM-DD
+SELECT NOW(); - retorna a data no molde YYYY-MM-DD HH:MM:SS
+SELECT DATEDIFF('data1', 'YYYY-MM-DD'); - calcula a diferença em dias de duas datas
+SELECT TIMEDIFF('horário', 'YYYY-MM-DD HH:MM:SS'); - calcula a diferença em horas entre as datas
+
+Existe ainda uma forma de filtrar os valores únicos com o group by, veja:
+
+SELECT coluna FROM tabela GROUP BY coluna; - isso fará com que ele agrupe os valores repetidos em um só.
+
+Com o HAVING é possível estabelecer uma condição para filtrar o resultado do GROUP BY também, veja o exemplo, assim como o WHERE em resultados individuais, o HAVING opera os resultados agrupados do GROUP BY
+
+SELECT chave, COUNT(*) FROM tabela
+GROUP BY tabela
+HAVING COUNT(*) > n;
+
+Esse comando gerará uma tabela contendo apenas os items que se repetiram mais que n vezes, exibindo tanto o valor da chave quanto a quantidade do COUNT.
+
+JOIN - Permite mesclar registro de tabelas, criando uma relação direta entre elas.
+
+INNER JOIN - mescla duas tabelas com base em um valor comum entre elas
+
+SELECT t1.coluna1, t1.coluna2, t2.coluna1, t2.coluna3
+FRON tabela as t1.
+INNER JOIN outraTabela AS t2
+ON t1.coluna_em_comum = t2.coluna_em_comum;
+
+JOIN LEFT ou JOIN RIGHT - coloca uma das tabelas (da esquerda ou da direita) como padrão de referência, e usa o critério do ON para preencher os valores que estão chegando da outra tabela, por exemplo
+
+SELECT t1.coluna1, t1.coluna2, t2.coluna1, t2.coluna3
+FRON tabela as t1.
+LEFT JOIN outraTabela AS t2
+ON t1.coluna_em_comum = t2.coluna_em_comum;
+
+preencherá todas as t1.coluna1 e t2.coluna2, mas os valores t2.coluna1 e t2.coluna3 só serão preenchidos caso a igualdade do ON for verdadeira, caso fosse utilizado o RIGHT JOIN, a prioridade seria para a tabela t2.
+
+UNION - Diretamente une duas tabelas, removendo os valores duplicados, por exemplo
+
+SELECT coluna1, FROM tabela1
+UNION
+SELECT coluna1, FROM tabela2
+
+UNION ALL - mesma coisa que o UNION porém não remove os dados duplicados
+
+---
+
+Tipos de dados no MySQL
+Booleanos,
+CHAR(n) - Caracteres de tamanho fixo N, 
+VARCHAR(n) - tamanhoa variável, de máximo n
+TINYINT - 0 a 255 UNSIGNED(sem sinal positivo ou negativo) ou -128 a 127(aceitando sinal negativo ou positivo
+SMALLINT, MEDIUMINT, INT, BIGINT - número exato igual tinyint porém cada um com sua propria faixa de valor
+DECIMAL(x, y) - numero de casa decimal onde x é a quantidade de casa, e y é a quantidade de casas decimais
+LOAT/REAL - numero com a precisão de uma casa decimal
+DOUBLE - número com a precisão de duas casas decimais
+DATE - armazena valor com o padrão YYYY-MM-DD
+TIME - armazena valor com o padrão HH:MM>SS
+YEAR - ARMAZENA O ANO ENTRE 1901 E 2155
+DATETIME junta valor temporal em YYYY-MM-DD HH:MM:SS com a faixa de valor 1000-01-01 00:00:00 até 9999-12-31 23:59:59
+TIMESTAMP igual o DATETIME mas pode ser configurado para operar com fusos horários
+
+Para criar um banco de dados:
+
+CREATE DATABASE IF NOT EXISTS nomeDoDB;
+
+Para começar a usar o banco de dados:
+
+USE nomeDoDB;
+
+Para criar uma tabela definindo uma primary key:
+
+CREATE TABLE nome (
+	nome_coluna tipo_de_dado PRIMARY KEY,
+	nome_coluna tipo_de_dado
+	);
+
+Para criar uma tabela definindo uma primary key com a função de auto incrementação conforme adição de itens na tabela:
+
+CREATE TABLE nome (
+	nome_coluna tipo_de_dado PRIMARY KEY AUTO_INCREMENT,
+	nome_coluna tipo_de_dado
+	);
+
+
+Para criar uma tabela definindo uma primary key composta por duas foreign keys, também estabelecendo que elas não podem ser nulas:
+
+CREATE TABLE tabela(
+	coluna1 tipo_de_dado NOT NULL,
+	coluna2 tipo_de_dado NOT NULL,
+	CONSTRAINT PRAMARY KEY(coluna1, coluna2),
+	FOREIGN KEY (coluna1) REFERENCES tabelaDeOrigemDaColuna1,
+	FOREIGN KEY (coluna2) REFERENCES tabelaDeOrigemDaColuna2
+	);
+
+
+
+
+
+

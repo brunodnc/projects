@@ -1,0 +1,117 @@
+Redux é utilizado para fazer a manutenção do estado de sua aplicação de uma forma centralizada. Pode ser utilizado com qualquer front-end lib.
+
+npm init -y
+
+npm install redux - Para instalar o redux
+
+const Redux = require('redux') - importa o redux para a arquivo .js
+
+const store = Redux.createStore() - cria o store para armazenar o estado da aplicação
+
+Todavia o create só funciona se passar uma callback que define o 'reducer', uma função que fará o gerenciamento do store.
+
+const reducer = (state) => {
+	return state;
+	};
+const store = Redux.createStore(reducer)
+
+
+Todavia, no reducer, o state vem como undefined, é preciso definir um estado inicial.
+
+const reducer = (state = { key: '' }) => {
+	return state;
+	};
+const store = Redux.createStore(reducer)
+
+agora se após esse código for chamado a função store.getState(), seu retorno será { key: '' }
+
+A alteração do store é feita através da interação entre uma action e a reducer.
+
+action é basicamente um objeto que possui uma propriedade type, e que através dessa propriedade ele comunica ao reducer qual mudança deve ser feita na store.
+
+No Redux normalmente cria-se uma action através de uma função actionCreator, a qual retornará uma action, por exemplo uma função que cria uma ação de login:
+
+const loginAction = (login) => ({type: "LOGIN", login});
+
+Entretanto apenas criar uma ação não basta, é necessário criar uma resposta para essa ação na função reducer, que engatilhará uma mudança no estado da store.
+
+const reducer = (state = { login: '' }, action) => {
+	switch (action.type) {
+		case 'LOGIN':
+			return {
+				...state,
+				login: action.login,
+			};
+		default:
+			return state;
+		}
+	};
+
+Então após definir o reducer e criar o store com Redux.createStore(reducer), é possível engatilhar uma ação com a store.dispatch(action), e utilizando a actionCreator ficaria do seguinte modo:
+
+store.dispatch(loginAcion('usuário'));
+
+e agora, o retorno da store.getState seria { login: 'usuario' };
+
+O Redux também possibilita uma forma de juntar vários reducers diferentes em um com a combineReducers(), isso facilita o fluxo de trabalho conforme a aplicação cresce.
+A combineReducers recebe como parâmetro um objeto contendo os diferentes reducers para serem combinados:
+const combinado = combineReducers({reducer1, reducer2});
+const store = createStore(combinado).
+
+Nesse caso o retorno de store.getState() um objeto parecido como:
+
+{
+reducer1: {estado do reducer1},
+reducer2: {estado do reducer2},
+}
+
+Quando os reducers são combinados, todos receberão a action através do store.dispatch, e então modificarão seus respectivos estados com base em seus respectivos switches. Detalhe também que o acesso da informação contida em cada reducer é diferente agora, já que a informação de um determinado estado estará contida em um objeto dentro de outro objeto
+
+store.subscribe(callback) recebe uma função que será executada toda vez que uma ação for despachada ao store com o store.dispatch.
+
+Para se utilizar o store do Redux em uma aplicação react, é preciso englobal o componente principal da aplicação na tag do <Provider> que recebe o store como atributo, por exemplo:
+
+import { Provider } from 'react-redux';
+import store from './store';
+ReactDOM.render(
+	<Provider store={ store }>
+		<App />
+	</Provider>,
+	document.getElementById('root'),
+	);
+
+No nível de um componente React utiliza-se a função mapSateToProps, que recebe como parâmetro o estado e retorna um objeto cuja chave será o nome da prducops, e seu valor é o que está armazenado na store, no estado. (???), por exemplo:
+
+import { connect } from 'react-redux';
+const mapStateToProps = state => ({loginProps: state.reducer1.login}) 
+const mapDispatchToProps = (dispatch) => ({dispatchProps: (state) => dispatch(actionCreator(state))});
+
+-- esses são métodos nativos do Redux, são empregados na função connect como o exemplo a seguir para realizar a interação do componente com o redux store, no caso da mapDispatchToProps, é nela que se chama a função dispatch do Redux.
+
+export default connect(mapStateToProps, mapDispatchToProps)(nomeDoComponente)
+
+Dessa forma, é possível conectar tanto o store, com o mapStateToProps, quanto as funções que fazem a manutenção do store com o mapDispatchToProps, caso sua aplicação não utilize alguma delas, basta colocar null como parâmetro do connect.
+
+O estado do redux é imutável.
+
+redux-thunk possibilita o manuseio de actions assíncronas, ele intercepta as actions antes de serem enviadas ao reducer.
+npm install redux-thunk para instalá-lo
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+const store = createStore(reducer, applyMiddleware(thunk));
+
+utilizando o redux-thunk é possível, invés de retornar um objeto action, retornar uma função assyncrona que retorna um objeto action.
+
+Para testar com o Redux, existe a função renderWithRedux, ela recebe 2 parâmetros, o primeiro é o componente a ser renderizado, e o segundo um objeto no seguinte molde {estadoInicial, store = createStore(reducer, estadoInicial) } = {} (desconstruindo)
+
+na prática:
+
+const renderWithRedux = (component, { estadoInicial, store = createStore(reducer, estadoInicial) } = {} ) => {
+	return {
+	...render(<Provider store={store}> {component} </Provider>),
+	store,
+	}
+}
+
+usar o helper fetchMock from 'fetch-mock-jest' para simular fetch de forma simples em RTL
+
