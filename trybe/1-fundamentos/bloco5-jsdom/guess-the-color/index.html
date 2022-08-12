@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Guess the Color Game</title>
+</head>
+<body>
+    <header id="title"><h1>Guess the Color From RGB</h1></header>
+    <main id="main">
+        <section>
+            <p id="rgb-color"></p>
+        </section>
+        <section>
+            <h2>GUESS!</h2>
+            <br>
+            <div id="balls">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div>
+        </section>
+        <section>
+            <h2>RESULT</h2> 
+            <br>
+            <p id="answer"></p>
+        </section>
+        <section>
+            <h2>SCORE: </h2> <p id="score"></p> <p>HIT = +3 POITS </p> <P>MISS = -5 POINTS</P>
+        </section>
+    </main>
+    <footer>
+        <button id="reset-game">AGAIN!</button>
+        <button id="reset-score">RESET SCORE</button>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>

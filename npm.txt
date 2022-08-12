@@ -1,7 +1,0 @@
-npm install moment --save  uma biblioteca do momentjs para manipular datas com javascript
-npm install cheet.js uma biblioteca com vários easter eggs 'divertidinhos'.
-npm install bootstrap um framework que serve para deixar rapidamente sua página responsiva através de classes css reutilizáveis.
-npm install jquery para uma mais fácil manipulação do DOM.
-npm install highcharts é uma biblioteca para fazer gráficos interativos
-npm install pikaday ou DatePickerX são bibliotecas para um date picker em JS
-npm install just-validate --save  biblioteca de validação de formulários 
