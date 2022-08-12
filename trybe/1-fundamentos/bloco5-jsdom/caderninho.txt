@@ -1,0 +1,31 @@
+Para inserir arquivo de javascript no html basta colocar a tag <script src="caminhoparaarquivo.js"></script>
+document é o objeto do javascript que guarda as informações do HTML.
+document.getElementById(id) é uma função que acessa especificamente um elemento através de seu ID.
+document.getElementById().innerHTML() acessa o conteúdo dentro daquele elemento, por exemplo o que está escríto dentro dos marcadores <p> letras <strong>fortes </strong> </p>, neste caso retornará: letras <strong> fortes </strong>
+document.getElementById().innerText() filtra o conteúdo de um elemento a fim de retornar APENAS o texto, e nenhum marcador que pode vir junto, utilizando o exemplo acima retornaria: letras fortes.
+document.getElementsByClassName("nomedaclasse") detalhe do 's' do elementS, consegue manipular todos os elementos pertencentes a tal classe, de uma forma diferente do getElementById(), pois o getElementsByClassName retorna um array com todos os elementos daquela classe.  Então para manípulá-lo deve ser tratado como um Array. por exemplo: getElementsByClassName("nomedaclasse")[0].innerText = "Novo texto". Pode-se usar também um for para percorrer todo o array
+document.getElementsByTagName("nomedatag") retorna o conjunto das tags procuradas dentro do HTML em forma de array também.
+document.querySelector() Encontra apenas o primeiro elemento a partir de um seletor CSS que é passado na função. Por exemplo, um id precisa de uma cerquilha '#' antes para ser encontrado pelo querySelector. Vai retornar toda a linha HTML a qual o seletor se refere.
+document.querySelectorAll() Retorna uma array de elementos baseado no seletor CSS inserido na função.
+document.queroSelector('.propriedadecss').parentNode acessa a propriedade pai de tal propriedade, por exemplo, se uma imagem está dentro de uma div, esse comando retornará todo o html dessa div, incluindo a imagem e suas propriedades irmãs.
+pode-se repetir o parentNode até chegar no elemento <html></html>, mas é nota-se que ela é uma propriedade é de apenas leitura, não é possível reatribuir o valor dela.
+parentNode não é o único comando capaz de navegar pelo HTML, existe também, childNodes, children, firstChild, lastChild, nextSibling, previousSibling, existem variações deste com 'elements' que busca elemetos e não 'nós'.
+createElement() cria elementos HTML
+appendChild() adiciona elementos criados no HTML
+O fluxo usual desses dois comandos é o de criar um elemento HTML, por exemplo uma lista: createElement('li); atribuir o conteúdo dessa lista com o .innerText, então usar o .appendChild(document.querySelecto('.nomeDoElementoCSS')) onde tal elemento CSS é o elemento onde será inserido a lista.
+.className é utilizado para adicionar uma classe a um elemento html;
+.removeChild(elemento) é o comando utilizado para remover um elemento HTML.
+O fluxo de pode ser iterar sobre um dado conjunto de elementos sob determinada classe com o document.querySelectorAll('.nomeDaClasseCSS'), para cada checagem do for of, verifica com o if se o ;innerText do elemento .includes('oquevocequerdeletar') se esse if for verdadeiro, só jogar o 'nomedoelementopai'.removeChild('elementofilho');
+Evento no JS pode ser chamado diretamente pelo html, por exemplo adicionando um atributo específico capaz de ativar o código, veja, o <button onclick="funcao()">. inicia a função assim que se clica no botão Ou esse evento pode ser ativado per sua chamada no <script></script>, por exemplo: window.onload = funcao(); que realiza a função assim que a página é completamente carregada.
+localdoevento.addEventListener(tipoDeEvento, função); é uma função que vai esperar pelo evento acontecer e então chamar a função designada como resposta.
+document.cookie = 'chave=valor; expires=data de epiração; path=/' salva um dado em um arquivo no computador da pessoa que é enviado para o servidor, além da chave e valor, insere-se uma data de expiração (se deixar nulo é deletado assim que o navegador fecha), e também pode-se enserir um caminho que dirá ao navegador sobre onde o cookie pertence, o padrão é a página atual.
+localStorage salva os dados no navegador, sem comunicá-los com o servidor, não possuem data de expiração, e podem ser manipulados da seguinte forma.
+localStorage.setItem('chave', 'valor')
+localStorage.getItem('chave') retorna o valor da chave.
+localStorage.length retorna quantos pares chave valor existe no localStorage
+localStorage.removeItem('chave') remove o item apontado.
+localStorage.clear() limpa o armazenamento local.
+sessionStorage salva informação apenas na sessão atual, e expiram assim que a página fecha, pode ser manipulado assim como o localStorage.
+Tanto o localStorage quanto o sessionStorage sempre armazenam dados nesse formato de objeto, com chave e valor, e os dados sempre são do tipo string.
+Isso não impede de salvar outros tipos de dados no localStorage, graças ao JSON.stringify(nãostring), uma função que transforma uma não string em string.
+Para recuperar o objeto no formato original, utiliza-se então o JSON.parse(strigifyedItem).

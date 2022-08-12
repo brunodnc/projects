@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 2: Position</title>
+        <!-- CSS Interno ao HTML para não lotar o github -->
+        <style>
+            /* source do body: https://stackoverflow.com/questions/11099930/100-width-background-image-with-an-auto-height */
+            body { 
+                background-image: url(lotus.jpg);
+                background-repeat:no-repeat;
+                background-position: center top;
+                background-size: 100% 100vh;
+            }
+            .bee {
+                width: 100px;
+                position: absolute;
+                z-index: 2;
+                top: 52%;
+                left: 40%;
+                
+            }
+
+            .hive {
+                width: 35vw;
+                position: absolute;
+                z-index: 1;
+                top: 30%;
+                left: 46%;
+                /* dropshadow retirado de: css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filter/ */
+                filter:drop-shadow(3px 5px 2px black);
+            }
+            
+            p, h1, h2 {
+                font-family: monospace;
+                color: #E6E8E6;
+                text-shadow: 1px 1px 2px black
+
+            }
+
+            p {
+                text-align: justify;
+                font-size: 1rem;
+                padding: 5px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+            
+            h2 {
+                position: absolute;
+                bottom: 1rem;
+                right: 1rem;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <img class="bee" src="bee.svg" alt="flying bee">
+        <img class= "hive" src="hive.svg" alt="hexagonal hive">
+        <h1>Aprendo com abelhas</h1>
+        <p>Aprendo com abelhas do que com aeroplanos.
+            É um olhar para baixo que eu nasci tendo.
+            É um olhar para o ser menor, para o
+            insignificante que eu me criei tendo.
+            O ser que na sociedade é chutado como uma
+            barata – cresce de importância para o meu olho.
+            Ainda não aprendi por que herdei esse olhar
+            para baixo.
+            Sempre imagino que venha de ancestralidades
+            machucadas.
+            Fui criado no mato e aprendi a gostar das
+            coisinhas do chão –
+            Antes que das coisas celestiais.
+            Pessoas pertencidas de abandono me comovem:
+            tanto quanto as soberbas coisas ínfimas.</p>
+        <h2>MANOEL DE BARROS
+        (<em>Retrato do Artista Quando Coisa</em>, Ed. Record, 1998.)</h2>
+    </body>

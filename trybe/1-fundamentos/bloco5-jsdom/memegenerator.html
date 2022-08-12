@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="memegenerator.css">
+</head>
+<body>
+    <main class="container-fluid">
+        <article class="container-fluid">
+            <h1 class="display-1 text-center">Meme Generator</h1>
+            <section class="row align-items-start justify-content-evenly">
+                <div class="col-md-3"><label for="meme-insert">Image to be memefied: <input id="meme-insert" type="file"></label></div>
+                <div class="col-md-3"><label for="text-input">Text to be memefied on top: <input id="text-input" type="text" maxlength="60"></label></div>
+                <div class="col-md-3"><label for="text-input-bot">Text to be memefied on bottom: <input id="text-input-bot" type="text" maxlength="60"></label></div>
+            </section>
+            <div class="text-center">
+                <section class="btn-group btn-group-sm" role="group" aria-label="Choose your border group">
+                    <button id="fire" class="fire btn btn-danger">Fire Dash Border</button>
+                    <button id="water" class="water btn btn-primary">Water Double Border</button>
+                    <button id="earth" class="earth btn btn-success">Green Groove Border</button>
+                </section>
+            </div>
+            <section id="meme-image-container"> 
+                <div id="meme-image"></div>
+                <h2 id="meme-text"></h2>
+                <h2 id="bottext"></h2>
+            </section>
+            <section class="row justify-content-center">
+                <button type="button" id="dl" class="btn btn-secondary col-4">Download</button>
+            </section>
+        </article>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="memegenerator.js"></script></body>
+</html>

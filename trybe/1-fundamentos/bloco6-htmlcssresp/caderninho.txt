@@ -1,0 +1,41 @@
+<form></form> é a tag que se usa no HTML para criar formulários.
+<form action="caminhoparaenvair"> action é um atributo do html que direciona o dado que o forms recolhe para um local
+<form method="GET ou POST"> tipo de submissão http... quando é GET os dados são enviados através da URL, por isso tem um limite específico (que é o limite da URL), quando é post envia-se os dados através do corpo do pedido HTTP o que o tona invisível ao usuário e não possui limite de tamanho.
+<input type="tipo"> cria campos que receberá os dados do usuário, existem vários tipos diferentes, por exemplo, text, time, radio, checkox, button.
+O input pode receber um atributo name="nome" para identificar a informação que está sendo enviada.
+<button></button> cria um botão na tela, quando coloca nele o atributo type="submit" ele serviá para 'enviar' os dados inseridos nos inputs do form.
+Outra propriedade boa para se colocar no input é o placeholder"mensagem" que mostra no campo do Input o placeholder.
+Quando colocada a propriedade required no input, ele torna o preencimento dele obrigatório antes do envior
+a propriedade do input value="" preenche o input com o valor inserido
+A tag <label></label> rotula um determinado input, por exemplo: <label for="idDoInput">Insira seu e-mail</label>.
+<textarea></textarea> cria uma área onde o usuário pode inserir texto com mais de uma linha.
+<input type"checkbox"> cria uma caixinha que pode ser tickada pelo usuario, para dar o mesmo contexto para mais de uma checkbox usa-se a propriedade name="nomedacheckbox", checkbox com nomes iguais estão no mesmo contexto, embora passem valores (value="valor") diferentes
+<input type="radio"> cria uma bolinha que só se pode selecionar uma dentro dos botões de radio com o mesmo nome, funcionando assim de forma similar à checkbox.
+<select><option value="valor">nome da opção</option></select> Cria uma barra de rolagens cheia de opções que pode ser selecionada
+<input type="password"> Torna indecifrável a aparência daquilo que o usuário digite no campo
+<input type="file"> é o input que permite o usuário escolher arquivo para enviar ao site, lembrar caso esteja sendo utilizado o method="POST" no form de adicionar o atributo enctype="multipart/form-data" para avisar que não está sendo enviado apenas texto.
+<input patter="regex"> permite filtrar o que é inserido no Input para aceitar, por exemplo, só caracteres em minuscula, números, etc.
+a função .preventDedault() pode ser utilizada junto com uma função de evento (por exemplo event.preventDefault()) para preenir que o comportamento padrão de algo seja acionado. 
+
+-
+
+Para importar bibliotecas já instaladas para o código cria-se uma variável, por exemplo let momento = require('moment');
+
+-
+
+flex-direction pode ser row ou column, o padrão é row que coloca o main-axis na horizontal.
+flex-wrap: define se os itens quebram e vão para a próxima linha, ou se ajuntam em uma linha apenas.
+flex-flow: junta o flex direction e o flex-wrap, por exemplo: flex-flow: column nowrap.
+justify-content ajusta o espaçamento entre os items flex, tendo como referência o main-axis.(horizontal para row, vertical para column)
+align-items ajusta o espaçamento entre os items flex e tem como referência o cross-axis. (vertical para row, horizontal para column. (o padrão é strech, o que faz os items esticarem até o fim daquilo que o contém.
+align-content trabalha em conjunto com o align items para ajustar em fino grano o aspaçamento, e chegar em um resultado parecido com o do justify-content para o cross-axis. ( o padrão é 'normal'). Influencia pricipalmente se tiver múltiplas 'linhas' (isto é, no caso de um nowrap)
+
+aling-self é uma propriedade para um item dentro de um container flxbox que aplica valores de alinhamento somente para este item.
+order permite ordenar os itens de um container flexbo, exibindo-os na ordem crescente, por padrão todos os items recebem a order: 0 (vale dizer que também aceita valores negativos.
+
+flex-grow valor padrão é 0, 1 faz ele preencher o espaço restante do container no main-axis.
+flex-shrink valor padrão é 1, conforme esse valor aumenta, ele encolhe o elemento em proporção ao restante.
+flex-basis valor padrão é auto, ele especifica o tamanho inicial do flexitem.
+os 3 podem ser resumidos no comando flex: 1 1 auto, isto é, flex: grow shrink basis.
+
+

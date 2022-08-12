@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Exercício 5.2</title>
+    <!-- HTML e CSS já dado pela TRYBE, este exercício tinha o objetivo de praticar apenas a interação do JavaScript com o DOM -->
+    <style>
+      section {
+        border-color: black;
+        border-style: solid;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .main-content {
+        background-color: yellow;
+      }
+
+      .main-content .center-content {
+        background-color: red;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .main-content .center-content p {
+        font-style: italic;
+      }
+
+      .main-content .left-content {
+        background-color: green;
+        width: 60%;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .main-content .left-content .small-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100%;
+      }
+
+      .main-content .right-content {
+        background-color: blue;
+        width: 60%;
+        margin-left: auto;
+        margin-right: 0;
+      }
+
+      .main-content .description {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const h1 = document.createElement("h1");
+      h1.innerText = "Exercício 5.2 - fazendo o html só com o JavaScript DOM";
+      document.body.appendChild(h1);
+
+      const maine = document.createElement('main');
+      maine.className = 'main-content';
+      document.body.appendChild(maine);
+
+      const sect0 = document.createElement('section');
+      sect0.className = 'center-content';
+      maine.appendChild(sect0);
+    
+      const p = document.createElement('p')
+      sect0.appendChild(p)
+      p.innerText = "shogun";
+
+      const sect1 = document.createElement('section')
+      sect1.className ='left-content';
+      maine.appendChild(sect1);
+
+      const sect2 = document.createElement('section')
+      sect2.className ='right-content';
+      maine.appendChild(sect2);
+     
+      const image = document.createElement('img');
+      image.src = 'https://picsum.photos/200'
+      image.className = 'small-image'
+      sect1.appendChild(image);
+      
+      let ulistarr = ['um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'];
+      const ulist = document.createElement('ul');
+      sect2.appendChild(ulist);
+
+      for (num of ulistarr) {
+          let linum = document.createElement('li');
+          linum.innerText = num;
+          ulist.appendChild(linum);
+      }
+
+      for (let i = 0; i < 3; i += 1) {
+        let h3 = document.createElement('h3');
+        h3.className = 'description';
+        maine.appendChild(h3);
+      }
+
+      h1.className = 'title';  // estranho, comentar essa linha faz com que a imagem suma
+
+      maine.removeChild(sect1);
+
+      sect2.style.marginRight = "auto";
+
+      sect0.style.backgroundColor = "green";
+
+      let libytagname = document.getElementsByTagName('li');
+      ulist.removeChild(libytagname[libytagname.length -1]);
+      ulist.removeChild(libytagname[libytagname.length -2]);
+    </script>
+  </body>
+</html>

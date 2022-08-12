@@ -1,0 +1,15 @@
+devdocs.io - documentação para um grande número de linguagem
+www.toptal.com/developers/gitignore - boa ferramente que contém modelos prontos e úteis para se adicionar no gitignore.
+branching.js.org - muito interessante pra treinar branching do git.
+coolors.co - é um ótimo site para econtrar o conjunto de cores que mais harmonizam-se (de acordo com um algoritmo, claro) para um site.
+squizlabs.gihub.io/HTML_CodeSniffer/ - é um ótimo site para testar se seu HTML segue aos padrões estabelecidos pela WCAG para um bom html semântico.
+https://docs.emmet.io/cheat-sheet/ - resumo das abreviações que podem ser usadas no vscode para ganhar tempo :)
+https://color.adobe.com/pt/create/color-wheel - brincar com esquema de harmonização de cores, alternativa do coolors
+https://www.behance.net/ - Site muito interessante para ver pastinhas criativas dos outros, bom pra procurar inspirações.
+https://gsnedders.html5.org/outliner/ - visualiza um site através da semântica do seu html
+https://webflow.com/ - site para montar interface de um site
+https://picresize.com/ - bom site para redimensionar uma imagem
+cubic-bezier.com - site para visualizar e gerar velocidade pras animações css.
+surge.sh - site para deploy de sites gratis
+the-echoplex.net/flexyboxes/ - site bom para experimentar com o flexbox
+css-tricks.com/snippets/css/a-guide-to-flexbox/ - bom cheatsheet pro flexbox
