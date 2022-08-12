@@ -97,7 +97,7 @@ INSERT INTO tabela (coluna1, coluna2) VALUES
 
 É possível ignorar os erros gerados durante a inserção da tabela, fazendo com que a insersação não pare após o erro, e continue inserindo os valores possíveis de serem inseridos com o IGNORE:
 
-INSERT IGNORE INTO tabela (coluna) VALUES (VALOR);
+INSERT IGgNORE INTO tabela (coluna) VALUES (VALOR);
 
 Algumas colunas possuem a função de auto_increment, isso significa que com cada adição de linha, seu valor é incrementado por um e por isso deve ser omitida no INSERT pois seu valor é gerado automaticamente.
 
@@ -125,7 +125,7 @@ Por padrão o SQL tem uma proteção contra updates que não envolvam um valor d
 Para fazer um update com CASE:
 
 UPDATE tabela
-set coluna = (
+SET coluna = (
 CASE outraColuna WHEN ' THEN 'TRUE'
 		WHEN 2 THEN 'FALSE'
 		ELSE ''

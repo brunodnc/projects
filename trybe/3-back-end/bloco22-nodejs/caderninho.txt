@@ -254,3 +254,46 @@ fetch('url', {
 
 Além do GET e POST, para receber e enviar dados, outros dois métodos são bem comuns, o PUT (modifica) e o DELETE.
 
+---
+
+Middleware no contexto do Express nada mais é que uma função que trata uma requesição http
+Os métodos do Express para lidar com as requisições podem receber mais de uma callback, sendo que a próxima callback só será chamada com a chamada interna da função next() (um de seus parâmetros, além de req, e res)
+
+Com o app.use é possível estabelecer um middleware global que vai rodar antes dos outros para em qualquer tipo de requisição. Para isso basta inserir antes das manipulações das requisições, dessa forma, o app.use() só se aplica às rotas posteriores a ele: 
+
+app.use(MiddlewareGlobal);
+
+Outra vantagem de utilizar do middleware global é a capacidade de enviar novas informações junto da requisição, por exemplo, se a requisição entrega apenas um ID, este primeiro middleware pode atrelar a esse ID um objeto que contenha outras informações, por exemplo:
+
+const middlewareGlobal = (req, res, next) => {
+	const {id} = req.headers
+	const req.info = database.find(item => item.id === id);
+	if (!req.info) return res.status(401).json({message: 'Invalid Id'})
+	next();
+	}
+
+Dessa forma todos os middlewares após este middleware global do exemplo poderá acessar as informações contidas no req.info
+
+Existe também a possibilidade de utilizar o middleware global para estabelecer middlewares de erro, seguindo algumas regras, eles sempre estão depois de todas as outras rotas e os outros middlewares, e sempre recebem quatro parâmetros, veja o exemplo
+
+app.use((err, req, res, next) => {
+	res.status(500).send('ERRO: ' + err.message);
+	// next(err); O next está aqui para demonstrar a possibilidade de atribuição de diversos middlewares que lidam com erros, e passando o erro como parâmetro ele sinaliza para o express para apenas rodar middlewares que tratam erros.
+	}
+	
+O próprio express identifica o middleware de erro porque ele possui 4 parâmetros,
+
+O pacote express-rescue serve para garantir o tratamento dos erros, para instalá-lo: npm install express-rescue, e para utilizá-lo:
+
+const rescue = require('express-rescue')
+app.get('path',	rescue(callback));;
+app.use((err, req, res, next) => {
+	res..status(500).json({error: err.message});
+	});
+
+Dessa forma, o rescue garante um try catch implicito onde o catch passa como next o erro.
+
+
+
+
+

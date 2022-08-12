@@ -18,3 +18,4 @@ https://fontawesome.com/kits - Linkar ícones para web design através de um scr
 unsplash.com - free to use high quality image
 doesitmutate.xyz - site simples que diz se cada método do javascript transforma ou cria um novo array
 developer.mozilla.org/en-US/docs/Web/Acessibility/ARIA/Roles - Roles dadas ao HTML que dão significado semântico ao seu conteúdo
+sonarcloud.io - botzinho que verifica qualidade geral do codigo
