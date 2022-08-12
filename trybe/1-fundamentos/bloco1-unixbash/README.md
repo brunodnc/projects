@@ -1,0 +1,1 @@
+This is the first block of the first module, here I learned the basics of the UNIX system and how to situate myself with the Linux Terminal, there were no practical project in this first block

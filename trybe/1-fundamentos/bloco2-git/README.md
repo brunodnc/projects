@@ -1,0 +1,1 @@
+There were no practical project in this block, besides creating and manipulating some repositories with git.
