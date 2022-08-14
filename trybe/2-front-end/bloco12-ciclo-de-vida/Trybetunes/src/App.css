@@ -1,0 +1,88 @@
+h1, h2,  h3, h4 {
+  text-align: center;
+}
+
+.page-login {
+  background-color: cyan;
+  border: darkgreen inset 3px;
+  padding: 1rem 0;
+  display: block;
+  margin: 35%;
+  text-align: center;
+}
+
+.page-login input {
+  max-width: 90%;
+}
+
+nav {
+  align-items: center;
+  background-color: pink;
+  color: black;
+  display: flex;
+  font-style: italic;
+  justify-content: space-around;
+  text-decoration: none;
+}
+
+.userName {
+  border-left: 1px dashed black;
+  padding-left: 10px;
+  word-spacing: 8px;
+}
+
+.page-search {
+  display: block;
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cd {
+  background-color: gray;
+  border: 1px inset black;
+  width: 10rem;
+}
+
+.cd img {
+  width: 100%;
+}
+
+.musicList {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.music {
+  background-color: white;
+  border-radius: 30%;
+  padding: 1rem;
+  text-align: center;
+  width: 33%;
+}
+
+audio {
+  max-width: 100%;
+}
+
+.profile {
+  background-color: cornflowerblue;
+  border: 1px groove cyan;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 70%;
+}
+
+.profile img {
+  display: block;
+  float: right;
+  width: 30%;
+}

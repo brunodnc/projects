@@ -1,0 +1,1 @@
+In this block we studied React's Context API and Hooks, and applyed it to the practical project where we did an web page to render a Star War Planets API.

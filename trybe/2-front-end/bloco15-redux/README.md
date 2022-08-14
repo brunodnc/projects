@@ -1,0 +1,1 @@
+This block is Redux themed, and the main project was to make a finance wallet application - with React and Redux - where the user can record its own expenses, and convert it to another currencies.

@@ -1,0 +1,25 @@
+.drinks-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  height: auto;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.drink-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-image {
+  margin: 15px;
+  transition: all 0.2s ease-in;
+  width: 250px;
+}
+
+.card-image:hover {
+  transform: scale(1.1);
+}

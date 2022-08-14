@@ -36,7 +36,6 @@ expect(element).toHaveTextContent('conteúdoDeTexto para elementos que não poss
 expect(mockFunction).toHaveBeenCalledTimes(númeroDeVezes)
 expect(mockFunction).toHaveBeenCalledWith(...argumentos)
 
-
 Para interagir com os elementos a RTL fornece o objeto userEvent, que deve ser manualmente importado para dentro do arquivo teste
 Alguns exemplos de userEvent:
 
