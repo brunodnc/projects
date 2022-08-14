@@ -1,0 +1,1 @@
+This block's theme was a introduction to React Components, and applyed it in the solar system project, a showcase of react's dynamic component structure.

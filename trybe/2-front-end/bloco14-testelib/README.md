@@ -1,0 +1,1 @@
+This was React Testing Library's block, therefore the practical project was to create tests for a pokedex web application.

@@ -1,0 +1,1 @@
+This was the front-end module final project - a meal and drinks recipes web application, it was a group project done by me, Gabriel Lima, Geisel Rocha, Heloísa Jacobi and Tamires Sousa.
