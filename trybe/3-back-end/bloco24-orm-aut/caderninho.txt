@@ -1,0 +1,58 @@
+Ferramentas de Object-Relational Mapping provê umaforma de manipular o banco de dados através de métodos pré-feitos no JavaScript, Sequelize será a ferramenta ORM utilizada.
+
+npm install sequelize // para instalar o sequelize,
+npm install sequelize-cli // para instalar o cliente que gerenciará a relação entre o sequelize e o banco de dados (requer também o npm install mysql2)
+npx sequelize-cli init // iniciará o sequelize, gerando as pastas necessárias para o seu funcionamento, uma delas é o arquivo config/config.json onde estará as configurações da conexão com o database
+npx sequelize db:create // gera o banco de dados a partir da conexão estabelecida no config.json
+npx sequelize model:generate --name Nome --attributes Atributo:string // comando que cria um model (modelo do javascript da tabela) e inicia uma migration (versionamento que carrega o registro das alterações feitas no banco de dados) no banco de dados;
+
+
+No model gerado haverá lá uma função criadora do modelo, que poderá ser - entre outras coisas - modificada para adicionar novas colunas no banco de dados, por exemplo
+
+const Tabela = (sequelize, DataTypes) => {
+	const Tabela = seuqelize.define('Tabela', {
+		name: DataTypes.STRING,
+		age: DataTypes.INTEGER,
+		});
+	};
+
+// Detalhe que na migration o nome da tabela é dado no plural, enquanto no model é dado no singular.
+Uma das vantagens do versionamento do banco de dados feito através das migrations é que, tal qual o git, se tem gravações dos diversos estados de mudança do banco de dados ao longo do tempo
+Da mesma forma que no model adicionou-se uma nova coluna 'age', no exemplo acima, deve-se também adicionar como uma nova migration essa nova coluna.
+
+npx sequelize migration:generate --name nome-da-migração // cria uma nova migração para adicionar alterações na tabela;
+
+
+
+npx sequelize seed:generate --name users // Cria um seed em branco, o qual vai ser utilizado pelo o sequelize, quando configurado, para popular o banco de dados.
+npx sequelize db:seed:all // executa o seed
+npx sequelize db:seed:undo:all // reverte o seed
+
+Depois da implementação do Model já é possível manipular os dados do banco de dados com o sequelize, por exemplo:
+
+const express = require('express');
+const { User } = require('../models');
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+	try {
+		const users = await User.findAll() // método do sequelize para buscar todos os usuários diretamente no model User, importado acima
+		return res.status(200).json(users);
+		}
+	catch (e) {
+		console.log(e.message);
+		res.status(500).json({ message: Erro!});
+		};
+	});
+module.exports = router;	
+
+Outros métodos possíveis do sequelize:
+
+.findByPk(pk) // Encontrar pela primary key
+.findOne({ where: email}) // busca apenas um que cumpra os critérios do where
+.create({name, email}) // Cria uma nova entrada na tabela
+.update({name, email}, {where: pk}) // atualiza os dados com base no where
+.destroy({where: pk}) // retira uma linha da tabela com base em sua primary key
+.
+
+

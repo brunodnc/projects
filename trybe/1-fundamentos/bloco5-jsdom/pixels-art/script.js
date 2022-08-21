@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 const pixelboard = document.getElementById('pixel-board');
 const black = document.querySelector('.black');
 const red = document.querySelector('.red');

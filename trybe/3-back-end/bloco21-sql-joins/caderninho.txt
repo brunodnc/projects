@@ -118,7 +118,7 @@ Para criar uma tabela definindo uma primary key composta por duas foreign keys, 
 CREATE TABLE tabela(
 	coluna1 tipo_de_dado NOT NULL,
 	coluna2 tipo_de_dado NOT NULL,
-	CONSTRAINT PRAMARY KEY(coluna1, coluna2),
+	CONSTRAINT PRIMARY KEY(coluna1, coluna2),
 	FOREIGN KEY (coluna1) REFERENCES tabelaDeOrigemDaColuna1,
 	FOREIGN KEY (coluna2) REFERENCES tabelaDeOrigemDaColuna2
 	);

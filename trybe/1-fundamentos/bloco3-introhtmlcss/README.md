@@ -12,5 +12,3 @@ Project: Lessons Learned
 
 A project that sums all the lessons learned in this block, with semantic HTML and great CSS, and that which couldn't be left out: Lorem Ipsum.
 
-Live link: 
-

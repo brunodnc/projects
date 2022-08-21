@@ -1,1 +1,1 @@
-In this block is where there JavaScript lessons started, there are some exercises and the main practical project: playground-functions.
+In this block is where there JavaScript lessons started, there are some exercises and the main practical project: playground-functions, which consisted in more javascript exercises :)
