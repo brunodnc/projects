@@ -1,9 +1,0 @@
-body { 
-    text-align: center;
-    background-color:rgb(16, 16, 16);
-    color: white;
-}
-
-.cell:hover {
-    fill: 'black';
-}

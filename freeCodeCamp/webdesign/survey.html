@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+              body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1rem;
+            background-image: url(https://images.pexels.com/photos/1235402/pexels-photo-1235402.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            background-color: thistle gray 30deg;
+            padding: 0.3rem
+        }
+        
+        input {
+            background-color: rgb(95, 23, 23);
+            background-blend-mode: color;
+            border: inset thistle;
+            border-radius: 0.7rem;  
+            color: gold;
+            padding-left: 00.5rem;
+        }
+
+
+        .sexo {
+            display:flex;
+            flex-direction: row;
+            background-color: transparent;
+            flex-wrap: nowrap;
+            width: 100%;
+            justify-content: space-between;
+            align-items:stretch;
+        }
+        .sexo label {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .atributos {
+            display:flex;
+            flex-direction: row;
+            background-color: transparent;
+            flex-wrap: nowrap;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .atributos label {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        #name-perso, #number, #name, #number-perso, #dropdown, #email, #submit  {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        textarea {
+            height: 20rem;
+            background-color: rgb(95, 23, 23);
+            border: inset thistle;
+            border-radius: 0.7rem;  
+            color: gold;
+            padding-left: 00.5rem;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+        }
+
+        #email {
+            padding: 1rem;
+        }
+        
+        #submit {
+            width: 50%;
+            height: auto;
+            align-self: center;
+        }
+       
+       
+        h1 {
+            font-size: 2rem;
+            text-shadow: 0.1rem 0.1rem 3px rgb(175, 0, 161);
+            color: thistle
+        }
+
+        p {
+            font-size: 1.5rem;
+            text-shadow: 0.1rem 0.1rem 3px rgb(175, 0, 161);
+            color:thistle
+        }
+        
+        label, button {
+            text-shadow: 0.1rem 0.1rem 3px rgb(175, 0, 161);
+            border-bottom: gold solid 0.5rem;
+            border-radius: 0.7rem;
+            background-color: indigo;
+            padding-left: 0.5rem;
+            color: thistle;
+        }
+
+        button {
+            color:gold;
+        }
+        
+        select {
+            border: inset thistle;
+            border-radius: 0.7rem;
+            background-color: rgb(95, 23, 23);
+            color: gold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button:hover{
+            text-shadow: 0.1rem 0.1rem 3px rgb(175, 0, 161) ;
+            border-bottom: indigo solid 0.5rem;
+            background-color: gold;
+            color: black;
+        }
+        footer {
+           display: flex;
+           flex-direction: column;
+        }
+
+        ::placeholder {
+            color: gold;
+        }    
+    </style>
+</head>
+
+
+
+
+
+<body>
+
+    <header><h1 id="title"> CRIADOR DE PERSONAGEM PARA RPG </h1></header>
+    <br>
+    <p id="description">Este formulário serve para o usuário criar personagens para o RPG que ele está jogando.</p>
+    <br>
+    <main>
+        <form id="survey-form" action="#">
+        <br>
+            <label for="name" id="name-label"> Nome do jogador: </label> <input id="name" type="text" name="name-survey" pattern="([A-ZÁÉÍÓÚÃÕÂÊÎÔÛça-záéíóúâêîôûãõ\s])+" title="Retirar números e caracteres especiais" required placeholder="Insira seu nome aqui">
+        <br>
+            <label for="name" id="name-perso-label"> Nome do Personagem: </label> <input id="name-perso" type="text" name="name-perso-survey" pattern="([A-ZÁÉÍÓÚÃÕÂÊÎÔÛça-záéíóúâêîôûãõ\s])+" title="Retirar números e caracteres especiais" required placeholder="Insira o nome de seu personagem aqui">
+        <br>
+            <label for="number" id="number-label"> Idade: </label> <input id="number" type="number" name="idade-survey" min="0" max="130" required placeholder="Insira sua idade aqui">
+        <br>
+            <label for="number" id="number-perso-label"> Idade do Personagem: </label> <input id="number-perso" type="number" name="idade-perso-survey" min="0" max="99999999" required placeholder="Insira a idade de seu personagem aqui">
+        <br>
+            <label for="dropdown" id="dropdown-label"> Classe: </label>
+    
+        <br>
+
+            <select name="dd" id="dropdown">
+                <option value="aprendiz">Aprendiz</option>
+                <option value="arqueiro">Arqueiro</option>
+                <option value="espadachim">Espadachim</option>
+                <option value="gatuno">Gatuno</option>
+                <option value="mago">Mago</option>
+                <option value="mercador">Mercador</option>
+                <option value="noviço">Noviço</option>
+            </select>
+        
+        <br>
+        
+            <label  for="radio"> Sexo do personagem:</label>
+        
+        <br>
+
+        <div class="sexo">
+            <label for="sexom">Masculino:</label> <input type="radio" id="sexom" name="sexo" value="m" required>
+            <label for="sexof">Feminino:</label> <input type="radio" id="sexof" name="sexo" value="f">
+            <label for="sexoa">Andrógino:</label> <input type="radio" id="sexoa" name="sexo" value="a"> 
+            <label for="sexon">Não se aplica:</label> <input type="radio" id="sexon" name="sexo" value="n"> 
+        </div>
+        
+        <br>
+
+            <label for="checkbox"> Atributos principais: (escolha apenas três)</label>
+
+        <br>
+
+        <div class="atributos">
+            <label for="str">Força:</label> <input type="checkbox" id="str" name="atributos" value="str" onchange="chequebox(this)" required>
+            <label for="agi">Agilidade:</label> <input type="checkbox" id="agi" name="atributos" value="agi" onchange="chequebox(this)"> 
+            <label for="dex">Destreza:</label> <input type="checkbox" id="dex" name="atributos" value="dex" onchange="chequebox(this)"> 
+            <label for="int"> Inteligência:</label> <input type="checkbox" id="int" name="atributos" value="int" onchange="chequebox(this)"> 
+            <label for="luk"> Sorte:</label> <input type="checkbox" id="luk" name="atributos" value="luk" onchange="chequebox(this)"> 
+        </div>
+        
+        <br>
+
+            <label for="textarea"> História do Personagem </label>
+            <textarea maxlength="1640" placeholder="Insira a história de seu personagem aqui"></textarea>
+
+        <br>
+
+    <footer>
+            <label for="email" id="email-label"> E-mail para receber diretamente sua ficha </E-mail> </label> <input id="email" type="email" name="email-survey" required placeholder="Insira seu e-mail aqui"> 
+            <br>
+            <button type="submit" id="submit"> Submeter ficha </button> 
+    </footer>
+    </form>
+</main>
+
+<script type="text/javascript" src="survey.js"></script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 const input = document.getElementById('carta-texto');
 const btn = document.getElementById('criar-carta');
 const letter = document.getElementById('carta-gerada');

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 // html links
 const rgbcolor = document.getElementById('rgb-color');
 const ballsarr = document.getElementsByClassName('ball');
@@ -8,7 +7,7 @@ const resetbtn = document.getElementById('reset-game');
 const scorebtn = document.getElementById('reset-score');
 const main = document.getElementById('main');
 
-// globais
+// globals
 let rgbarr = [];
 let rgbstr = '';
 let score = 0;
@@ -20,6 +19,7 @@ const borderarr = [
   'borderBottomColor',
   'backgroundColor',
 ];
+let clicked = false;
 
 // generate target RGB
 function generateRandomRGB() {
@@ -28,7 +28,7 @@ function generateRandomRGB() {
   const b = Math.floor(Math.random() * 255);
   rgbarr = [r, g, b];
   rgbstr = `rgb(${rgbarr.join(', ')})`;
-  answer.innerText = 'Escolha uma cor';
+  answer.innerText = 'Guess the color :)';
   scorehtml.innerText = score;
   rgbcolor.innerText = rgbstr;
 }
@@ -79,13 +79,17 @@ function generateRandomBalls() {
 }
 
 function chooseBall(event) {
+  if (clicked) return
   if (event.target.style.color === rgbstr) {
-    answer.innerText = 'Acertou!';
+    answer.innerText = 'Hit!';
     score += 3;
     scorehtml.innerText = score;
   } else {
-    answer.innerText = 'Errou! Tente novamente!';
+    answer.innerText = 'Miss! Try Again!!';
+    score -= 5;
+    scorehtml.innerText = score;
   }
+  clicked = true;
 }
 
 for (const ball of ballsarr) {
@@ -95,6 +99,7 @@ for (const ball of ballsarr) {
 function resetGame() {
   generateRandomRGB();
   generateRandomBalls();
+  clicked = false;
 }
 
 resetbtn.addEventListener('click', resetGame);
