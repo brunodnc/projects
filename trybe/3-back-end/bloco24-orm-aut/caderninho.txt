@@ -53,6 +53,107 @@ Outros métodos possíveis do sequelize:
 .create({name, email}) // Cria uma nova entrada na tabela
 .update({name, email}, {where: pk}) // atualiza os dados com base no where
 .destroy({where: pk}) // retira uma linha da tabela com base em sua primary key
-.
 
 
+Para configurar no sequelize uma primarya key e uma foreign key: 
+
+Na migration:
+
+	{ id: {
+		allowNull: false,
+		autoIncrement: true,
+		primaryKey: true,
+		type: Sequelize.INTEGER
+			},
+	foreign_id: {
+		type: Sequelize.INTEGER,
+		allowNull: false,
+		onUpdate: 'CASCADE',
+		onDelete: 'CASCADE',
+		field: 'foreing_id'
+		references: {
+			mode: 'foreingTableName',
+			key: 'id'
+				}
+			}
+		}
+	}
+
+No model utiliza-se as funções hasOne() // usada na tabela de origem da foreign key e belongsTo() sinalizada na tabela que consome a foreing key: -> User.hasOne(Phone) e Phone.belongsTo(User)
+
+ModelName.associate = (models) => {
+	ModelName.belongsTo(models.ForeignModelName, { foreignKey: 'foreign_id', as: 'relation_alias' });
+	};
+
+e
+
+ForeignModelName.associate = (models) => {
+	ForeignModelName.hasOne(models.ModelName, { foreignKey: 'foreign_id', as: 'relation_alias' });
+	};
+
+Para associação 1:N ou N:N utiliza-se hasMany() e ou belongsToMany()
+
+Em uma suposta migration N:N:
+module.exports = {
+	up: async (queryInterface, Sequelize) => {
+		await queryInterface.createTable('UserBooks', {
+			user_id: {
+				type: Sequelize.INTEGER,
+				references: {
+					model: 'Users',
+					key: 'user_id'
+					}
+				onUpdate: 'CASCADE',
+				onDelete: 'CASCADE',
+				primaryKey: true
+				},
+			book_id: {
+				type: Sequelize.INTEGER,
+				references: {
+					model: 'Books',
+					key: 'book_id'
+					}
+				onUpdate: 'CASCADE',
+				onDelete: 'CASCADE',
+				primaryKey: true
+				}
+			});
+		}
+	down: async (queryInterface, _Sequelize) => {
+		await queryInterface.dropTable('UserBooks');
+		}
+	};
+Num suposto model fica assim:
+
+UserBook.associate = (models) => {
+	models.Book.belongsToMany(models.User, {
+		as: 'users',
+		through: UserBook,
+		foreignKey: 'book_id',
+		otherKey: 'user_id'
+		});
+	models.User.belongsToMany(models.Book, {
+		as: 'books',
+		through: UserBook,
+		foreignKey: 'user_id',
+		otherKey: 'book_id'
+		});
+	};
+
+
+Com o sequelize é possível incluir dados advindos de foreing keys e remover informações desnecessárias das querias passando tal configuração como parâmetro da função de busca:
+const searchResult = await ModelName.findOne(
+	{ where: id, include: [
+		{model: ForeignModel, as: 'alias', attributes: {
+			 exclude: ['column_to_be_excluded'] 
+			} 
+		}]
+	});
+
+Há opções também de garantir a atomicidade das transações no banco de dados, isto é, ou ela roda por completo, ou não, o sequelie consegue gerenciar automaticamente essas transações basta apenas sinalizar para ele quais as operações fazem parte do mesmo grupo da seguinte forma:
+
+const result = await sequelize.transaction(async (t) => {
+	const data1 = await User.create({name, data}), { transaction: t});
+	const data2 = Model.create((city, user_id}, { transaction: t });
+	return res.status(201).json({message: 'success!});
+	});
