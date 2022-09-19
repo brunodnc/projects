@@ -36,20 +36,20 @@ Here is the overall structure of folders:
 - [x] Block 21: SQL Functions, JOIN and Normalization
 - [x] Block 22: Introduction to Web Development with Node.js
 - [x] Block 23: Node.js, MSC & REST
-- [] Block 24: Node.js, ORM and Authentication
-- [] Block 25: Deployment
-- [] Block 26: TypeScript
-- [] Block 27: Object Oriented Programming & SOLID
-- [] Block 28: Group Project: TFC
-- [] Block 29: Introduction to MongoDB
-- [] Block 30: MongoDB with Node.js and OOP
-- [] Block 31: Group Project: Delivery App
-- []- Block 32: VPS, CI/CD
+- [ ] Block 24: Node.js, ORM and Authentication
+- [ ] Block 25: Deployment
+- [ ] Block 26: TypeScript
+- [ ] Block 27: Object Oriented Programming & SOLID
+- [ ] Block 28: Group Project: TFC
+- [ ] Block 29: Introduction to MongoDB
+- [ ] Block 30: MongoDB with Node.js and OOP
+- [ ] Block 31: Group Project: Delivery App
+- [ ] Block 32: VPS, CI/CD
 
 ### Module 04 - Computer Science
-- [] Block 33: Introduction to Python
-- [] Block 34: Project patterns
-- [] Block 35: Networks and Data Scrapping
-- [] Block 36: Algorithms
-- [] Block 37: Data Structure: Arrays Lists, Queues and Stacks
-- [] Block 38: Data Structure: Hashmaps and Sets
+- [ ] Block 33: Introduction to Python
+- [ ] Block 34: Project patterns
+- [ ] Block 35: Networks and Data Scrapping
+- [ ] Block 36: Algorithms
+- [ ] Block 37: Data Structure: Arrays Lists, Queues and Stacks
+- [ ] Block 38: Data Structure: Hashmaps and Sets
