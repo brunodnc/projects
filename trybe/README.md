@@ -36,10 +36,10 @@ Here is the overall structure of folders:
 - [x] Block 21: SQL Functions, JOIN and Normalization
 - [x] Block 22: Introduction to Web Development with Node.js
 - [x] Block 23: Node.js, MSC & REST
-- [ ] Block 24: Node.js, ORM and Authentication
-- [ ] Block 25: Deployment
-- [ ] Block 26: TypeScript
-- [ ] Block 27: Object Oriented Programming & SOLID
+- [x] Block 24: Node.js, ORM and Authentication
+- [x] Block 25: Deployment
+- [x] Block 26: TypeScript
+- [x] Block 27: Object Oriented Programming & SOLID
 - [ ] Block 28: Group Project: TFC
 - [ ] Block 29: Introduction to MongoDB
 - [ ] Block 30: MongoDB with Node.js and OOP
