@@ -1,0 +1,1 @@
+In this week we learned how to manipulate databases with Node.js with an ORM. This week's project were to create a blog's API that manipulated MySQL database through Sequelize

@@ -1,0 +1,1 @@
+In this block we learned the basics of a RESTful API design, and applied it the project "Talker Manager", a conference management application, that allows the administrator to register, visualize, search, edit and exclude informations.

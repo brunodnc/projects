@@ -1,0 +1,13 @@
+As variáveis dentro de uma classe no javascript são chamadas de atributos, eles podem ser public, private, protected e readonly.
+
+Quando criador sem definir seu escopo, ele é criado como public, estes ficam disponíveis para acesso e modificação 'dentro e fora' da classe, isto é, também em sua instanciação.
+
+Quando seu escopo é private ele só pode ser lido e modificado dentro da classe. Para se alterar um atributo de escopo privado utilizam-se os métodos internos da classe, que validam e realizam essas alterações
+
+Quando seu escopo é readonly ele pode ser lido tanto dentro e fora, mas não pode ser modificado, sendo inicializado apenas na função construtora da classe.
+
+Quando seu escopo é protected o atributo é passado como herança, diferentemente do private, que seria inacessível através de uma relação de herença
+
+
+
+
