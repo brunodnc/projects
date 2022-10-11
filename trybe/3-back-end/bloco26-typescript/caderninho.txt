@@ -1,0 +1,68 @@
+tsc --init inicializa um projeto em TypeScript e gera o tsconfig.json, o arquivo que define as configurações do typescript.
+
+https://www.typescriptlang.org/pt/play - para praticar TS.
+
+Para declarar o tipo de uma variável no TS utiliza-se a seguinte sintaxe:
+
+const a: boolean = true;
+const b: number = 1;
+
+const funçãoSemRetorno: void = () => {} // void é o tipo para valores sem retorno algum.
+
+Existe também o tipo enum dentro do TS, que permite estabelecer um conjunto de constantes definidas, por exemplo:
+
+enum weekDays = {
+	Sunday,
+	Monday,
+	}
+
+wekkDays.Sunday // retorna 0
+wekkDays.Monday // retorna 1
+
+enum weekDays = {
+	Sunday = 'Domingo',
+	Monday = 'Segunda,
+	}
+
+wekkDays.Sunday // retorna 'Domingo'
+
+const diaDaSemana: weekDays = weekDays['Domingo'] // retorna 'Sunday'
+
+npm install -D @types/node // para instalar um pacote para definições de tipos e classes para o TypeScript reconhecê-las, nesse caso instala-se as de node, mas pode-se também instalar, por exemplo, do express.
+
+Para declarar um array no TS: é const ArrName: type[] = [], No caso de um array de strings: 
+const nomes: string[] = [ 'ana', 'bruno' ]
+
+É possível declarar também o tipo 'tupla' que aqui significa um array com ordem e tipo fixo, por exemplo:
+const tupla: [string, number. string] = ['um', 2, 'oi']
+
+No caso de tipos complexos, é possível declarar um alias para ele, por exemplo, com a tipagem de um objeto:
+
+type Location = {
+	name: string,
+	x: number,
+	y: number,
+	};
+
+function findLocation(l: Location) {}
+
+O TS também permite que um varíavel possua mais de um tipo com o Type Union, por exemplo:
+
+const idade: number | string // aceitaria tanto número quanto uma string em sua definição.
+
+As classes no TypeScript servem como o protótipo de um objeto.
+
+class Person {
+	name: string;
+	age?: number; // o ? define que uma propriedade não é obrigatória para a classe, ele basicamente faz um Union Type do tipo atual com undefined
+	}
+
+O TS também permite a construção de classes e função com o tipo genérico, que é definido apenas em sua instanciação, e assim permite sua reutilização para vários tipos diferentes, por exemplo: 
+
+function qualMeuTipo<T>(variavel: T) {
+	console.log('Só aceito valores de tipo ' + T.toString() + ', meu valor é ' + variavel);
+	};
+
+qualMeuTipo<string>('oi') // retorna: Só aceito valores do tipo string, meu valor é oi
+
+
