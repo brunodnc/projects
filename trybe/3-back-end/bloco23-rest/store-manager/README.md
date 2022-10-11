@@ -1,0 +1,1 @@
+In this block we learned about MSC (which stands for Model, Service and Controller layer) API architecture. And the project done in this week was the Store Manager, a sales management system.
