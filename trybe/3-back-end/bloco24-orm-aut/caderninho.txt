@@ -157,3 +157,33 @@ const result = await sequelize.transaction(async (t) => {
 	const data2 = Model.create((city, user_id}, { transaction: t });
 	return res.status(201).json({message: 'success!});
 	});
+
+O JWT é o JSON Web Token, um token de autenticação que, mesmo sendo público, permite apenas o detentor da senha, isto é, o usuário, consiga alterar as informações que o token carrega.
+O token é composto por dois objetos, o header, que contém suas proprias informaçoes, e o payload que contém os dados e permissões da pessoa usuária.
+
+O header contém duas propriedades:
+
+{
+	"alg": "HS256", // é o tipo do algoritmo de criptografia empregado
+	"typ": "JWT" // é o tipo do token
+}
+
+E o payload contém os dados:
+
+{
+	name: 'Usuario'
+	admin: false,
+}
+
+Para gerar a assinatura do token o header e o payload devem estar codificados em base64 para então serem criptografados pelo algoritmo definido no header, por exemplo:
+
+import { hmac } from 'hmac';
+
+const base64 = (string) => Buffer.from(string).toString('base64');
+
+const secret = 'senha'
+
+const signature = hmac(secret, `${base54(header)}.${base64(payload)}`);
+const token = `${base64(header)}.${base64(payload)}.${base64(assinatura)}`;
+
+
