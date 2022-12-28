@@ -4,8 +4,12 @@ Here you can find some of my personal projects and my study materials, inside ea
 
 ### freeCodeCamp
 
-In the freeCodeCamp directory there is the projects and exercises that I did for this amazing course
+Where I keep the the projects and exercises that I did for the freeCodeCamp courses that I completed.
 
 ### trybe
 
-The trybe directory is the place where you can find all my work and projects that I did while I studyed Trybe's web design course.
+The trybe directory is the place where you can find all my work done while I studyed Trybe's web design course.
+
+### java-helsinki
+
+This directory keeps all the java exercises and projects for Helsinki University's java MOOC.
