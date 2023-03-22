@@ -1,1 +1,0 @@
-In this week's block we learned how to use Typescript with Node.js. This week's project is Trybesmith, a medieval items store in the format of an API

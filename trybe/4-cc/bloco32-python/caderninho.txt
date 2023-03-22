@@ -1,0 +1,256 @@
+básico de python
+
+Lista - sequencia de entidades mutável e ordenável
+fruits = ["orange", "banana"]
+fruits[0] // orange
+fruits[-1] // banana
+fruits.append("pineapple") // fruits = ["orange", "banana", "pineapple"]
+fruits.remove("orange") // fruits = ["banana", "pineapple"]
+fruits.extend(["f1", "f2"]) // fruits = ["banana", "pineapple", "f1", "f2"]
+fruits.index("banana") // 0
+fruits.sort() // order list
+
+Tuplas - conjunto de informações imutáveis
+user = ("email", "pw")
+user[0] // email
+
+Conjuntos (set) - entidades não ordenadas, que implementam operações básicas de teoria dos conjuntos como união interseção e diferença
+buy_list = {"food", "drinks"}
+buy_list.add("clothes") // {"food", "drinks", "clothes"}
+buy_list.add("clothes") // items iguais não se repetem
+sell_list = {"guitar, clothes"}
+buy_list.union(toys) // {"food", "drinks", "clothes", "guitar"}
+buy_list.intersection(sell_list) // {"clothes"}
+buy_list.difference(sell_list} // {"guitar", "food", "drinks"}
+
+Conjuntos imutáveis - frozenset - mesma coisa que os conjuntos porém não podem ser modificados
+
+DIcionário (dict) - Associa uma chuva a um determinado valor
+dicionario = {"username": "usuario", "password": "senha"}
+dicionario["username"] // usuario
+del dicionario["username"] // deleta a chave "username" e seu respectivo valor
+
+Alcance (range) -> Gera uma sequência numérica de um dado valor até outro seguindo uma determinada regra
+range(2) = [0,1,2]
+range(3, 7, 2) = [3, 5, 7] // sequencia de 3 ate 7 de dois em dois
+
+estrutura de if:
+if salary <= 1500:
+	position = "mestrando"
+elif 1500 < salary 5000 <= 3000:
+	position = "doutorando"
+else:
+	position = ganhando algo
+
+estrutura de for:
+
+uniniversities = [
+	{"name": UFMG, "rating": 5.0}	
+	{"name": USP, "rating": 4.5}
+	]
+highestNoteUni = []
+min_rating = 5.0
+for university in universities:
+	if uniniversities["rating"] >= min_rating:
+		highestNoteUni.append(university)
+
+ou no caso de uma sintaxe mais concisa:
+min_rating = 5.0
+fileteredUniversities = [universities for uni in universities if universities["rating"] >= min_rating]
+
+função:
+
+def sum(x, y):
+'''__doc__ da função'''
+	return x + y
+
+sum(2,2) // 4
+sum(x=2, y=2) // 4
+print(sum.__doc__) // retorna a descrição da função... no caso foi estabelecida como: __doc__ da função
+
+__name__ = nome do arquivo do sendo rodado do python
+
+
+all() chama a função bool() em cada elemento de uma lista, se todos for true, retorna true
+any() chama a função bool() em cada elemento de uma lista, se algum for true, retorna true
+enumerate() retorna o indice do elemento atrelado ao elemento
+max() retorna o maior item
+min() retorna o menor item
+len() retorna o numero de items dentro de um objeto
+counter() recebe uma lista e retornar um dicionario que informa o número de vezes que cada item no dicionario se repete na lista dada ao método counter.
+
+Para criar um ambiente de desenvolvimento isolado com o python:
+
+python3 -m venv .venv // cria a pasta .venv (virtual enviroment)
+source .venv/bin/active // inicializa o python dentro deste venv, é necessário repetir sempre que rodar o python
+
+
+opened_file = open("path_to_file.txt", mode="w") // modo de abrir arquivo com um programa em python
+
+mode="w" -> modo de escrita
+
+opened_file.write("write something in the file\n") // write não faz quebra de linha por padrão
+print('other something', file=opened_file)
+opened_files.writeLines(["lista", "para", "ser escrita\n"])
+
+se foi aberta, tem que fechar
+opened_files.close()
+
+mode="r" -> modo de leitura
+
+content = opened_file.read()
+
+print(content)
+
+ou
+
+for line in opened_file:
+	print(line)
+
+opened_file.close()
+
+
+mode="wb" ou mode="rb" -> respectivamente modo de escrita e leitura utilizando binários
+
+Tratamento de erros:
+
+try:
+	// insira aqui codigo que pode gerar algum erro
+	break
+except NomeDoErro:
+	print("erro foi tal)
+
+sendo assim, se não existir nenhum tratador - coberto pelo 'except: tipo do erro', o erro estoura e a execução do programa termina
+
+Outro fluxo de tratamento de erro como exemplo:
+
+try:
+    arquivo = open("arquivo.txt", "r")
+except OSError: // executado no caso de uma exceção (exceção específica OSError ou qualquer?)
+    print("arquivo não encontrado")
+else: // se não houver erros no try, executa o else
+    print("arquivo aberto")
+    arquivo.close()
+finally: // executado sempre, com erro ou sem.
+    print("Hello world!")
+
+para gerenciar o contexto dentro de um arquivo .py utiliza-se a palavra reservada with, por exemplo:
+
+with open("arquivo.txt", "w") as file: // aparentemente o contexto abre e fecha os arquivos automaticamente, não há necessidade do .close()
+	file.write("escrevendo")
+
+
+Manipulação JSON:
+
+Para carregar Json no python primeiro abra o arquivo em um contexto específico, depois
+
+import json
+with open("arquivo.txt") as file:
+	parsedJson = json.load(file) // transforma o json em uma lista de dicionários
+
+Outros métodos
+loads() carrega o JSON a partir de um texto (já instanciando enquanto string (provavelmente proveniente de um file.read() e não diretamente de um arquivo, como no exemplo acima)
+dump(data, file) -> transforma um dado em um arquivo json
+dumps() -> -> converte um dado em uma string json (a ser escrita em um arquivo com o file.write())
+
+
+
+Manipulação CSV:
+
+import csv
+with open("arquivo.txt") as file:
+	parsedCSV = csv.dictReader(file) // transforma o csv em um objeto iterável como uma lista
+	for row in parsedCSV:
+		print(row) // cada row é um dicionário
+
+ou
+
+with open("arquivo.txt") as file:
+	header, *data = csv.reader(file) // transforma o csv em um objeto iterável como uma lista
+	for row in data:
+		print(row) // cada row é uma lista
+
+Variáveis de ambiente dentro do python:
+
+no bash export PATH="3222"
+
+import os
+
+print(os.environ["PORT"])
+
+Para usar um arquivo .env:
+
+instala-se a biblioteca python-decouple
+
+from decouple import config
+PATH = config("PATH")
+
+Testes em python:
+
+trybe ensina com a biblioteca pytest para testes
+
+python3 -m pip install pytest // para instalá-la 
+
+def test_function():
+	'Testa se o retorno da função está correto
+	assert functiont_that_must_return_true(params) is True
+
+NOTA IMPORTANTE, os arquivos de testes em pythos devem começar com test_, por exemplo test_nome_da_função_a_ser_testada.py
+
+é feito da seguinte forma para verificar se uma função está falhando como esperado:
+
+def test_divide_by_zero_exception():
+	with pytest.raises(ZeroDivisionError, match='division by zero'): // tipo do erro, e texto retornado pelo erro, pode ser empregado também uma regexp
+		divide_function(2, 0)
+
+É possível definir o contexto de um teste no pytest através da anotação de suas fixtures, veja:
+
+@pytest.fixture
+def context():
+	"o contexto que o teste roda"
+	return {
+			"variable": "variável"
+		}
+
+def test_que_usa_contexto():
+	assert variable_igual_variavel(context) // teste passa
+
+
+
+
+
+
+
+
+
+
+
+S
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
