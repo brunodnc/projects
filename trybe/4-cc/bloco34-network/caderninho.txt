@@ -1,0 +1,103 @@
+python3 -m pip install requests // instala as dependências necessarias para fazer requisições html no python
+
+
+response = request.get("url", headers={"Authorization: x"}) -> retorna response // com os headers definidos como parametro
+
+request = request.post("url, data="body_content")
+
+
+response.headers() // acessa os headers da response
+response.text() // recebe html cru
+response.content() // binario recebido
+response.json() // decodifica o json
+
+// para evitar rate-time-limit no crawler, isto é, a defesa presente nos sites contra ataques de negação de serviço
+
+time.sleep(5) // mandar esperar no fim de uma iteração
+
+ou tratar configurar o numero de tentativas, e tratar o timeout error
+
+try:
+	response = request.get('url', timeout=2) // espera 2 segundos para uma nova requisição
+except request.Timeout:
+	response = request.get('url, timeout=15) // espera 15
+
+python3 -m pip install parsel // biblioteca para data scrapping
+
+
+import requests
+from parsel import Selector
+
+response = request.get('url')
+text = response.text()
+selector = Selector(text)
+print(selector.css("name-html-class").getall() // get all html node with this attribute, funciona com qualquer seletor css, até mesmo div, h1, etc.
+
+Para pegar um link de de uma div, por exemplo
+
+href_url = selector.css('img a::attr(href)').get()
+
+new_link_response = request.get('url' + href_url)
+new_link_selector = Selector(text=new_link_response) // comparar com o jeito feito acima, descobrir qual é o correto
+
+utilizando o fluxo acima o programa é capaz de navegar nas páginas e ir se redirecionando
+
+As resposta de um selector.css podem filtradas por um regex, no caso de get() -> .re_first(regex) e no caso de getall() -> .re(regex)
+
+Para salvar os dados do web scrap
+
+python -m pip install pymongo
+
+from pymongo import MongoClient
+
+client = MongoClient() // cria conexão com o banco de dados -> localhost:27017 para conectar por padrão
+
+db = client.catalogue
+
+data = {"user": "aaa"}
+
+data_id = db.table_name.insert_one(data).inserted_id
+
+client.close() // termina a conexão
+
+outros comandos possíveis para o pymongo
+db.table.insert_many([{data},{data}])
+db.table.find_one()
+db.table.find({"column": {"$regex": regex}})
+
+Selenium -> web driver
+Beautiful Soup -> parseia dados da web, html, xml, json
+
+
+para utilizar selenium em um container -> docker pull selenium/ßtandalone-firefox:106.0
+docker run -d -p 4444:4444 -p 7900:7900 --shm-size 2g --name firefox selenium/standalone-firefox:106.0 // --shm-size limite memoria compartilhada com o container
+
+from selenium import webdriver
+options = webdriver.FirefoxOptions()
+options.add_argument('--ignore-certificate-errors')
+options.add_argument('--ignore-ssl-errors=yes')
+options.add_argument('--start-maximized')
+
+firefox = webdriver.Remote(command_executor="url", options=options)
+
+// navegador aberto, usar selenium para controlá-lo
+
+firefox.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+POO em Python
+
+__new__ (construtor) -> Primeira parte da construção de uma classe no python, é ela que devolve uma instancia de sua classe, e não deve-se sobreescrevê-lo a não ser no caso de controle da criação de uma nova instância, ou seja, provavelmente numa subclasse de um tipo imutável como str, int
+
+__init__ -> é a função principal do objeto que atribuirá os parâmetros para sua inicialização, ele inicia o objeto depois de criado pelo new.
+
+No caso de uma classe Animal escrita em python ->
+
+class Snake(Animals): //QUando se passa outra classe como parâmetro a uma classe, ela está herdando desta classe.
+	def __init__(self, name, venomous):
+		super().__init__(name)
+		_self.race = "cobra", (1 underline = fake protected)
+		self.venomous = venomous,
+
+
+		def __when_in_danger: // (2 underline = private but search for name mangling)
+			return super()._fight_or_flight // super() calls a method or an attribute from then inherited class
+		
+
+		
+
+		def __str__(self): // é o método que é chamado quando este objeto é transformado em string
+	return f"""
+		- Nome: {super().name}
+		- Raça: {self.race}
+		- É Venenosa?: { self.venomous }
+		- No perigo: {self.__when_in_danger()}
+		"""
+
+pesquisar sobre o decorators @dataclass e @cache
+
+Design Patterns - Padrões de Projeto
+
+Padrões de criação, estruturais e comportamentais
+
+criação -> criar objetos flexíveis
+estruturais -> estrutura simples de relacionamento
+comportamentais -> interação e responsabilidade de objetos
+
+Iterator __iter__ retorna um objeto iterador que pode ser chamado o próximo da fila com a função next()
+Adapter -> padrão que converte uma classe em outra
+
+
+
+
+	
+
+
+
+
+

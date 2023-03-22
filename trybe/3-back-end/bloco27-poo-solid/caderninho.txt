@@ -6,7 +6,22 @@ Quando seu escopo é private ele só pode ser lido e modificado dentro da classe
 
 Quando seu escopo é readonly ele pode ser lido tanto dentro e fora, mas não pode ser modificado, sendo inicializado apenas na função construtora da classe.
 
-Quando seu escopo é protected o atributo é passado como herança, diferentemente do private, que seria inacessível através de uma relação de herença
+Quando seu escopo é protected o atributo é passado como herança, diferentemente do private, que seria inacessível através de uma relação de herença.
+
+SOLID são princípios de para dar solidez e durabilidade a uma arquitetura de software.
+
+É composto por cinco princípios:
+
+Single responsibility principle - Uma entidade deve ter apenas uma responsabilidade;
+Open/Closed principle - entidades devem estar abertas para extensão (conseguir abarcar diversos casos similares) mas fechadas para modificação (sem precisar mudar o código);
+Liskov substitution principle - Objetos em um programa devem ser substituíveis por instâncias de seus subtipos sem alterar a funcionalidade do programa (Deixar em cheque os métodos e atributos que são substituídos pela subclasse, para o princípio de Liskov funcionar essa substituição tem que ser levada em consideração, em resumo, quando há sobreposição na classe herdeira, não pode haver na sua saída um escopo mais abrangente do que é esperado no retorno da sua superclasse, e na sua entrada um escopo mais restrito);
+Interface segregation principle - Interfaces específicas para propósitos específicos, ou seja, é recomendado que uma classe não dependa de métodos que ela não utiliza, assim, é melhor que uma interface não obrigue uma classe a ter métodos desnecessários;
+Dependency inversion principle - Entidades de alto nível não devem depender de entidades de níveis inferiores, mas sim de abstrações genéricas que permita a utilização de entidades menos complexas similares;
+
+
+
+
+
 
 
 
