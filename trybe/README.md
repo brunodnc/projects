@@ -40,16 +40,16 @@ Here is the overall structure of folders:
 - [x] Block 25: Deployment
 - [x] Block 26: TypeScript
 - [x] Block 27: Object Oriented Programming & SOLID
-- [ ] Block 28: Group Project: TFC
-- [ ] Block 29: Introduction to MongoDB
-- [ ] Block 30: MongoDB with Node.js and OOP
-- [ ] Block 31: Group Project: Delivery App
-- [ ] Block 32: VPS, CI/CD
+- [x] Block 28: Group Project: TFC
+- [x] Block 29: Introduction to MongoDB
+- [x] Block 30: MongoDB with Node.js and OOP
+- [x] Block 31: Group Project: Delivery App
+- [x] Block 32: VPS, CI/CD
 
 ### Module 04 - Computer Science
-- [ ] Block 33: Introduction to Python
-- [ ] Block 34: Project patterns
-- [ ] Block 35: Networks and Data Scrapping
-- [ ] Block 36: Algorithms
-- [ ] Block 37: Data Structure: Arrays Lists, Queues and Stacks
-- [ ] Block 38: Data Structure: Hashmaps and Sets
+- [x] Block 33: Introduction to Python
+- [x] Block 34: Project patterns
+- [x] Block 35: Networks and Data Scrapping
+- [x] Block 36: Algorithms
+- [x] Block 37: Data Structure: Arrays Lists, Queues and Stacks
+- [x] Block 38: Data Structure: Hashmaps and Sets
