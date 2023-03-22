@@ -43,8 +43,7 @@ Here is the overall structure of folders:
 - [x] Block 28: Group Project: TFC
 - [x] Block 29: Introduction to MongoDB
 - [x] Block 30: MongoDB with Node.js and OOP
-- [x] Block 31: Group Project: Delivery App
-- [x] Block 32: VPS, CI/CD
+- [x] Block 31VPS, CI/CD
 
 ### Module 04 - Computer Science
 - [x] Block 33: Introduction to Python
